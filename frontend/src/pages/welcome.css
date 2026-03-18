@@ -1,0 +1,129 @@
+.welcomepage-container {
+  min-height: 1vh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  background-color: #f0f9ff; 
+  padding: 20px;
+}
+
+.welcomepage-card {
+  background-color: white;
+  padding: 5px 30px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+    .welcomepage-card h2{
+      font-size: 32px;
+      color: #334155;
+      margin-bottom: 20px;
+    }
+
+.welparagraph1 {
+  color: #000000;
+  line-height: 1.6;
+  font-size: 16px;
+}
+.welparagraph2 {
+  color: #000000;
+  margin: 20px 0;
+}
+.welparagraph3 {
+  color: #000000;
+  font-size: 14px; 
+  margin-bottom: 30px;
+}
+
+.welcomepage-button {
+  width: 45%;
+  padding: 16px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(34, 197, 94, 0.2);
+}
+
+.welparagraph4 {
+  color: #94a3b8; 
+  font-size: 12px; 
+  margin-top: 20px;
+}
+
+/* 2. The Media Query - Phone Overrides */
+/* This ONLY triggers when the screen is 480px or smaller */
+
+/*.........................................................................*/
+@media (max-width: 480px) {
+.welcomepage-container {
+  min-height: 1vh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  background-color: #f0f9ff; 
+  padding: 0px;
+}
+
+.welcomepage-card {
+  background-color: white;
+  padding: 0px 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  max-width: 290px;
+  width: 100%;
+  text-align: center;
+}
+    .welcomepage-card h2{
+      font-size: 25px;
+      color: #334155;
+      margin-bottom: 10px;
+      margin-top: 30px;
+    }
+  
+.welparagraph1 {
+  color: #000000;
+  line-height: 1.5;
+  font-size: 16px;
+  margin-top: 0px;
+}
+.welparagraph2 {
+  color: #000000;
+  margin: 20px 0px;
+}
+.welparagraph3 {
+  color: #000000;
+  font-size: 13px; 
+  margin-bottom: 30px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.welcomepage-button {
+  width: 50%;
+  padding: 12px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(34, 197, 94, 0.2);
+}
+
+.welparagraph4 {
+  color: #94a3b8; 
+  font-size: 11px; 
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+}

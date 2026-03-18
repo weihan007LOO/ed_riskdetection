@@ -1,0 +1,379 @@
+/*Line 73-84 (Logo and Main Title).......................................*/
+.main-app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: 'center';
+  align-items: center;
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f0f9ff;
+  padding: 40px; 
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box; 
+  overflow: auto;
+}
+  .padding-step-0 {
+      padding: 40px; 
+  }
+  .padding-step-1 {
+      padding: 40px; 
+  }
+  .padding-step-2 {
+      padding: 40px; 
+  }
+  .padding-step-3 {
+      padding: 40px; 
+  }
+  .padding-step-4 {
+      padding: 40px; 
+  }
+
+.fixed-height {
+  height: 110vh;
+  overflow: hidden;
+}
+
+.greenzonetriage-title {
+  color: #075985;
+  font-size: 45px; 
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.triage-logo {
+  width: 100px;      
+  height: auto; 
+  display: block;    
+  margin: 0 auto;    
+  margin-bottom: 0px;
+}
+
+/*Step 1..........................................................*/
+.step1main-style {
+  background-color: white; 
+  padding: 30px; 
+  border-radius: 15px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+    .step1main-style h3 {
+      color: #334155;
+      font-size: 24px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    .step1main-style p {
+      color: black;
+      font-size: 14px;
+    }
+
+.step1complain-container {
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px; 
+  margin-top: 20px;
+  max-height: 60vh; 
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.step1complain-button {
+  padding: 15px 10px;
+  border-radius: 10px;
+  border: 2px solid;
+  border-color: #eee;
+  background-color: white;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.selectedComplaints {
+  border-color: #27ae60;
+  background-color: #eafaf1;
+  color: #27ae60;
+}
+
+.step1complain-submit {
+  margin-top: 30px; 
+  width: 100%; 
+  padding: 15px; 
+  background-color: #27ae60; 
+  color: white; 
+  border: none; 
+  border-radius: 10px; 
+  font-weight: bold; 
+  font-size: 16px;
+  cursor: pointer; 
+}
+
+.step1complain-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed; 
+}
+
+/*Step 2..........................................................*/
+.step2main-style {
+  max-width: 600px;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.step2back-button {
+  background: none;
+  border: none; 
+  color: #666; 
+  cursor: pointer; 
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.step2title-style {
+  background-color: white; 
+  padding: 25px; 
+  border-radius: 15px; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  text-align: center;
+}
+    .step2title-style h3{
+      color: #334155;
+      border-bottom: 1px solid #eee; 
+      padding-bottom: 10px;
+      margin-top: 0px; 
+      font-size:30px;
+    }
+
+.step2question-id{
+  margin: 20px 0; 
+  text-align: left;
+}
+
+.step2question-que{
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+  color: black;
+}
+
+.step2submit-button{
+  width: 100%;
+  padding: 18px;
+  background-color: #27ae60;
+  color: white;
+  border: none; 
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer; 
+  margin-bottom: 50px;
+}
+
+.lastcomplaint {
+  background-color: #075985;
+}
+
+.step2submit-button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed; 
+}
+
+
+/* 2. The Media Query - Phone Overrides */
+/* This ONLY triggers when the screen is 480px or smaller */
+
+/*.........................................................................*/
+@media (max-width: 480px) {
+  /*Line 73-84 (Logo and Main Title).......................................*/
+.main-app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: 'center';
+  align-items: center;
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f0f9ff; 
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box; 
+  overflow-x: hidden;
+   /* Shrink padding so card doesn't look squished */
+}
+  .padding-step-0 {
+      padding: 45px; 
+  }
+  .padding-step-1 {
+      padding: 30px; 
+  }
+  .padding-step-2 {
+      padding: 30px; 
+  }
+  .padding-step-3 {
+      padding: 20px; 
+  }
+  .padding-step-4 {
+      padding: 20px; 
+  }
+  .padding-step-5 {
+      padding: 20px; 
+  }
+
+.fixed-height {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.greenzonetriage-title {
+  font-size: 28px; /* Shrink text so it doesn't force a zoom-out */
+}
+
+.triage-logo {
+  width: 80px;      
+  height: auto; 
+  display: block;    
+  margin: 0 auto;    
+  margin-bottom: 10px;
+}
+
+/*Step 1..........................................................*/
+.step1main-style {
+  background-color: white; 
+  padding: 30px; 
+  border-radius: 20px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+    .step1main-style h3 {
+      color: #334155;
+      font-size: 21px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    .step1main-style p {
+      color: black;
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+.step1complain-container {
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 7px; 
+  margin-top: 20px;
+  max-height: 60vh; 
+  overflow-y: auto;
+  padding: 1px;
+}
+
+.step1complain-button {
+  padding: 15px 0px;
+  border-radius: 10px;
+  border: 2px solid;
+  border-color: #eee;
+  background-color: white;
+  color: #333;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.selectedComplaints {
+  border-color: #27ae60;
+  background-color: #eafaf1;
+  color: #27ae60;
+}
+
+.step1complain-submit {
+  margin-top: 25px; 
+  width: 100%; 
+  padding: 15px; 
+  background-color: #27ae60; 
+  color: white; 
+  border: none; 
+  border-radius: 10px; 
+  font-weight: bold; 
+  font-size: 14px;
+  cursor: pointer; 
+}
+
+.step1complain-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed; 
+}
+
+/*Step 2..........................................................*/
+.step2main-style {
+  max-width: 600px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.step2back-button {
+  background: none;
+  border: none; 
+  color: #666; 
+  cursor: pointer; 
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.step2title-style {
+  background-color: white; 
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  text-align: center;
+}
+    .step2title-style h3{
+      color: #334155;
+      border-bottom: 1px solid #eee; 
+      padding-bottom: 10px; 
+      font-size:25px;
+    }
+
+.step2question-id{
+  margin: 20px 0; 
+  text-align: left;
+}
+
+.step2question-que{
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+  color: black;
+}
+
+.step2submit-button{
+  width: 100%;
+  padding: 18px;
+  background-color: #27ae60;
+  color: white;
+  border: none; 
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer; 
+  margin-bottom: 50px;
+}
+
+.lastcomplaint {
+  background-color: #075985;
+}
+
+.step2submit-button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed; 
+}
+
+}

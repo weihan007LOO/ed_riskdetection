@@ -1,0 +1,140 @@
+.detailpage-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.detailpage-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+    .detailpage-header h2{
+    font-size: 30px;
+    color: #334155;
+    margin: 0 0 10px 0;
+    }
+    .detailpage-header p{
+    font-size: 14px;
+    color: black;
+    line-height: 1.5;
+    margin: 0;
+    }
+
+.detailpage-formArea {
+    display: block;
+    flex-direction: column;
+    
+}
+
+.detailpage-id {
+    margin: 20px 0; 
+    text-align: left;
+}
+
+.detailpage-que {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+    color: black;
+}
+
+.detailpage-inputWrapper {
+    width: 100%;
+}
+
+.detailpage-footer {
+    margin-top: 40px;
+}
+
+.detailpage-button {
+    width: 100%;
+    padding: 18px;
+    background-color: #27ae60;
+    color: white;
+    border: none; 
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer; 
+    margin-bottom: 50px;
+}
+
+/* 2. The Media Query - Phone Overrides */
+/* This ONLY triggers when the screen is 480px or smaller */
+
+/*.........................................................................*/
+@media (max-width: 480px) {
+    
+.detailpage-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-sizing: 'border-box';
+}
+
+.detailpage-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+    .detailpage-header h2{
+    font-size: 25px;
+    color: #334155;
+    margin: 0 0 10px 0;
+    }
+    .detailpage-header p{
+    font-size: 11px;
+    color: black;
+    line-height: 1.5;
+    margin-top: 1px;
+    }
+
+.detailpage-formArea {
+    display: block;
+    flex-direction: column;
+    
+}
+
+.detailpage-id {
+    margin: 20px 0; 
+    text-align: left;
+}
+
+.detailpage-que {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 12px;
+    color: black;
+}
+
+.detailpage-inputWrapper {
+    width: 100%;
+}
+
+.detailpage-footer {
+    margin-top: 40px;
+}
+
+.detailpage-button {
+    width: 100%;
+    padding: 18px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer; 
+    margin-bottom: 50px;
+}
+}
