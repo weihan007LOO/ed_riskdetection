@@ -1,6 +1,5 @@
 import React from 'react';
 // 1. Import the image file
-import chestImg from "../assets/chest.png";
 
 export default function ChestMap({ onSelect, selectedRegion = []}) {
   // These % values create a 3x3 grid. 
@@ -30,7 +29,7 @@ export default function ChestMap({ onSelect, selectedRegion = []}) {
         
         {/* 2. Use the imported variable as the src */}
         <img 
-          src={chestImg} 
+          src="/chest.png"
           alt="Chest Map" 
           style={{ width: '100%', display: 'block', pointerEvents: 'none' }} 
         />

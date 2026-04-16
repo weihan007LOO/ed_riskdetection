@@ -1,12 +1,10 @@
 import React from 'react';
-import vomitImg from '/static/Vomit1.png';
-import sputumImg from '/static/Phlegm1.png';
 
 export default function MedicalColour({ options, selectedOption, onChange, type }) {
   // Map type to one image per question
   let displayImage = null;
-  if(type === 'vomit') displayImage = vomitImg;
-  else if(type === 'sputum') displayImage = sputumImg;
+  if(type === 'vomit') displayImage = "Vomit1.png";
+  else if(type === 'sputum') displayImage = "Phlegm1.png";
 
   return (
     <div style={{

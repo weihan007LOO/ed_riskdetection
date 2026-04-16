@@ -1,6 +1,5 @@
 import React from 'react';
 // 1. Import the image file
-import abdomenImg from "../assets/abdomen.jpg";
 
 export default function AbdomenMap1({ onSelect, selectedRegion = []}) {
   // These % values create a 3x3 grid. 
@@ -33,7 +32,7 @@ export default function AbdomenMap1({ onSelect, selectedRegion = []}) {
         
         {/* 2. Use the imported variable as the src */}
         <img 
-          src={abdomenImg} 
+          src="/abdomen.jpg"
           alt="Abdomen Map1" 
           style={{ width: '100%', display: 'block', pointerEvents: 'none' }} 
         />

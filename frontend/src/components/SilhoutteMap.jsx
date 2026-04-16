@@ -74,7 +74,7 @@ function BodyMap({ onSelect, selectedRegion = [] }) {
     <div className="bodymap-container">
       {/* 1. THE BASE IMAGE */}
       <img 
-        src="/static/full_body_silhoutte1.png" 
+        src="full_body_silhoutte1.png" 
         alt="Body Map" 
         className="bodymap-base-image"
       />

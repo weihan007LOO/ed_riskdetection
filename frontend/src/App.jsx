@@ -335,7 +335,7 @@ function App() {
             <input type="range" min="0" max="10" style={{ width: '80%' }} onChange={(e) => updateAnswer(q.id, e.target.value)} />
               <span style={{ fontWeight: 'bold', color: '#27ae60', marginTop: '5px' }}>{allAnswers[q.id] || 5} / 10</span>
                 <img
-                  src="/static/PainScore.png"
+                  src="/PainScore.png"
                   alt="range illustration"
                   style={{ marginTop: '10px', maxWidth: '90%', height: 'auto'}}
                 />
@@ -416,7 +416,7 @@ function App() {
       {(step === 0 || step === 2) && (
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <img 
-            src="/static/ailogo.png" 
+            src="/ailogo.png" 
             alt="AI Logo" 
             className="triage-logo" 
           />
