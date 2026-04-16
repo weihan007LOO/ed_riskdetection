@@ -489,7 +489,7 @@ function App() {
 
           {/* 🔹 Start Assessment button */}
           <button 
-            onClick={() => { setStep(3)}}
+            onClick={() => { goToStep(3)}}
             disabled={selectedComplaints.length === 0}
             className="step1complain-submit"
           >
