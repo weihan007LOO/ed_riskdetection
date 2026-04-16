@@ -20,7 +20,7 @@ export default function MedicalNumberInput({ value, onChange, placeholder, min =
     margin: '10px auto',
     transition: 'border-color 0.3s ease',
     cursor: 'default',
-    marginBottom:'30px',
+    marginBottom:'50px',
     boxSizing: 'border-box'
   };
 

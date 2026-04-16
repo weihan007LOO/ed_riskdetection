@@ -19,7 +19,7 @@ export default function MedicalCheckboxGroup({ options, selectedOptions = [], on
       width: '100%',
       maxWidth: '350px',
       border: '1px solid #a0a0a0ff', // Grey border
-      marginBottom:'30px',
+      marginBottom:'50px',
       boxSizing: 'border-box'
     }}>
       {options.map((option) => {

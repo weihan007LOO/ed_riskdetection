@@ -9,7 +9,7 @@ export default function MedicalRadioGroup({ options, selectedOption, onChange })
       margin: '10px auto',
       width: '100%',
       maxWidth: '350px',
-      marginBottom:'30px'
+      marginBottom:'50px'
     }}>
       {options.map((option) => (
         <button

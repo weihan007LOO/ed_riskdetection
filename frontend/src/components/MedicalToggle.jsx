@@ -6,11 +6,14 @@ export default function MedicalToggle({
   onValueChange, 
   extraText, 
   onTextChange, 
-  showTextInput = false 
+  showTextInput = false ,
+  step,
+  isMobile
 }) {
   
   const isYes = value === 'Yes';
   const isNo = value === 'No';
+  const compact = step === 5 && isMobile;
 
   return (
     <div style={{ marginBottom: '20px', textAlign: 'center' }}>
@@ -30,7 +33,7 @@ export default function MedicalToggle({
             fontWeight: 'bold',
             cursor: 'pointer',
             transition: '0.2s',
-            marginBottom:'30px'
+            marginBottom: compact ? '10px' : '30px'
           }}
         >
           Yes
@@ -49,7 +52,7 @@ export default function MedicalToggle({
             fontWeight: 'bold',
             cursor: 'pointer',
             transition: '0.2s',
-            marginBottom:'30px'
+            marginBottom: compact ? '10px' : '30px'
           }}
         >
           No

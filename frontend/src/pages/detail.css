@@ -18,7 +18,7 @@
     margin: 0 0 10px 0;
     }
     .detailpage-header p{
-    font-size: 14px;
+    font-size: 16px;
     color: black;
     line-height: 1.5;
     margin: 0;
@@ -33,10 +33,12 @@
 .detailpage-id {
     margin: 20px 0; 
     text-align: left;
+    border-bottom: 1px solid #f1f5f9;
 }
 
 .detailpage-que {
     font-weight: 500;
+    font-size: 18px;
     display: block;
     margin-bottom: 8px;
     color: black;
@@ -91,7 +93,7 @@
     margin: 0 0 10px 0;
     }
     .detailpage-header p{
-    font-size: 11px;
+    font-size: 14px;
     color: black;
     line-height: 1.5;
     margin-top: 1px;
@@ -106,6 +108,7 @@
 .detailpage-id {
     margin: 20px 0; 
     text-align: left;
+    border-bottom: 1px solid #f1f5f9;
 }
 
 .detailpage-que {

@@ -25,6 +25,8 @@ function DetailPage({ allAnswers, updateAnswer, onNext }) {
         {DemographicQuestions.map((q) => {
           // Conditional Logic: Only show LMP if gender is Female
           if (q.id === 'lmp' && allAnswers['gender'] !== 'Female') return null;
+          if (q.id === 'kidney_dialysis' && !allAnswers['comorbids']?.includes("Kidney disease")) return null;
+          if (q.id === 'kidney_last' && allAnswers['kidney_dialysis'] !== 'Yes') return null;
 
           return (
             <div key={q.id} className="detailpage-id">
