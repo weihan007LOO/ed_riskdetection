@@ -1,24 +1,21 @@
 // Respiratory Module
 export const RespModule = [
-  { id: "resp_cough", label: "Do you have cough?", type: "yes_no_toggle"},
-  { id: "resp_sputum", label: "Are you coughing up phlegm?", type: "yes_no_toggle" ,
-    showIf: (a) => a.resp_cough === "Yes"
-  },
-  { id: "resp_sputumcolour", label: "What colour is the phlegm?", type: "colour", colourType: "sputum", options: ["Clear", "Yellow","Green","White","Pinkish"],
-    showIf: (a) => a.resp_sputum === "Yes"
-  },
-  { id: "resp_blood", label: "Is there blood in the phlegm or are you coughing up blood?", type: "yes_no_toggle",
-    showIf: (a) => a.resp_cough === "Yes"
-  },
-  { id: "resp_sputumvolume", label: "If you usually have phlegm, is the amount more than usual?", type: "yes_no_toggle",
-    showIf: (a) => a.resp_sputum === "Yes"
-  },
-  { id: "resp_sputumcolourchange", label: "If you usually have phlegm, has it changed in colour?", type: "yes_no_toggle",
-    showIf: (a) => a.resp_sputum === "Yes"
-  },
-  { id: "resp_chestpain", label: "Do you feel pain in your chest when you breathe in or when you cough?", type: "yes_no_toggle",
-    showIf: (a) => a.resp_cough === "Yes"
-  },
-  { id: "resp_sob", label: "Are you feeling short of breath?", type: "yes_no_toggle"},
-  { id: "resp_dyspnoea", label: "Are you struggling to breathe or unable to speak in full sentences?", type: "yes_no_toggle"},
+  { id: "resp_001", type: "yes_no_toggle" },
+  { id: "resp_002", type: "yes_no_toggle" },
+  { id: "resp_003", type: "yes_no_toggle" },
+  { id: "resp_004", type: "yes_no_toggle" },
+  { id: "resp_005", type: "colour", colourType: "sputum", options: ["Clear", "Yellow","Green","White","Pinkish"],},
+  { id: "resp_006", type: "yes_no_toggle" },
+  { id: "resp_007", type: "yes_no_toggle" },
+  { id: "resp_008", type: "yes_no_toggle" },
+  { id: "resp_009", type: "radio_group", options: ["Sudden", "Gradual"] },
+  { id: "resp_010", type: "radio_group", options: ["Hours", "Days"] },
+  { id: "resp_011", type: "yes_no_toggle" },
+  { id: "resp_012", type: "yes_no_toggle" },
+  { id: "resp_013", type: "yes_no_toggle" },
+  { id: "resp_014", type: "yes_no_toggle" },
+  { id: "resp_015", type: "yes_no_toggle" },
+  { id: "resp_016", type: "yes_no_toggle" },
+  { id: "resp_017", type: "yes_no_toggle" },
+  { id: "resp_018", type: "yes_no_toggle" },
 ];

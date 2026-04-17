@@ -1,14 +1,9 @@
 // questionBank/index.js
 
-export { FeverGeneral } from './general/FeverGeneral';
-export { HeadacheGeneral } from './general/HeadacheGeneral';
-export { ChestPainGeneral } from './general/ChestPainGeneral';
-export { DizzinessGeneral } from './general/DizzinessGeneral';
-export { SyncopeGeneral } from './general/SyncopeGeneral';
-export { NauseaVomitGeneral } from './general/NauseaVomitGeneral';
-
 export { RespModule } from './modules/RespModule';
-export { UriModule } from './modules/UriModule';
+export { GUModule } from './modules/GuModule';
+export { LimbModule } from './modules/LimbModule';
+export { BackModule } from './modules/BackModule';
 export { GIModule } from './modules/GIModule';
 export { SkinModule } from './modules/SkinModule';
 export { NeuroModule } from './modules/NeuroModule';
@@ -24,10 +19,6 @@ export { HeadModule } from './modules/HeadModule';
 export { FeverModule } from './modules/FeverModule';
 export { SocialModule } from './modules/SocialModule';
 export { SysModule } from './modules/SysModule';
-export { PainGeneral } from './modules/PainGeneral';
-
-export { MedicalHistory } from './history/MedicalHistory';
-export { SocialHistory } from './history/SocialHistory';
 
 export { buildQuestions } from './helpers/buildQuestions';
 export { getQuestionsForComplaint } from './helpers/getQuestionsForComplaint';

@@ -52,7 +52,7 @@ function HeadMap({ onSelect, selectedRegion = []}) {
         </div>
       )}*/}
       <img 
-        src="/head1.png" 
+        src="/head1.PNG" 
         alt="Head Map" 
         className="headmap-base-image"
       />

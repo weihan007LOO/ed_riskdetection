@@ -1,0 +1,325 @@
+id,label
+fever_001,Have you had a fever?
+fever_002,When did your fever start?
+fever_003,How many days have you had the fever?
+fever_004,Have you been sweating a lot at night?
+fever_005,Have you measured your temperature at home?
+fever_005a,What was the highest reading
+gi_001,Do you have stomach or abdominal pain?
+gi_002,Where do you feel the pain?
+gi_003,How bad is the pain now?
+gi_004,Can you describe the pain?
+gi_005,"Is the pain constant, or does it come and go?"
+gi_006,Have you had loose or watery stools? (Diarrhoea)
+gi_007,How many times have you passed loose or watery stools?
+gi_008,Have you been vomiting?
+gi_009,How many times have you vomited?
+gi_010,Do you feel nauseated (like you want to vomit)?
+gi_011,Do you feel acid or food coming up into your throat?
+gi_012,Do you have pain in your upper abdomen?
+gi_013,Do you have difficulty swallowing?
+gi_014,Do you have pain when swallowing?
+gi_015,What does the vomit look like?
+gi_016,How many days have you been vomiting?
+gi_017,Does it happen after eating?
+gi_018,Are you able to keep down fluids or water?
+gi_019,How long have you had this pain?
+gi_020,Did the pain start suddenly or gradually?
+gi_021,Does the pain come in waves?
+gi_022,Does the pain spread anywhere else?
+gi_023,Where does the pain spread to?
+gi_024,Does the pain go through to your back?
+gi_025,Does eating make the pain worse?
+gi_026,Does the pain come after eating oily or fatty food?
+gi_027,Does coughing or moving make the pain worse?
+gi_028,What are your bowel movements like?
+gi_029,How many days have you been having loose or watery stools?
+gi_030,Did your symptoms start after eating outside or suspicious food?
+gi_031,Did anyone else who ate the same food have similar symptoms?
+gi_032,When was your last bowel movement?
+gi_033,Have you passed fresh blood in your stool?
+gi_034,Have your stools been black in colour?
+gi_035,Are your stools pale in colour?
+gi_036,Does your abdomen feel bloated or swollen?
+gi_037,Are you able to pass gas (wind)?
+gi_038,Have your eyes or skin turned yellow?
+gi_039,Do you have difficulty swallowing?
+gi_040,Do you have pain when swallowing?
+gi_041,Do you feel acid or food coming up into your throat?
+head_001,Do you have any headache?
+head_002,When did your headache start?
+head_003,Did the headache start suddenly or gradually?
+head_004,Is this your first time having this type of headache?
+head_005,Is this headache different from your previous or usual headaches?
+head_006,Is it a single episode or does it come and go?
+head_007,"Is it getting better, worse, or staying the same?"
+head_008,Where is the headache located?
+head_009,Can you describe the headache?
+head_010,How bad is the headache now?
+head_011,Is this the worst headache you have ever had?
+head_012,Did the headache wake you from sleep?
+head_013,Does coughing or straining make it worse?
+head_014,Does changing position affect the headache?
+head_015,Do bright lights make your headache worse?
+head_016,Do loud sounds make it worse?
+head_017,Do you get pain in your jaw when chewing?
+head_018,Is your scalp painful to touch?
+chest_001,Are you still having chest pain right now?
+chest_002,Where do you feel the pain?
+chest_002p,Where did you feel the pain?
+chest_003,When did the chest pain first start?
+chest_004,Did the pain start suddenly or gradually?
+chest_005,Does the pain spread anywhere else?
+chest_005p,Did the pain spread anywhere else?
+chest_006,Where does the pain spread to?
+chest_006p,Where does the pain spread to?
+chest_007,"Does the pain spread to your arm, jaw, or back?"
+chest_008,Can you describe the pain?
+chest_009,How bad is the pain now?
+chest_010,"Have you had one episode of chest pain, or multiple episodes?"
+chest_011,How many episodes have you had?
+chest_012,How long does each episode usually last?
+chest_013,"Is the pain constant, or does it come and go?"
+chest_013p,"Was the pain constant, or did it come and go?"
+chest_014,What were you doing when the pain started?
+chest_015,Did it start or worsen with physical activity?
+chest_016,Did it happen while resting?
+chest_017,Does eating make the pain worse?
+chest_018,Does deep breathing or coughing make the pain worse?
+chest_019,Does coughing or moving make the pain worse?
+chest_020,Does changing position affect the pain?
+chest_021,Does sitting forward make the pain better?
+chest_022,Does the pain improve with rest?
+chest_023,Does pressing on the chest make the pain worse?
+chest_024,Have you had cold sweats or excessive sweating?
+chest_025,Have you felt your heart racing or beating irregularly?
+chest_026,Have you fainted or nearly fainted?
+chest_027,Do you have chest pain?
+chest_028,Do you have pain in your back?
+chest_029,Does the pain feel like tearing or ripping?
+syncope_001,Did you faint or lose consciousness?
+syncope_002,Is this your first episode?
+syncope_003,Have you had similar episodes before?
+syncope_004,When did this happen?
+syncope_005,Did it happen suddenly or gradually?
+syncope_006,About how long were you unconscious?
+syncope_007,Did you recover quickly or take time to recover?
+syncope_008,Were you confused after waking up?
+syncope_009,What were you doing when it happened?
+syncope_010,What were you doing just before it happened?
+syncope_011,Did it happen after passing urine?
+syncope_012,Did it happen during or after passing stool?
+syncope_013,Did it happen after coughing or sneezing?
+syncope_014,Did it happen during swallowing?
+syncope_015,"Did it happen during stress, pain, or emotional distress?"
+syncope_016,Were you in a hot environment?
+syncope_017,Had you been standing for a long time?
+syncope_018,Did it happen when turning your neck or shaving?
+syncope_019,Did you feel dizzy or lightheaded before fainting?
+syncope_020,Did your vision become blurred or dark before fainting?
+syncope_021,Did you feel nauseated before fainting?
+syncope_022,Did you have sweating before fainting?
+syncope_023,Did you feel your heart racing before it happened?
+syncope_024,Did you have chest pain before it happened?
+syncope_025,Were you short of breath before it happened?
+syncope_026,Did it happen suddenly without any warning?
+syncope_027,Did your body jerk or shake during the episode?
+syncope_028,Did you bite your tongue?
+syncope_029,Did you lose control of urine or stool?
+syncope_030,Did you look pale during the episode?
+syncope_031,Did you turn blue during the episode?
+syncope_032,Did you injure yourself when you fell?
+syncope_033,Did you hit your head?
+syncope_034,Did you return to normal quickly?
+syncope_035,Did you feel very sleepy afterwards?
+syncope_036,Did you have a headache after the episode?
+syncope_037,Did you notice any weakness after waking up?
+syncope_038,Did you have difficulty speaking after the episode?
+syncope_039,Did you have any vision problems after the episode?
+syncope_040,"Did you feel shaky, sweaty, or weak before fainting?"
+syncope_041,Did this happen after an injury or accident?
+syncope_042,Have you had any recent head or neck injury?
+eye_001,Have you lost part or all of your vision?
+eye_002,Is your vision blurred?
+eye_003,Are you seeing double?
+eye_004,Do you have pain in or around your eyes?
+eye_005,Do you have redness in your eye?
+eye_006,Do you have pain in your eye?
+eye_007,Which eye is affected?
+eye_008,Did it start suddenly or gradually?
+eye_009,When did it start?
+eye_010,How long have you had this problem?
+eye_011,"Is it getting better, worse, or staying the same?"
+eye_012,How would you describe the pain?
+eye_013,How bad is the pain now?
+eye_014,Is your vision getting worse?
+eye_015,Have you suddenly lost vision in that eye?
+eye_016,Do bright lights make your eye pain worse?
+eye_017,Is the light sensitivity very severe?
+eye_018,Do you see coloured rings or halos around lights?
+eye_019,Does your vision improve when you squint or look through a small hole?
+eye_020,Do you have discharge from the eye?
+eye_021,Are your eyelids stuck together when you wake up?
+eye_022,Do you feel like something is stuck in your eye?
+eye_023,Did this start after exposure to bright light or welding?
+eye_024,Did anything like chemicals or cleaning liquid get into your eye?
+eye_025,Did this start after an injury to your eye?
+eye_026,Have you had any recent eye surgery or injection?
+eye_027,Do you wear contact lenses?
+eye_028,Do you sleep with your contact lenses on?
+eye_029,When did you last wear your contact lenses?
+eye_030,Do you sometimes reuse or not clean your lenses properly?
+eye_031,Do you have pain around your face or sinuses?
+eye_032,Does it hurt when you move your eyes?
+eye_033,Does your eye look more prominent or bulging?
+eye_034,Have you had brief episodes of vision loss?
+dizzy_001,Are you feeling dizzy or unsteady?
+dizzy_002,Which best describes your dizziness?
+dizzy_003,Did it start suddenly or gradually?
+dizzy_004,When did it start?
+dizzy_005,How long does each episode last?
+dizzy_006,Is it a single episode or does it come and go?
+dizzy_007,"Is it getting better, worse, or staying the same?"
+dizzy_008,Is the dizziness present all the time?
+dizzy_009,Does turning your head trigger the dizziness?
+dizzy_010,Does it happen when you turn in bed?
+dizzy_011,Does looking up trigger it?
+dizzy_012,Does it happen when you stand up?
+dizzy_013,Does it happen in crowded places or with lots of movement around you?
+dizzy_014,Does it happen without any clear trigger?
+dizzy_015,Do you hear ringing or buzzing in your ears?
+dizzy_016,Have you noticed reduced hearing?
+dizzy_017,Do your ears feel blocked or full?
+dizzy_018,Do you have ear pain or discharge?
+dizzy_019,Have you had sweating during the episode?
+dizzy_020,Do you have neck pain?
+dizzy_021,Have you had a recent cold or ear infection?
+dizzy_022,Do you see flashing lights or patterns?
+dizzy_023,Have you had migraines before?
+dizzy_024,Have you taken alcohol before the symptoms started?
+back_001,Do you have back pain?
+back_002,Are you still having pain right now?
+back_003,When did the pain first start?
+back_004,How long have you had this pain?
+back_005,Did the pain start suddenly or gradually?
+back_006,Did it start after an injury or lifting something heavy?
+back_007,"Is the pain constant, or does it come and go?"
+back_008,"Is it getting better, worse, or staying the same?"
+back_009,Is this your first episode of back pain?
+back_010,Have you had similar back pain before?
+back_011,Where is the pain located?
+back_012,"Is it in the middle, left, or right?"
+back_013,Can you describe the pain?
+back_014,How bad is the pain now?
+back_015,Is this the worst back pain you have ever had?
+back_016,Does the pain spread anywhere else?
+back_017,Where does the pain spread to?
+back_018,Does the pain go down your leg below the knee?
+back_019,Does the pain spread to your groin?
+back_020,Does coughing or sneezing make the pain worse?
+back_021,Does movement make the pain worse?
+back_022,Is it worse when sitting?
+back_023,Is it worse when standing or walking?
+back_024,Does rest make it better?
+back_025,Does leaning forward make it better?
+back_026,Do you have symptoms in both legs?
+back_027,Do you feel numbness around your inner thighs or groin area?
+back_028,Have you lost control of your urine or stool?
+back_029,Have you lost control of your bowel movements?
+back_030,Is the pain worse at night or when resting?
+back_031,"Have you had a recent infection (e.g. urine, skin, lungs)?"
+back_032,Did the pain start suddenly and become very severe right away?
+back_033,Do you feel stiff in the morning for more than 30 minutes?
+back_034,Does the pain improve when you move around?
+back_035,Does your work involve repeated lifting or strain?
+limb_001,Do you have pain in your leg?
+limb_002,Is one leg more swollen than the other?
+neuro_001,Is your neck stiff or painful to move?
+neuro_002,Do bright lights make your eyes uncomfortable?
+neuro_003,Have you felt confused or not thinking clearly?
+neuro_004,Have you had any shaking episodes or fits?
+neuro_005,"Have you noticed weakness in your face, arm, or leg?"
+neuro_006,Have you had difficulty speaking?
+neuro_007,Have you noticed weakness in your body?
+neuro_008,Have you felt numbness or tingling?
+neuro_009,Have you had trouble walking or keeping balance?
+neuro_010,Do you have difficulty swallowing?
+neuro_011,Have you noticed weakness in your legs?
+neuro_012,Have you felt numbness or tingling in your legs?
+resp_001,Are you feeling short of breath?
+resp_002,Do you feel pain in your chest when you breathe in or when you cough?
+resp_003,Do you have a cough?
+resp_004,Are you coughing up phlegm?
+resp_005,What colour is the phlegm?
+resp_006,Is there blood in the phlegm or are you coughing up blood?
+resp_007,"If you usually have phlegm, is the amount more than usual?"
+resp_008,"If you usually have phlegm, has it changed in colour?"
+resp_009,Did the shortness of breath start suddenly or gradually?
+resp_010,How long have you had the shortness of breath?
+resp_011,Do you feel short of breath even when resting?
+resp_012,Does it happen or worsen with activity?
+resp_013,Has it limited your ability to walk or do usual activities?
+resp_014,Do you feel more breathless when lying flat?
+resp_015,Do you wake up at night short of breath?
+resp_016,"Is it triggered by dust, smoke, or cold air?"
+resp_017,Did it start after a cold or flu?
+resp_018,Have you had a recent cold or flu?
+nv_001,Do you feel like the room is spinning?
+nv_002,Have you had trouble walking or keeping balance?
+nv_003,Have you been passing urine more than usual?
+nv_004,Have you been feeling very thirsty?
+nv_005,Have you had chills or shivering?
+nv_006,Do you feel dizzy or light-headed when standing up?
+nv_007,Do you have any testicular pain?
+gyn_001,Is there a chance you might be pregnant?
+gyn_002,Have you missed your period?
+gyn_003,Do you have pain in the lower abdomen or pelvis?
+gyn_004,Have you had any abnormal vaginal bleeding?
+ent_001,Do you notice any noisy or wheezing sound when breathing?
+ent_002,Do you have a sore throat?
+ent_003,Has your voice sounded different or hoarse?
+ent_004,Do you have runny nose?
+skin_001,Do you have any red or swollen areas on your skin?
+skin_002,Where is the redness or swelling?
+skin_003,Do you notice any swelling with pus?
+skin_004,Do you notice any rash?
+skin_005,Where is the rash?
+gu_001,Do you feel pain or burning when passing urine?
+gu_002,Have you been passing urine more often than usual?
+gu_003,Have you had difficulty passing urine?
+gu_004,Is your urine darker than usual? (tea colour)
+gu_005,Do you have pain at your sides or lower back?
+gu_006,Have you noticed blood in your urine?
+gu_007,Have you had difficulty passing urine?
+gu_008,Have you noticed blood in your urine?
+sys_001,Have you lost your appetite?
+sys_002,Have you lost weight recently without trying?
+med_001,Are you currently taking any regular medications?
+med_002,Have you started any new medications in the last 2 weeks?
+med_003,Are you taking medication for high blood pressure?
+med_004,Are you taking medication for diabetes?
+med_005,"Are you taking medications like warfarin, dabigatran, or apixaban?"
+med_006,Are you taking medications like aspirin or clopidogrel?
+med_007,Are you taking steroid medications like prednisolone or hydrocortisone?
+med_008,Are you receiving chemotherapy or cancer treatment?
+med_009,Have you been taking painkillers like ibuprofen or diclofenac regularly?
+med_010,Have you taken antibiotics in the past 2 weeks?
+med_011,Do you have any allergies to medications?
+med_012,Which medication are you allergic to?
+med_013,What reaction did you have?
+med_014,Did you need hospital treatment for this reaction?
+med_015,Have you taken any painkillers for this problem?
+med_016,Have you taken fever medication such as paracetamol since the fever started?
+med_017,Did this problem start after taking any medication?
+med_018,Do you take any herbal or traditional medications?
+med_019,Have you received any vaccination in the past 1 month?
+med_020,Have you received a blood transfusion in the past 1 month?
+med_021,Have you taken any medications that affect balance or hearing?
+soc_001,Do you smoke or have you smoked cigarettes before?
+soc_002,About how many cigarettes per day?
+soc_003,When did you stop smoking?
+soc_004,For how many years have you smoked?
+soc_005,Do you drink alcohol?
+soc_006,How often do you usually drink alcohol?
+soc_007,Who do you live with?
+soc_008,Which of the following best describes you before this illness?

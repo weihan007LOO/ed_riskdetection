@@ -37,6 +37,8 @@ import {
 } from "lucide-react";
 
 import { getQuestionsForComplaint, buildQuestions } from './questionBank/index.js';
+import { loadQuestionBank } from './questionBank/helpers/loadQuestionBank.js';
+
 
 function App() {
   const [step, setStep] = useState(0);
@@ -44,6 +46,9 @@ function App() {
   const [allAnswers, setAllAnswers] = useState({});
   const [loading, setLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [labelMap, setLabelMap] = useState({});
+  const [questionFlow, setQuestionFlow] = useState([]);
+  const [flowIndex, setFlowIndex] = useState(0);
 
   // ✅ CLEAN speech logic (unchanged)
   const startSpeechRecognition = () => {
@@ -112,6 +117,15 @@ function App() {
     return () => window.removeEventListener('resize', updateItemsPerPage);
   }, []);
 
+  useEffect(() => {
+  const fetchLabels = async () => {
+    const map = await loadQuestionBank();
+    setLabelMap(map);
+  };
+
+  fetchLabels();
+}, []);
+
   const startIndex = complaintPage * ITEMS_PER_PAGE;
   const currentItems = complaintsList.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
@@ -143,103 +157,24 @@ function App() {
     chiefComplaints: selectedComplaints
   });
 
-  const visibleQuestions = buildQuestions(allQuestions, {
+  const visibleQuestionsRaw = buildQuestions(allQuestions, {
     ...allAnswers,
     chiefComplaints: selectedComplaints
   });
-  
-  // ✅ FILTERS
-  const mainGeneralQuestions = visibleQuestions.filter(q =>
-    selectedComplaints.some(c => {
-      const normalized = c.toLowerCase().replace(/\s+/g, '');
-      if (q.id.startsWith(normalized)) return true;
 
-      //Specialcase
-      if (c.toLowerCase() === "fainting/blackout" && q.id.startsWith("syncopegen")) return true;
-      if (c.toLowerCase() === "nausea/vomiting" && q.id.startsWith("nauseavomit")) return true;
+  const visibleQuestions = visibleQuestionsRaw.map(q => ({
+    ...q,
+    label: labelMap[q.id] || "Missing question"
+  }));
 
-      return false;
-    })
-  );
-
-
-  const moduleQuestions = visibleQuestions.filter(q =>
-    q.id.startsWith("gi_") ||
-    q.id.startsWith("resp_") ||
-    q.id.startsWith("neuro_") ||
-    q.id.startsWith("skin_") ||
-    q.id.startsWith("pain_") ||
-    q.id.startsWith("sys_") ||
-    q.id.startsWith("uri_") ||
-    q.id.startsWith("eye_") ||
-    q.id.startsWith("head_") ||
-    q.id.startsWith("chest_") ||
-    q.id.startsWith("dizzy_") ||
-    q.id.startsWith("syncope_") ||
-    q.id.startsWith("gyn_") ||
-    q.id.startsWith("fvr_") ||
-    q.id.startsWith("soc_") ||
-    q.id.startsWith("nv_") ||
-    q.id.startsWith("med_") ||
-    q.id.startsWith("ent_")
-  );
 
   const medicalHistoryQuestions = visibleQuestions.filter(q =>
-    q.id.startsWith("medic")
+    q.id.startsWith("med")
   );
 
   const socialHistoryQuestions = visibleQuestions.filter(q =>
-    q.id.startsWith("social")
+    q.id.startsWith("soc")
   );
-
-  const groupModuleQuestions = (questions) => {
-  const groups = {};
-
-  questions.forEach(q => {
-    let key = "other";
-
-    if (q.id.startsWith("resp_")) key = "resp";
-    else if (q.id.startsWith("gi_")) key = "gi";
-    else if (q.id.startsWith("neuro_")) key = "neuro";
-    else if (q.id.startsWith("skin_")) key = "skin";
-    else if (q.id.startsWith("pain_")) key = "pain";
-    else if (q.id.startsWith("sys_")) key = "systemic";
-    else if (q.id.startsWith("uri_")) key = "urinary";
-    else if (q.id.startsWith("eye_")) key = "eye";
-    else if (q.id.startsWith("head_")) key = "head";
-    else if (q.id.startsWith("chest_")) key = "chest";
-    else if (q.id.startsWith("dizzy_")) key = "dizziness";
-    else if (q.id.startsWith("syncope_")) key = "syncope";
-    else if (q.id.startsWith("gyn_")) key = "gyn";
-    else if (q.id.startsWith("nv_")) key = "nausea";
-    else if (q.id.startsWith("ent_")) key = "ent";
-
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(q);
-    });
-
-    return groups;
-  };
-
-  const groupedModules = groupModuleQuestions(moduleQuestions);
-
-  /*const moduleMeta = {
-    resp: { title: "🫁 Respiratory", color: "#e0f2fe" },
-    gi: { title: "🤢 Gastrointestinal", color: "#fef3c7" },
-    neuro: { title: "🧠 Neurological", color: "#ede9fe" },
-    skin: { title: "🩹 Skin", color: "#ffe4e6" },
-    pain: { title: "⚡ Pain", color: "#fee2e2" },
-    systemic: { title: "🌡️ General", color: "#ecfdf5" },
-    urinary: { title: "🚽 Urinary", color: "#e0f7fa" },
-    eye: { title: "👁️ Eye", color: "#f0f9ff" },
-    head: { title: "🤕 Head", color: "#fef2f2" },
-    chest: { title: "❤️ Chest", color: "#ffe4e6" },
-    dizziness: { title: "💫 Dizziness", color: "#f5f3ff" },
-    syncope: { title: "⚠️ Syncope", color: "#fff7ed" },
-    gyn: { title: "👩 Gynaecology", color: "#fdf4ff" },
-    nausea: { title: "🤮 Nausea/Vomiting", color: "#fef9c3" },
-    other: { title: "Other", color: "#f1f5f9" }
-  };*/
 
   const moduleMeta = {
     resp: { title: "Respiratory", icon: Wind, color: "#e0f2fe" },
@@ -335,7 +270,7 @@ function App() {
             <input type="range" min="0" max="10" style={{ width: '80%' }} onChange={(e) => updateAnswer(q.id, e.target.value)} />
               <span style={{ fontWeight: 'bold', color: '#27ae60', marginTop: '5px' }}>{allAnswers[q.id] || 5} / 10</span>
                 <img
-                  src="/PainScore.png"
+                  src="/PainScore.PNG"
                   alt="range illustration"
                   style={{ marginTop: '10px', maxWidth: '90%', height: 'auto'}}
                 />
@@ -399,6 +334,63 @@ function App() {
     7: "#f8fafc",
     8: "#f8fafc",
   };
+  const groupByTag = (questions) => {
+  const grouped = {};
+
+  questions.forEach(q => {
+    const key = q.tag || "general";
+
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(q);
+  });
+
+  return grouped;
+};
+  const groupedQuestions = groupByTag(visibleQuestions);
+  
+  const hasTagQuestions = (tag, complaint) => {
+    return visibleQuestions.some(q =>
+      q.tag === tag && q.complaint === complaint
+    );
+  };
+
+  const buildFlow = (complaints) => {
+    const flow = [];
+
+    complaints.forEach((c) => {
+
+      flow.push({ type: "general", complaint: c });
+
+      if (hasTagQuestions("module1", c))
+        flow.push({ type: "module1", complaint: c });
+
+      if (hasTagQuestions("module2", c))
+        flow.push({ type: "module2", complaint: c });
+
+      if (hasTagQuestions("module3", c))
+        flow.push({ type: "module3", complaint: c });
+
+      if (hasTagQuestions("module4", c))
+        flow.push({ type: "module4", complaint: c });
+
+      if (hasTagQuestions("module5", c))
+        flow.push({ type: "module5", complaint: c });
+
+      if (hasTagQuestions("module6", c))
+        flow.push({ type: "module6", complaint: c });
+    });
+
+      // 🔥 Combined sections ONLY ONCE
+      if (hasTagQuestions("medical", "global")) {
+        flow.push({ type: "medical", complaint: "global" });
+      }
+
+      if (hasTagQuestions("social", "global")) {
+        flow.push({ type: "social", complaint: "global" });
+      }
+
+    return flow;
+  };
 
 
   // =========================
@@ -430,7 +422,7 @@ function App() {
         <DetailPage
           allAnswers={allAnswers}
           updateAnswer={updateAnswer}
-          onNext={() => setStep(2)}
+          onNext={() => goToStep(2)}
         />
       )}
 
@@ -489,7 +481,12 @@ function App() {
 
           {/* 🔹 Start Assessment button */}
           <button 
-            onClick={() => { goToStep(3)}}
+            onClick={() => {
+              const flow = buildFlow(selectedComplaints);
+              setQuestionFlow(flow);
+              setFlowIndex(0);
+              goToStep(3);
+            }}
             disabled={selectedComplaints.length === 0}
             className="step1complain-submit"
           >
@@ -499,131 +496,66 @@ function App() {
       )}
 
       {/* STEP 3 */}
-      {step === 3 && (
-        <div className="step2main-style">
-          <button onClick={() => setStep(2)} className="step2back-button" > ← Back</button>
-          <div className="step2title-style">
-            <h3>General Questions</h3>
-            <p>Please select all that apply to you</p>
-          {renderQuestions(mainGeneralQuestions)}
-          <button onClick={() => goToStep(4)} className={`step2submit-button`}>Next</button>
+      {step === 3 && questionFlow.length > 0 && (() => {
+        const current = questionFlow[flowIndex];
+
+        if (!current) return null;
+
+        const goNext = () => {
+          if (flowIndex + 1 < questionFlow.length) {
+            setFlowIndex(flowIndex + 1);
+          } else {
+            goToStep(8);
+          }
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        const goBack = () => {
+          if (flowIndex === 0) {
+            setStep(2);
+          } else {
+            setFlowIndex(flowIndex - 1);
+          }
+        };
+
+        const questionsToRender = visibleQuestions.filter(q => {
+          // 🔥 Medical & Social = combined (no complaint filter)
+          if (current.type === "medical" || current.type === "social") {
+            return q.tag === current.type;
+          }
+
+          // 🔥 Others = per complaint
+          return (
+            q.tag === current.type &&
+            q.complaint === current.complaint
+          );
+        });
+
+        return (
+          <div className="step2main-style">
+            <button onClick={goBack} className="step2back-button">← Back</button>
+
+            <div className="step2title-style">
+
+              <h3>
+                {current.type.toUpperCase()}
+              </h3>
+
+              {renderQuestions(questionsToRender)}
+
+              <button onClick={goNext} className="step2submit-button">
+                Next
+              </button>
+
+            </div>
           </div>
-        </div>
-      )}
-
-      {/* STEP 4 */}
-      {step === 4 && (
-        <div className="step2main-style">
-          <button onClick={() => setStep(3)} className="step2back-button" > ← Back</button>
-          <div className="step2title-style">
-            <h3>Associated Symptoms</h3>
-            <p>Now, we will ask about other symptoms you may have WITH this current illness. Please only include symptoms that started around the same time</p>
-          <div className="step1complain-container">
-            {Object.entries(groupedModules).map(([key]) => {
-              const meta = moduleMeta[key] || moduleMeta.other;
-              const Icon = meta.icon;
-
-              return (
-                <button
-                  key={key}
-                  onClick={() => toggleModule(key)}
-                  className={`step1complain-button ${
-                    selectedModules.includes(key) ? 'selectedComplaints' : ''
-                  }`}
-                >
-                  <Icon size={30} style={{ marginBottom: '6px', color: '#334155' }} />
-                  <span>{meta.title}</span>
-                </button>
-              );
-            })}
-          </div>
-          <button onClick={() => goToStep(5)} disabled={selectedModules.length === 0} className={`step2submit-button`}>Next</button>
-          </div>
-        </div>
-      )}
-
-      {/* STEP 5 */}
-      {step === 5 && (
-        <div className="step2main-style">
-          <button onClick={() => goToStep(4)} className="step2back-button" > ← Back</button>
-          <div className="step2title-style">
-            <h3>Associated Symptoms</h3>
-            <p>Now, we will ask about other symptoms you may have WITH this current illness. Please only include symptoms that started around the same time</p>
-          </div>
-
-          <div style={{ padding: "0px 3px" }}>
-          {Object.entries(groupedModules).filter(([key]) => selectedModules.includes(key)).map(([key, questions]) => {
-              const meta = moduleMeta[key] || moduleMeta.other;
-              const Icon = meta.icon;
-
-              return (
-                <div 
-                  key={key}
-                  className="module-card"
-                >
-                  <h4 style={{ 
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "10px",
-                    color: "#1e293b",
-                    fontSize: "16px",
-                    fontWeight: "600"
-                  }}>
-                    <Icon size={18} strokeWidth={1.5} style={{ color: "#64748b" }} />
-                    {meta.title}
-                  </h4>
-                  {/*<h4 style={{ marginBottom: "10px", color: "black", fontSize: "20px"}}>{meta.title}</h4>*/}
-
-                  {/* ✅ Divider line */}
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "2px",
-                      backgroundColor: "#e5e7eb",
-                      marginBottom: "15px"
-                    }}
-                  />
-
-                  {renderQuestions(questions)}
-                </div>
-              );
-            })}
-          <button onClick={() => goToStep(6)} className={`step2submit-button`}>Next</button>
-          </div>
-        </div>
-      )}
-
-      {/* STEP 6 */}
-      {step === 6 && (
-        <div className="step2main-style">
-          <button onClick={() => setStep(5)} className="step2back-button" > ← Back</button>
-          <div className="step2title-style">
-            <h3>Medical History</h3>
-            <p>Please select all that apply to you</p>
-          {renderQuestions(medicalHistoryQuestions)}
-          <button onClick={() => goToStep(7)} className={`step2submit-button`}>Next</button>
-          </div>
-        </div>
-      )}
-
-      {/* STEP 7 */}
-      {step === 7 && (
-        <div className="step2main-style">
-          <button onClick={() => setStep(6)} className="step2back-button" > ← Back</button>
-          <div className="step2title-style">
-            <h3>Social History</h3>
-            <p>Please select all that apply to you</p>
-          {renderQuestions(socialHistoryQuestions)}
-          <button onClick={() => goToStep(8)} className={`step2submit-button`}>Next</button>
-          </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* STEP 8 */}
       {step === 8 && (
         <div className="step2main-style">
-          <button onClick={() => setStep(7)} className="step2back-button" > ← Back</button>
+          <button onClick={() => {setStep(3); setFlowIndex(questionFlow.length - 1);}} className="step2back-button" > ← Back</button>
           <div className="step2title-style">
           <h3>Additional Information</h3>
 
