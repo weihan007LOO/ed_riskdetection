@@ -29,7 +29,7 @@ export default function ChestMap({ onSelect, selectedRegion = []}) {
         
         {/* 2. Use the imported variable as the src */}
         <img 
-          src="/chest.png"
+          src="/chest.PNG"
           alt="Chest Map" 
           style={{ width: '100%', display: 'block', pointerEvents: 'none' }} 
         />

@@ -14,7 +14,7 @@ export const GIModule = [
   { id: "gi_012", type: "yes_no_toggle" },
   { id: "gi_013", type: "yes_no_toggle" },
   { id: "gi_014", type: "yes_no_toggle" },
-  { id: "gi_015", type: "radio_group", options: ["Food", "Clear fluid", "Yellow-green", "Dark like coffee grounds", "Fresh blood", "Not sure"] },
+  { id: "gi_015", type: "colour", colourType: "vomit", options: ["Food", "Clear fluid", "Yellow-green", "Dark like coffee grounds", "Fresh blood", "Not sure"] },
   { id: "gi_016", type: "number" },
   { id: "gi_017", type: "yes_no_toggle" },
   { id: "gi_018", type: "yes_no_toggle" },

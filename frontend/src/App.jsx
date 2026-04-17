@@ -13,6 +13,7 @@ import MedicalColour from './components/MedicalColour';
 import AbdomenMap1 from './components/AbdomenMap1';
 import HeadMap from './components/HeadMap.jsx';
 import BodyMap from './components/SilhoutteMap';
+import ChestMap from './components/ChestMap';
 
 import WelcomePage from './pages/WelcomePage'; 
 import DetailPage from './pages/DetailPage';
@@ -169,7 +170,7 @@ function App() {
 
 
   const medicalHistoryQuestions = visibleQuestions.filter(q =>
-    q.id.startsWith("med")
+    q.id.startsWith("med") || q.id.startsWith("como")
   );
 
   const socialHistoryQuestions = visibleQuestions.filter(q =>
@@ -301,6 +302,13 @@ function App() {
 
         {q.type === 'head_map' && (
           <HeadMap 
+            onSelect={(region) => updateAnswer(q.id, region)} 
+            selectedRegion={allAnswers[q.id]} 
+          />
+        )}
+
+        {q.type === 'chest_map' && (
+          <ChestMap 
             onSelect={(region) => updateAnswer(q.id, region)} 
             selectedRegion={allAnswers[q.id]} 
           />

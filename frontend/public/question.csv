@@ -74,8 +74,10 @@ chest_005p,Did the pain spread anywhere else?
 chest_006,Where does the pain spread to?
 chest_006p,Where does the pain spread to?
 chest_007,"Does the pain spread to your arm, jaw, or back?"
+chest_007p,"Did the pain spread to your arm, jaw, or back?"
 chest_008,Can you describe the pain?
 chest_009,How bad is the pain now?
+chest_009p,How bad was the pain now?
 chest_010,"Have you had one episode of chest pain, or multiple episodes?"
 chest_011,How many episodes have you had?
 chest_012,How long does each episode usually last?
@@ -323,3 +325,11 @@ soc_005,Do you drink alcohol?
 soc_006,How often do you usually drink alcohol?
 soc_007,Who do you live with?
 soc_008,Which of the following best describes you before this illness?
+como_005,Have you been less mobile recently?
+como_006,Have you been told you have weak bones or osteoporosis?
+como_007,Have you had any spine surgery or injections?
+como_008,Have you been told you have an aneurysm?
+risk_001,Have you been admitted to hospital within the last 1 month?
+risk_002,Have you been in contact with anyone who is unwell within last 2 weeks?
+risk_003,Have you travelled overseas in the last 1 month?
+risk_004,Have you been swimming in a lake or river in the last 1 month?

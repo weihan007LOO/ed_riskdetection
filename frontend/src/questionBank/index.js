@@ -17,6 +17,7 @@ export { NVModule } from './modules/NVModule';
 export { MedModule } from './modules/MedModule';
 export { HeadModule } from './modules/HeadModule';
 export { FeverModule } from './modules/FeverModule';
+export { ComoModule } from './modules/ComoModule';
 export { SocialModule } from './modules/SocialModule';
 export { SysModule } from './modules/SysModule';
 
