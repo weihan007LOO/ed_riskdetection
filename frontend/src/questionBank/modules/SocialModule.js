@@ -1,7 +1,7 @@
 // Social Module
 export const SocialModule = [
   { id: "soc_001", type: "radio_group", options: ["Never", "Used to smoke", "Currently smoke"] },
-  { id: "soc_002", type: "number" },
+  { id: "soc_002", type: "number"},
   { id: "soc_003", type: "number" },
   { id: "soc_004", type: "number" },
   { id: "soc_005", type: "radio_group", options: ["No", "Occasionally", "Regularly"] },
