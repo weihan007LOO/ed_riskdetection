@@ -15,7 +15,7 @@ import HeadMap from './components/HeadMap.jsx';
 import BodyMap from './components/SilhoutteMap';
 import ChestMap from './components/ChestMap';
 
-import WelcomePage from './pages/WelcomePage'; 
+import WelcomePage from './pages/WelcomePage';
 import DetailPage from './pages/DetailPage';
 
 import {
@@ -87,14 +87,14 @@ function App() {
         details: allAnswers,
       },
         {
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": import.meta.env.VITE_API_KEY
-        }
-      });
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": import.meta.env.VITE_API_KEY
+          }
+        });
       alert("Saved!");
       window.location.reload();
-    } catch (err){
+    } catch (err) {
       console.error("ERROR:", err.response?.data);
       alert("Backend error");
     }
@@ -144,13 +144,6 @@ function App() {
   };
 
   // =========================
-  // ❌ REMOVED OLD LOGIC
-  // =========================
-  // ❌ currentComplaintIndex
-  // ❌ handleNextAction
-  // ❌ isLastComplaint
-
-  // =========================
   // ✅ QUESTIONS PIPELINE
   // =========================
   const allQuestions = getQuestionsForComplaint({
@@ -196,15 +189,7 @@ function App() {
     other: { title: "Other", icon: LayoutGrid, color: "#e2e8f0" }
   };
 
-  const [selectedModules, setSelectedModules] = useState([]);
-
-  const toggleModule = (moduleKey) => {
-    setSelectedModules(prev =>
-      prev.includes(moduleKey)
-        ? prev.filter(m => m !== moduleKey)
-        : [...prev, moduleKey]
-    );
-  };
+  // const [selectedModules, setSelectedModules] = useState([]); // Removed as it's not used in the new flow logic
 
   const isMobile = window.innerWidth <= 480;
 
@@ -224,14 +209,14 @@ function App() {
         )}
 
         {q.type === 'date' && (
-          <MedicalDateInput 
-            value={allAnswers[q.id]} 
-            onChange={(val) => updateAnswer(q.id, val)} 
+          <MedicalDateInput
+            value={allAnswers[q.id]}
+            onChange={(val) => updateAnswer(q.id, val)}
           />
         )}
 
         {q.type === 'long_text' && (
-          <MedicalTextInput 
+          <MedicalTextInput
             isTextArea={true}
             placeholder="Provide more details..."
             value={allAnswers[q.id]}
@@ -269,12 +254,12 @@ function App() {
         {q.type === 'range' && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '60px' }}>
             <input type="range" min="0" max="10" style={{ width: '80%' }} onChange={(e) => updateAnswer(q.id, e.target.value)} />
-              <span style={{ fontWeight: 'bold', color: '#27ae60', marginTop: '5px' }}>{allAnswers[q.id] || 5} / 10</span>
-                <img
-                  src="/PainScore.PNG"
-                  alt="range illustration"
-                  style={{ marginTop: '10px', maxWidth: '90%', height: 'auto'}}
-                />
+            <span style={{ fontWeight: 'bold', color: '#27ae60', marginTop: '5px' }}>{allAnswers[q.id] || 5} / 10</span>
+            <img
+              src="/PainScore.png"
+              alt="range illustration"
+              style={{ marginTop: '10px', maxWidth: '90%', height: 'auto' }}
+            />
           </div>
         )}
 
@@ -294,16 +279,16 @@ function App() {
         )}
 
         {q.type === 'abdomen_map' && (
-          <AbdomenMap1 
-            onSelect={(region) => updateAnswer(q.id, region)} 
-            selectedRegion={allAnswers[q.id]} 
+          <AbdomenMap1
+            onSelect={(region) => updateAnswer(q.id, region)}
+            selectedRegion={allAnswers[q.id]}
           />
         )}
 
         {q.type === 'head_map' && (
-          <HeadMap 
-            onSelect={(region) => updateAnswer(q.id, region)} 
-            selectedRegion={allAnswers[q.id]} 
+          <HeadMap
+            onSelect={(region) => updateAnswer(q.id, region)}
+            selectedRegion={allAnswers[q.id]}
           />
         )}
 
@@ -315,9 +300,9 @@ function App() {
         )}
 
         {q.type === 'colour' && (
-          <MedicalColour 
-            options={q.options} 
-            selectedOption={allAnswers[q.id]} 
+          <MedicalColour
+            options={q.options}
+            selectedOption={allAnswers[q.id]}
             onChange={(val) => updateAnswer(q.id, val)}
             type={q.colourType}   // <-- pass this prop
           />
@@ -354,7 +339,7 @@ function App() {
 
   return grouped;
 };
-  const groupedQuestions = groupByTag(visibleQuestions);
+  // const groupedQuestions = groupByTag(visibleQuestions); // Unused
   
   const hasTagQuestions = (tag, complaint) => {
     return visibleQuestions.some(q =>
@@ -411,14 +396,14 @@ function App() {
         transition: "background-color 0.3s ease"
       }}
     >
-      
+
       {/* HEADER SECTION */}
       {(step === 0 || step === 2) && (
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <img 
-            src="/ailogo.png" 
-            alt="AI Logo" 
-            className="triage-logo" 
+          <img
+            src="/ailogo.png"
+            alt="AI Logo"
+            className="triage-logo"
           />
           <h1 className="greenzonetriage-title">ED History Taking</h1>
         </div>
@@ -438,72 +423,62 @@ function App() {
       {step === 2 && (
         <div className="step2main-style">
           <button onClick={() => setStep(1)} className="step2back-button" > ← Back</button>
-        <div className="step1main-style">
-          <h3>Select Chief Complaints</h3>
-          <p>Please select all that apply to you</p>
-          
-          <div className="step1complain-container">
+          <div className="step1main-style">
+            <h3>Select Chief Complaints</h3>
+            <p>Please select all that apply to you</p>
 
-            {/* 🔹 Previous page button */}
-            {hasPrevPage && (
-              <button 
-                onClick={() => setComplaintPage(prev => prev - 1)}
-                className="step1complain-button nav-card"
-              >
-                ⬅️
-                <span>Back</span>
-              </button>
-            )}
-            
-             
+            <div className="step1complain-container">
+
+              {/* 🔹 Previous page button */}
+              {hasPrevPage && (
+                <button
+                  onClick={() => setComplaintPage(prev => prev - 1)}
+                  className="step1complain-button nav-card"
+                >
+                  ⬅️
+                  <span>Back</span>
+                </button>
+              )}
+
+
               {currentItems.map(({ name, icon: Icon }) => (
                 <button key={name} onClick={() => toggleComplaint(name)} className={`step1complain-button ${selectedComplaints.includes(name) ? 'selectedComplaints' : ''}`}>
                   <Icon size={30} style={{ marginBottom: '6px', color: '#334155' }} />
                   <span>{name}</span>
                 </button>
               ))}
-             
-            {/* 🔹 Chief complaint buttons */}
-            {/*
-            {currentItems.map(({ name, icon }) => (
-              <button key={name} onClick={() => toggleComplaint(name)} className={`step1complain-button ${selectedComplaints.includes(name) ? 'selectedComplaints' : ''}`}>
-                <span style={{ fontSize: '30px', marginBottom: '6px' }}>{icon}</span>
-                <span>{name}</span>
-              </button>
-            ))}
-            */}
-            
 
-            {/* 🔹 Next page button */}
-            {hasNextPage && (
-              <button 
-                onClick={() => setComplaintPage(prev => prev + 1)}
-                className="step1complain-button nav-card"
-              >
-                ➡️
-                <span>More</span>
-              </button>
-            )}
 
-          </div>
+              {/* 🔹 Next page button */}
+              {hasNextPage && (
+                <button
+                  onClick={() => setComplaintPage(prev => prev + 1)}
+                  className="step1complain-button nav-card"
+                >
+                  ➡️
+                  <span>More</span>
+                </button>
+              )}
 
-          {/* 🔹 Start Assessment button */}
-          <button 
-            onClick={() => {
-              const flow = buildFlow(selectedComplaints);
-              setQuestionFlow(flow);
-              setFlowIndex(0);
-              goToStep(3);
-            }}
-            disabled={selectedComplaints.length === 0}
-            className="step1complain-submit"
-          >
-            Start Assessment ({selectedComplaints.length})
-          </button>
-        </div></div>
+            </div>
+
+            {/* 🔹 Start Assessment button */}
+            <button
+              onClick={() => {
+                const flow = buildFlow(selectedComplaints);
+                setQuestionFlow(flow);
+                setFlowIndex(0);
+                goToStep(3);
+              }}
+              disabled={selectedComplaints.length === 0}
+              className="step1complain-submit"
+            >
+              Start Assessment ({selectedComplaints.length})
+            </button>
+          </div></div>
       )}
 
-      {/* STEP 3 */}
+      {/* STEP 3 (DYNAMIC FLOW) */}
       {step === 3 && questionFlow.length > 0 && (() => {
         const current = questionFlow[flowIndex];
 
@@ -565,58 +540,58 @@ function App() {
         <div className="step2main-style">
           <button onClick={() => {setStep(3); setFlowIndex(questionFlow.length - 1);}} className="step2back-button" > ← Back</button>
           <div className="step2title-style">
-          <h3>Additional Information</h3>
+            <h3>Additional Information</h3>
 
-            <div className="step2question-id"> 
+            <div className="step2question-id">
               <label className="step2question-que">
                 Is there anything else you would like the doctor to know? (Optional)
               </label>
-      
-            <div style={{ 
-              position: 'relative', 
-              width: '100%', 
-              maxWidth: '600px', // Matches your usual center width
-              margin: '10px auto' 
-            }}>
-                        
-          <MedicalTextInput 
-            isTextArea={true}
-            placeholder="e.g., I have a history of heart issues, I'm currently taking aspirin, etc."
-            value={allAnswers['p_final_notes'] || ""}
-            onChange={(val) => updateAnswer('p_final_notes', val)}
-          />
 
-          <button onClick={startSpeechRecognition} className={`mic-button ${isRecording ? 'recording' : ''}`}
-            style={{
-              position: 'absolute',
-              right: '0px',
-              bottom: '0px',
-              borderRadius: '50%',
-              width: '45px',
-              height: '45px',
-              border: '1px solid #ddd',
-              backgroundColor: isRecording ? '#e74c3c' : '#f1f1f1',
-              cursor: 'pointer',
-              fontSize: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-              zIndex: 999,
-          }}> {isRecording ? '🛑' : '🎤'}       
-          </button>  
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '600px', // Matches your usual center width
+                margin: '10px auto'
+              }}>
+
+                <MedicalTextInput
+                  isTextArea={true}
+                  placeholder="e.g., I have a history of heart issues, I'm currently taking aspirin, etc."
+                  value={allAnswers['p_final_notes'] || ""}
+                  onChange={(val) => updateAnswer('p_final_notes', val)}
+                />
+
+                <button onClick={startSpeechRecognition} className={`mic-button ${isRecording ? 'recording' : ''}`}
+                  style={{
+                    position: 'absolute',
+                    right: '0px',
+                    bottom: '0px',
+                    borderRadius: '50%',
+                    width: '45px',
+                    height: '45px',
+                    border: '1px solid #ddd',
+                    backgroundColor: isRecording ? '#e74c3c' : '#f1f1f1',
+                    cursor: 'pointer',
+                    fontSize: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+                    zIndex: 999,
+                  }}> {isRecording ? '🛑' : '🎤'}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-          <button 
-            onClick={handleFinalSubmit} 
+          <button
+            onClick={handleFinalSubmit}
             disabled={loading}
             className={`step2submit-button`}
           >
             {loading ? "Processing..." : "Submit to Doctor →"}
           </button>
-            </div>
-        )}
+        </div>
+      )}
     </div>
   );
 }
