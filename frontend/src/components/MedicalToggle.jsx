@@ -7,19 +7,18 @@ export default function MedicalToggle({
   extraText, 
   onTextChange, 
   showTextInput = false ,
-  step,
   isMobile
 }) {
   
   const isYes = value === 'Yes';
   const isNo = value === 'No';
-  const compact = step === 5 && isMobile;
+  const compact = isMobile;
 
   return (
-    <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+    <div style={{ marginBottom: '0px', textAlign: 'center' }}>
       {/* 1. REMOVED THE LABEL FROM HERE TO STOP DUPLICATION */}
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '15px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '0px' }}>
         <button
           type="button"
           onClick={() => onValueChange('Yes')}

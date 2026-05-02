@@ -4,16 +4,16 @@ export const ChiefComplaints1 = [
   { name: "Headache", icon: "🤕" },
   { name: "Chest pain", icon: "❤️" },
   { name: "Dizziness", icon: "😵" },
-  { name: "Eye pain or redness", icon: "👁️" },
+  { name: "Eye problem", icon: "👁️" },
   { name: "Nausea/Vomiting", icon: "🤮" },
   { name: "Cough/Sore throat", icon: "😷" },
   { name: "Diarrhoea", icon: "🚽" },
   { name: "Stomach/Abdominal pain", icon: "🤢" },
-  { name: "Back pain", icon: "🧘" },
+  { name: "Weakness or numbness", icon: "🧘" },
   { name: "Fainting/Blackout", icon: "😴" },
-  { name: "Limb pain (arm/leg pain)", icon: "🦵" },
+  { name: "Muscle, Back, or Joint pain", icon: "🦵" },
   { name: "Feeling generally unwell", icon: "🤧" },
-  { name: "Skin rashes", icon: "🧼" },
+  { name: "Skin problem", icon: "🧼" },
   { name: "Problem with passing urine", icon: "💧" },
 ];
 
@@ -30,7 +30,12 @@ import {
   Bone,
   Frown,
   Grid,
-  Droplet
+  Droplet,
+  Droplets,
+  Ear,
+  Bandage,
+  RotateCcw,
+  ArrowDown
 } from 'lucide-react';
 
 export const ChiefComplaints = [
@@ -39,15 +44,18 @@ export const ChiefComplaints = [
   { name: "Headache", icon: Brain },
   { name: "Chest pain", icon: HeartPulse },
   { name: "Dizziness", icon: Orbit },
-  { name: "Eye pain or redness", icon: Eye },
-  { name: "Nausea/Vomiting", icon: Activity },
+  { name: "Eye problem", icon: Eye },
+  { name: "Nausea/Vomiting", icon: RotateCcw },
   { name: "Cough/Sore throat", icon: Wind },
-  { name: "Diarrhoea", icon: Droplet },
+  { name: "Diarrhoea", icon: ArrowDown },
   { name: "Stomach/Abdominal pain", icon: Activity },
-  { name: "Back pain", icon: Accessibility },
+  { name: "Weakness or numbness", icon: Accessibility },
   { name: "Fainting/Blackout", icon: Moon },
-  { name: "Limb pain (arm/leg pain)", icon: Bone },
+  { name: "Muscle, Back, or Joint pain", icon: Bone },
   { name: "Feeling generally unwell", icon: Frown },
-  { name: "Skin rashes", icon: Grid },
-  { name: "Problem with passing urine", icon: Droplet }
+  { name: "Skin problem", icon: Grid },
+  { name: "Problem with passing urine", icon: Droplet },
+  { name: "Bleeding", icon: Droplets },
+  { name: "Injury", icon: Bandage },
+  { name: "Ear, Nose, or Throat problem", icon: Ear },
 ];
