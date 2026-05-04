@@ -30,7 +30,10 @@ function DetailPage({ allAnswers, updateAnswer, onNext }) {
 
           return (
             <div key={q.id} className="detailpage-id">
-              <label className="detailpage-que">{q.label}</label>
+              <label className="detailpage-que">
+                {q.label}
+                {q.required && <span style={{ color: "red", marginLeft: "4px" }}>*</span>}
+              </label>
               
               <div className="detailpage-inputWrapper">
                 {q.type === 'number' && (
@@ -96,7 +99,25 @@ function DetailPage({ allAnswers, updateAnswer, onNext }) {
       {/* FOOTER BUTTON */}
       <div className="detailpage-footer">
         <button 
-            onClick={onNext}
+            onClick={() => {
+              const missingRequired = DemographicQuestions.some(q => {
+                // ❗ skip hidden fields
+                if (q.id === 'lmp' && allAnswers['gender'] !== 'Female') return false;
+                if (!q.required) return false;
+
+                const val = allAnswers[q.id];
+
+                if (q.type === "checkbox_group") return !val || val.length === 0;
+                return val === undefined || val === null || val === "";
+              });
+
+              if (missingRequired) {
+                alert("Please fill in all required fields (*)");
+                return;
+              }
+
+              onNext(); // ✅ proceed
+            }}
             className="detailpage-button"
         >
           Next: Select Chief Complaint
