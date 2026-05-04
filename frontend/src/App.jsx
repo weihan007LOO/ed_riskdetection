@@ -132,7 +132,26 @@ function App() {
 }, []);
 
   const startIndex = complaintPage * ITEMS_PER_PAGE;
-  const currentItems = complaintsList.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const remainingItems = complaintsList.length - startIndex;
+  const isFirstPage = complaintPage === 0;
+  const isMobile = window.innerWidth <= 480;
+  let pageSize = ITEMS_PER_PAGE;
+
+  // MOBILE LOGIC ONLY
+  if (isMobile) {
+    if (isFirstPage) {
+      pageSize = 5;
+    } else if (remainingItems <= 5) {
+      pageSize = 5; // last page
+    } else {
+      pageSize = 4; // middle pages
+    }
+  }
+
+  const currentItems = complaintsList.slice(
+    startIndex,
+    startIndex + pageSize
+  );
 
   const hasNextPage = startIndex + ITEMS_PER_PAGE < complaintsList.length;
   const hasPrevPage = complaintPage > 0;
@@ -209,8 +228,6 @@ function App() {
         : [...prev, moduleKey]
     );
   };
-
-  const isMobile = window.innerWidth <= 480;
 
   // =========================
   // ✅ MOVED OUTSIDE JSX (FIX)
@@ -646,37 +663,57 @@ function App() {
             }, {})
           : null;
 
+        const isFlatSection =
+          current.type === "comorbid" ||
+          current.type === "medical" ||
+          current.type === "social";
+
         return (
           <div className="step2main-style">
-            <button
-              onClick={goBack}
-              className="btn-secondary"
-              style={{ width: "auto" }}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: isMobile ? "20px" : "190px",
+                marginBottom: isMobile ? "10px" : "16px",
+              }}
             >
-              ← Back
-            </button>
+              {/* 🔙 Back */}
+              <button
+                onClick={goBack}
+                className="btn-secondary"
+                style={{ width: "auto", marginBottom: 0 }}
+              >
+                ← Back
+              </button>
 
-            <div className="step2title-style">
+              {/* 🧠 Icon + Title */}
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <IconComponent size={24} style={{ color: "#2563eb" }} />
+                <h3
+                  style={{
+                    margin: 0,
+                    fontSize: isMobile ? "30px" : "30px",
+                    fontWeight: "600",
+                    color: "#1e293b"
+                  }}
+                >
+                  {sectionTitle}
+                </h3>
+              </div>
+            </div>
+
+            <div className={isFlatSection ?"step2title-xstyle": "step2title-style"}>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "12px",
-                  marginBottom: "16px",
+                  marginBottom: "5px",
                   justifyContent: "center"
                 }}
               >
-                <IconComponent size={28} style={{ color: "#2563eb" }} />
-                <h3
-                  style={{
-                    margin: 0,
-                    fontSize: "26px",
-                    color: "#1e293b",
-                    fontWeight: "600"
-                  }}
-                >
-                  {sectionTitle}
-                </h3>
+                
               </div>
 
               {/* ✅ FLAT (comorbid / medical / social) */}
@@ -692,7 +729,7 @@ function App() {
                   <div
                     key={cardTitle}
                     style={{
-                      marginBottom: "15px",
+                      marginBottom: isMobile ? "25px" : "20px",
                       textAlign: "left",
                       backgroundColor: "#f5f9ff",
                       //border: "2px solid #dbeafe",
@@ -719,7 +756,7 @@ function App() {
                       <h4
                         style={{
                           margin: 0,
-                          fontSize: "26px",
+                          fontSize: isMobile ? "22px" : "26px",
                           fontWeight: "600",
                           color: "#ffffff"
                         }}

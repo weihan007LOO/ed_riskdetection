@@ -6,7 +6,7 @@ export default function MedicalDateInput({ value, onChange, isMobile }) {
   const compact = isMobile;
 
   const style = {
-    width: '378px',
+    width: compact ? '255px':'378px',
     padding: '12px',
     borderRadius: '8px',
     border: '1px solid #a0a0a0ff',
@@ -45,7 +45,7 @@ export default function MedicalDateInput({ value, onChange, isMobile }) {
         justifyContent: 'center'
       }}
     >
-      <div style={{ width: '378px' }}>
+      <div style={{ width: compact ? '255px':'378px', }}>
       <DatePicker
         selected={value ? new Date(value) : null}
         onChange={(date) => {

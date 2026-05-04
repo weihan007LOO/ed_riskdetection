@@ -261,6 +261,15 @@
   text-align: center;
 }
 
+.step2title-xstyle {
+  background-color: white;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .step2title-style h3 {
   color: #1e293b;
   border-bottom: 1px solid #e2e8f0;
@@ -453,6 +462,16 @@
   text-align: center;
 }
   .step2title-style {
+    background-color: white;
+    padding: 5px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    text-align: center;
+  }
+
+
+
+  .step2title-xstyle {
     padding: 20px;
     border-radius: 12px;
   }
@@ -496,16 +515,22 @@
   
 
   /* Questions */
+
   .step2question-id {
-    margin: 20px 0px;
-    text-align: left;
-    background-color: #f5f9ff;
-    border: 1px solid #dbeafe;
-    border-left: 5px solid #2563eb;
-    border-radius: 14px;
-    padding: 18px 18px 16px 20px;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
-    padding-bottom: 16px;
+  margin: 2px 0;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  padding: 5px 0;
+  position: relative;
+}
+
+  /* subtle divider line (high-end UI feel) */
+  .step2question-id::after {
+    content: "";
+    display: block;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 20px;
   }
 
   .step2question-que {
