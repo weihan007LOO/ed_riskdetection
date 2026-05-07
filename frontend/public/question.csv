@@ -136,7 +136,7 @@ card_02,Have you been told by a doctor to limit how much fluid or drinks you tak
 card_03,Have you felt your heart beating very fast or beating irregularly?
 prom_headache,Do you have a headache?
 confirm_headache,You have selected 'Headache' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
-neuro_head01,Where do you feel the headache?
+neuro_head01,Where do you feel the headache? (👉 Tap on the area)
 neuro_head02,When did the headache start? (days ago)
 neuro_head03,Did the headache start suddenly or gradually?
 neuro_head04,Is constantly there or does it come and go?
