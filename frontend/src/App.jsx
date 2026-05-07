@@ -13,7 +13,9 @@ import MedicalColour from './components/MedicalColour';
 import AbdomenMap1 from './components/AbdomenMap1';
 import HeadMap from './components/HeadMap.jsx';
 import BodyMap from './components/SilhoutteMap';
+import BodyMap3D from './components/BodyMap3D';
 import ChestMap from './components/ChestMap';
+
 
 import WelcomePage from './pages/WelcomePage'; 
 import DetailPage from './pages/DetailPage';
@@ -241,6 +243,7 @@ function App() {
           <MedicalTextInput
             value={allAnswers[q.id]}
             onChange={(val) => updateAnswer(q.id, val)}
+            placeholder={q.placeholder}
             isMobile={isMobile} 
           />
         )}
@@ -310,10 +313,18 @@ function App() {
           />
         )}
 
-        {q.type === 'body_map' && (
+        {q.type === 'body_map1' && (
           <BodyMap
             selectedRegion={allAnswers[q.id]}
             onSelect={(val) => updateAnswer(q.id, val)}
+          />
+        )}
+
+        {q.type === 'body_map' && (
+          <BodyMap3D
+            selectedRegion={allAnswers[q.id] || []}
+            onSelect={(val) => updateAnswer(q.id, val)}
+            isMobile={isMobile}
           />
         )}
 

@@ -82,7 +82,7 @@ gu_071,Is the pain constant or does it come in waves?
 gu_072,Does the pain move from your side to your groin?
 gu_08,Have you ever had kidney stones before?
 gu_09,Do you currently have a stent (tube) placed in your kidney or ureter?
-gu_091,When was the stent inserted?
+gu_091,When was the stent inserted? (days/weeks/months ago)
 gu_10,"Have you had any recent procedures involving your urine passage (such as a catheter, scope, or surgery) within the past 2 weeks?"
 gu_11,Do you have difficulty controlling your bladder (accidental leakage)?
 gu_cbd01,Does the urine in the bag look cloudy?
@@ -96,7 +96,7 @@ gu_cbd041,How many days have you had this problem?
 gu_tes01,Do you have pain in your testicle or scrotum?
 gu_tes011,Is the pain on one side or both sides?
 gu_tes012,Did the pain start suddenly?
-gu_tes013,When did the symptom start?
+gu_tes013,When did the symptom start? (days ago)
 gu_tes014,How bad is the pain?
 gu_tes015,Did the symptom start suddenly or gradually?
 gu_tes02,Have you noticed any swelling in your testicle or scrotum?
@@ -137,7 +137,7 @@ card_03,Have you felt your heart beating very fast or beating irregularly?
 prom_headache,Do you have a headache?
 confirm_headache,You have selected 'Headache' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
 neuro_head01,Where do you feel the headache?
-neuro_head02,When did the headache start?
+neuro_head02,When did the headache start? (days ago)
 neuro_head03,Did the headache start suddenly or gradually?
 neuro_head04,Is constantly there or does it come and go?
 neuro_head05,How bad is the headache now?
@@ -153,7 +153,7 @@ neuro_head13,Do loud noises make the headache worse?
 neuro_head14,Do you get pain in your jaw when chewing?
 neuro_head15,Is your scalp painful to touch?
 neuro_head16,Do you have a history of head injury?
-neuro_head161,When did the injury happen?
+neuro_head161,When did the injury happen? (days ago)
 neuro_head162,How did the injury happen?
 prom_dizziness,Have you been feeling dizzy or giddy?
 confirm_dizziness,You have selected 'Dizziness' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
@@ -172,18 +172,19 @@ confirm_weakness,You have selected 'Body weakness' as one of your symptoms. We w
 neuro_weak01,"Do you feel weak generally, or only in certain parts of your body?"
 neuro_weak011,"Have you noticed weakness in your face, arm, or leg?"
 neuro_weak012,Is the weakness on one side of your body?
-neuro_weak02,Which parts of your body feels weak? 
-neuro_weak03,Have you noticed any numbness or loss of feeling on one side?
-neuro_weak031,Which part of your body feels numb or reduced in feeling? 
-neuro_weak04,Do you have difficulty speaking?
-neuro_weak05,Do you have problem walking or keeping balance?
-neuro_weak06,Has one side of your face become droopy or weak?
-neuro_weak07,Did the weakness problem start suddenly?
-neuro_weak08,When did all this problem start?
-neuro_weak09,Have you had a fall because of the weakness?
+neuro_weak02,"Did the weakness start suddenly?"
+neuro_weak03,"When did the weakness start? (days ago)"
+neuro_weak031,"What time did the weakness start? (hour:min)"
+neuro_weak04,"Which parts of your body feel weak? (👉 Tap on the area)"
+neuro_weak05,"Have you noticed any numbness or loss of feeling on one side?"
+neuro_weak051,"Which part of your body feels numb or has reduced feeling? (👉 Tap on the area)"
+neuro_weak06,"Do you have difficulty speaking?"
+neuro_weak07,"Do you have problems walking or keeping your balance?"
+neuro_weak08,"Has one side of your face become droopy or weak?"
+neuro_weak09,"Have you fallen because of the weakness?"
 prom_syncope,Have you fainted or nearly fainted (temporarily lost consciousness)?
 confirm_syncope,You have selected 'Fainted or blackout' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
-neuro_sync01,When did this happen?
+neuro_sync01,When did this happen? (days ago)
 neuro_sync02,"Did you completely lose consciousness, or did you just feel like you were about to faint?"
 neuro_sync021,About how long were you unconscious?
 neuro_sync03,What was your body position just before it happened?
@@ -211,7 +212,7 @@ neuro_02,Have you felt confused or not thinking clearly?
 neuro_03,Did you have any shaking episodes or fits (seizure)?
 neuro_031,"Have you had one episode of pain, or multiple episodes?"
 neuro_032,How many episodes have you had?
-neuro_033,When was the last episode?
+neuro_033,When was the last episode? (days ago)
 sys_01,Have you lost your appetite?
 sys_02,Have you lost weight recently without trying?
 sys_03,Have you been feeling unusually tired or lacking of energy?
@@ -221,7 +222,7 @@ og_01,Is there a chance you might be pregnant?
 og_011,How many weeks pregnant are you?
 og_012,When was your last menstrual period?
 og_013,Have you had any vaginal bleeding or spotting?
-og_0131,When did this start?
+og_0131,When did this start? (days ago)
 og_02,Have you noticed any abnormal vaginal discharge?
 og_03,Are you currently having your menses?
 og_031,Do you usually have pain during your menses?
@@ -276,8 +277,8 @@ como_092,When was your last dialysis session?
 como_10,Have you had any surgery within the last 3 months?
 prompt_como02,Do you have any of the following medical devices in your body?
 prompt_como02_lite,Do you have any of the following medical devices in your body?
-pain_git_01,Where do you feel the pain?
-pain_git_02,When did the pain start?
+pain_git_01,Where do you feel the pain? (👉 Tap on the area)
+pain_git_02,When did the pain start? (days ago)
 pain_git_03,Are you still having pain right now?
 pain_git_031A,How bad is the pain now?
 pain_git_031B,How bad was the pain now?
@@ -289,8 +290,8 @@ pain_git_053,How bad was the pain at its worst?
 pain_git_06,Can you describe the pain?
 pain_git_07A,"Is the pain constant, or does it come and go?"
 pain_git_07B,"Was the pain constant, or did it come and go?"
-pain_card_01,Where do you feel the pain?
-pain_card_02,When did the pain start?
+pain_card_01,Where do you feel the pain? (👉 Tap on the area)
+pain_card_02,When did the pain start? (days ago)
 pain_card_03,Are you still having pain right now?
 pain_card_031A,How bad is the pain now?
 pain_card_031B,How bad was the pain now?
@@ -304,10 +305,10 @@ pain_card_07A,"Is the pain constant, or does it come and go?"
 pain_card_07B,"Was the pain constant, or did it come and go?"
 prom_injury,Have you had any injury?
 confirm_injury,You have selected 'Injury' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
-inj_01,Which part of your body was injured?
+inj_01,Which part of your body was injured? (👉 Tap on the area)
 inj_02,Are you in pain now?
 inj_03,How bad is your pain right now? 
-inj_04,When did the injury happen?
+inj_04,When did the injury happen? (days ago)
 inj_05,How did the injury happen?
 inj_06,Did this injury happen as a result of an assault?
 inj_region01,What does the injury look like at this area?
@@ -323,7 +324,7 @@ inj_eye04,Is there bleeding in the eye or around it?
 prom_skin,"Have you noticed any skin changes such as redness, swelling, or a wound?"
 confirm_skin,You have selected 'Skin problem' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
 skin_01,What kind of skin changes have you noticed?
-skin_02,Which part of your body has this skin changes or problem?
+skin_02,Which part of your body has this skin changes or problem? (👉 Tap on the area)
 skin_03,When did this problem start?
 prom_eye,Do you have any problems with your eye or vision?
 confirm_eye,You have selected 'Eye problem' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
@@ -349,19 +350,19 @@ prom_ent,"Do you have any problems with your ear, nose, or throat?"
 confirm_ent,"You have selected 'Ear, Nose or Throat problem' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct."
 ent_00,What kind of problem are you having?
 ent_ear01,What problems are you having with your ear?
-ent_ear02,When did the problem start?
+ent_ear02,When did the problem start? (days ago)
 ent_ear03,Which ear is affected?
 ent_ear04,"Did the reduced hearing or hearing loss happen suddenly, gradually over time, or comes and goes?"
 ent_ear05,What do you think entered or got stuck in your ear?
 ent_ear06,Was this problem caused by an injury to the ear?
 ent_nose01,What problems are you having with your nose?
-ent_nose02,When did the problem start?
+ent_nose02,When did the problem start? (days ago)
 ent_nose03,Which nostril is affected?
 ent_nose04,Did the nosebleed happen spontaneously or after an injury to your nose?
 ent_nose05,"Has the nosebleed stopped, or is it ongoing?"
 ent_nose06,What do you think entered or got stuck in your nose?
 ent_throat01,What problems are you having with your throat?
-ent_throat02,When did the problem start?
+ent_throat02,When did the problem start? (days ago)
 ent_throat03,"Did this problem start suddenly, gradually over time, or comes and goes?"
 ent_throat04,What do you think is stuck in your throat?
 ent_throat05,"Can you swallow your saliva normally, or is it difficult and causing you to drool?"
@@ -370,8 +371,8 @@ ent_throat07,"Did this problem start after breathing in things like smoke, fumes
 prom_msk,"Do you have any muscle, back or joint problems?"
 confirm_msk,"You have selected 'Muscle, Back or Joint problem' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct."
 msk_01,What problems are you having at this area?
-msk_02,Which area of the body do you have the problem?
-msk_03,When did the problem start?
+msk_02,Which area of the body do you have the problem? (👉 Tap on the area)
+msk_03,When did the problem start? (days ago)
 msk_04,Was the problem caused by an injury?
 msk_05,"Did this problem start after lifting something heavy, sudden movement, or physical activity?"
 msk_06,Have you had similar problems before?

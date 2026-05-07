@@ -3,7 +3,7 @@ import React from 'react';
 export default function MedicalTextInput({ placeholder, value, onChange, isTextArea = false }) {
   const style = {
     width: '100%',
-    maxWidth: '400px',
+    maxWidth: '378px',
     padding: '12px 15px',
     borderRadius: '10px',
     border: '1px solid #a0a0a0ff', 
@@ -17,7 +17,8 @@ export default function MedicalTextInput({ placeholder, value, onChange, isTextA
     margin: '10px auto',
     boxSizing: 'border-box',
     color: 'black',
-    marginBottom:'30px'
+    marginBottom:'30px',
+    textAlign: 'center'
   };
 
   // This function makes the border green when you click inside

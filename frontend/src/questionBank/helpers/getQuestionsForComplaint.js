@@ -383,6 +383,7 @@ export const getQuestionsForComplaint = (answers) => {
     add5("pain_git_07B");}}})
     //Module6
     withSectionTitle("Abdominal pain", () => {
+      if (answers.prom_abdopain === "Yes"){
       if (answers.pain_git_01?.includes("Epi") || answers.pain_git_01?.includes("RUQ")){
     add6("git_pain01");}
       if (answers.pain_git_01?.includes("Epi")){
@@ -397,7 +398,7 @@ export const getQuestionsForComplaint = (answers) => {
     add6("git_pain08");
     add6("git_06");
       if (answers.pain_git_01?.includes("Epi") || answers.pain_git_01?.includes("RUQ")){
-    add6("git_07");}})
+    add6("git_07");}}})
     //Module7
     withSectionTitle("Urinary problem", () => {
     add7("prom_gu");
@@ -1119,10 +1120,12 @@ export const getQuestionsForComplaint = (answers) => {
     add2("neuro_weak012");}
     add2("neuro_weak02");
     add2("neuro_weak03");
-        if (answers.neuro_weak03 === "Yes (left side)" || answers.neuro_weak03 === "Yes (right side)"){
+        if (Number(answers.neuro_weak03) === 1){
     add2("neuro_weak031");}
     add2("neuro_weak04");
     add2("neuro_weak05");
+        if (answers.neuro_weak05 === "Yes (left side)" || answers.neuro_weak05 === "Yes (right side)"){
+    add2("neuro_weak051");}
     add2("neuro_weak06");
     add2("neuro_weak07");
     add2("neuro_weak08");
@@ -1249,10 +1252,12 @@ export const getQuestionsForComplaint = (answers) => {
     add1("neuro_weak012");}
     add1("neuro_weak02");
     add1("neuro_weak03");
-        if (answers.neuro_weak03 === "Yes (left side)" || answers.neuro_weak03 === "Yes (right side)"){
+        if (Number(answers.neuro_weak03) === 1){
     add1("neuro_weak031");}
     add1("neuro_weak04");
     add1("neuro_weak05");
+        if (answers.neuro_weak05 === "Yes (left side)" || answers.neuro_weak05 === "Yes (right side)"){
+    add1("neuro_weak051");}
     add1("neuro_weak06");
     add1("neuro_weak07");
     add1("neuro_weak08");
@@ -1402,6 +1407,8 @@ export const getQuestionsForComplaint = (answers) => {
     add1("neuro_weak012");}
     add1("neuro_weak04");
     add1("neuro_weak05");
+        if (answers.neuro_weak05 === "Yes (left side)" || answers.neuro_weak05 === "Yes (right side)"){
+    add1("neuro_weak051");}
     add1("neuro_weak06");
     add1("neuro_weak07");
     add1("neuro_weak08");}})
@@ -2255,10 +2262,12 @@ export const getQuestionsForComplaint = (answers) => {
     add("neuro_weak012");}
     add("neuro_weak02");
     add("neuro_weak03");
-        if (answers.neuro_weak03 === "Yes (left side)" || answers.neuro_weak03 === "Yes (right side)"){
+        if (Number(answers.neuro_weak03) === 1){
     add("neuro_weak031");}
     add("neuro_weak04");
     add("neuro_weak05");
+        if (answers.neuro_weak05 === "Yes (left side)" || answers.neuro_weak05 === "Yes (right side)"){
+    add("neuro_weak051");}
     add("neuro_weak06");
     add("neuro_weak07");
     add("neuro_weak08");
@@ -2545,10 +2554,12 @@ export const getQuestionsForComplaint = (answers) => {
     add3("neuro_weak012");}
     add3("neuro_weak02");
     add3("neuro_weak03");
-        if (answers.neuro_weak03 === "Yes (left side)" || answers.neuro_weak03 === "Yes (right side)"){
+        if (Number(answers.neuro_weak03) === 1){
     add3("neuro_weak031");}
     add3("neuro_weak04");
     add3("neuro_weak05");
+        if (answers.neuro_weak05 === "Yes (left side)" || answers.neuro_weak05 === "Yes (right side)"){
+    add3("neuro_weak051");}
     add3("neuro_weak06");
     add3("neuro_weak07");
     add3("neuro_weak08");

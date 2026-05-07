@@ -20,7 +20,7 @@ export const GUModule = [
   { id: "gu_072", type: "yes_no_toggle" },
   { id: "gu_08", type: "yes_no_toggle" },
   { id: "gu_09", type: "yes_no_toggle" },
-  { id: "gu_091", type: "number" },
+  { id: "gu_091", type: "text" },
   { id: "gu_10", type: "yes_no_toggle" },
   { id: "gu_11", type: "yes_no_toggle" },
 
