@@ -2,7 +2,7 @@
 export const SocialModule = [
   { id: "soc_gen01", type: "radio_group", options: ["Never", "Used to smoke", "Currently smoke"] },
   { id: "soc_gen011", type: "number" },
-  { id: "soc_gen012", type: "number" },
+  { id: "soc_gen012", type: "text" },
   { id: "soc_gen013", type: "number" },
 
   { id: "soc_gen02", type: "radio_group", options: ["No", "Occasionally", "Regularly"] },

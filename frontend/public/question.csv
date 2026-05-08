@@ -158,7 +158,7 @@ neuro_head162,How did the injury happen?
 prom_dizziness,Have you been feeling dizzy or giddy?
 confirm_dizziness,You have selected 'Dizziness' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
 neuro_dizz01,Which best describes your dizziness?
-neuro_dizz02,When did it start?
+neuro_dizz02,When did it start? (days ago)
 neuro_dizz03,Did the dizziness start suddenly or gradually?
 neuro_dizz04,"Is the dizziness getting better, worse, or staying the same?"
 neuro_dizz05,"Is the dizziness present all the time, or does it come and go?"
@@ -231,7 +231,7 @@ prom_bleeding,Have you noticed any bleeding recently?
 confirm_bleeding,You have selected 'Bleeding' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
 bleed_01,Where is the bleeding coming from?
 bleed_02,How did the bleeding start?
-bleed_03,When did the bleeding start?
+bleed_03,When did the bleeding start? (days ago)
 bleed_04,Has the bleeding stopped or still ongoing?
 bleed_screen01,Have you vomited blood or dark material?
 bleed_screen02,Have you noticed fresh blood when passing stool?
@@ -325,12 +325,12 @@ prom_skin,"Have you noticed any skin changes such as redness, swelling, or a wou
 confirm_skin,You have selected 'Skin problem' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
 skin_01,What kind of skin changes have you noticed?
 skin_02,Which part of your body has this skin changes or problem? (👉 Tap on the area)
-skin_03,When did this problem start?
+skin_03,When did this problem start? (days ago)
 prom_eye,Do you have any problems with your eye or vision?
 confirm_eye,You have selected 'Eye problem' as one of your symptoms. We would like to ask a few questions about this. Tap 'Remove' if this is not correct.
 eye_01,What problems are you having with your eye?
 eye_02,Which eye is affected?
-eye_03,When did the problem start? 
+eye_03,When did the problem start? (days ago)
 eye_04,Did it start suddenly or gradually?
 eye_05,Did the problem start after an injury to your eye or face?
 eye_06,Have you completely loss vision in that eye (cannot see anything at all)?
