@@ -883,7 +883,8 @@ export const getQuestionsForComplaint = (answers) => {
     add6("neuro_dizz07");
     add6("neuro_dizz08");
         if (answers.neuro_dizz08 === "Yes"){
-    add6("neuro_dizz081");}}})
+    add6("neuro_dizz081");}
+    add6("neuro_dizz09");}})
     //Module7
     withSectionTitle("Pregnancy", () => {
       if (Number(answers.age) < 51 && answers.gender === "Female"){
