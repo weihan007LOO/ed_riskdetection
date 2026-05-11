@@ -437,7 +437,7 @@ export const getQuestionsForComplaint = (answers) => {
         if (answers.gu_cbd01 === "Yes"){
     add7("gu_cbd011");}
     add7("gu_cbd02");
-        if (answers.gu_cbd02 === "Yes"){
+        if (answers.gu_cbd02 === "More" || answers.gu_cbd02 === "Less"){
     add7("gu_cbd021");}
     add7("gu_cbd03");
         if (answers.gu_cbd03 === "Yes"){
