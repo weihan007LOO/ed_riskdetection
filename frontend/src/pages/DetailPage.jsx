@@ -87,6 +87,8 @@ function DetailPage({ allAnswers, updateAnswer, onNext }) {
                     placeholder={q.placeholder || "Please specify..."}
                     value={allAnswers[q.id]}
                     onChange={(val) => handleChange(q.id, val)}
+                    numeric={q.numeric}
+                    maxLength={q.maxLength}
                   />
                 )}
 

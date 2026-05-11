@@ -4,8 +4,8 @@ export const GIModule = [
   // VOMITING
   // ======================
   { id: "prom_vomiting", type: "yes_no_toggle" },
-  { id: "git_vom01", type: "radio_group", options: ["Remove", "Proceed"] }, // nausea
-  { id: "confirm_vomiting", type: "yes_no_toggle" },
+  { id: "git_vom01", type: "yes_no_toggle" }, // nausea
+  { id: "confirm_vomiting", type: "radio_group", options: ["Remove", "Proceed"] },
   { id: "git_vom02", type: "colour", colourType: "vomit", options: ["Food", "Clear fluid", "Yellow-green", "Dark like coffee grounds", "Fresh blood", "Not sure"] },
   { id: "git_vom03", type: "number" },
   { id: "git_vom04", type: "number" },

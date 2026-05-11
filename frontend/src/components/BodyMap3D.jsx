@@ -32,17 +32,17 @@ const REGION_MAP = {
   LeftWrist: ["Left_Wrist"],
   LeftHand: ["Left_Hand"],
 
-  RightUpper_Leg: ["Right_Upper_Leg"],
+  RightUpperLeg: ["Right_Upper_Leg"],
   RightKnee: ["Right_Knee"],
   RightLeg_Pit: ["Right_Leg_Pit"],
-  RightLower_Leg: ["Right_Lower_Leg"],
+  RightLowerLeg: ["Right_Lower_Leg"],
   RightAnkle: ["Right_Ankle"],
   RightFoot: ["Right_Foot"],
 
-  LeftUpper_Leg: ["Left_Upper_Leg"],
+  LeftUpperLeg: ["Left_Upper_Leg"],
   LeftKnee: ["Left_Knee"],
   LeftLeg_Pit: ["Left_Leg_Pit"],
-  LeftLower_Leg: ["Left_Lower_Leg"],
+  LeftLowerLeg: ["Left_Lower_Leg"],
   LeftAnkle: ["Left_Ankle"],
   LeftFoot: ["Left_Foot"]
 };
@@ -74,8 +74,8 @@ const UI_GROUPS = {
     "RightArm", "LeftArm",
     "RightForearm", "LeftForearm",
     "RightHand", "LeftHand",
-    "RightUpper_Leg", "LeftUpper_Leg",
-    "RightLower_Leg", "LeftLower_Leg",
+    "RightUpperLeg", "LeftUpperLeg",
+    "RightLowerLeg", "LeftLowerLeg",
     "RightFoot", "LeftFoot"
   ]
 };

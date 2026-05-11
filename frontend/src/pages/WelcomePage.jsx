@@ -17,7 +17,13 @@ export default function WelcomePage({ onStart }) {
         <p className="welparagraph3">By continuing, you agree to participate and provide accurate responses.</p>
 
         <button 
-          onClick={onStart}
+          onClick={() => {
+            const startTime = Date.now();
+
+            localStorage.setItem("history_start_time", startTime);
+
+            onStart();
+          }}
           className="welcomepage-button"
         >
           Agree & Start

@@ -89,7 +89,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "general",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -105,7 +105,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module1",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -121,7 +121,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module2",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -137,7 +137,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module3",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -153,7 +153,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module4",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -169,7 +169,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module5",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -185,7 +185,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module6",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -201,7 +201,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module7",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -217,7 +217,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module8",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -233,7 +233,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module9",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -249,7 +249,7 @@ export const getQuestionsForComplaint = (answers) => {
     questions.push({
       ...q,
       tag: "module10",
-      complaint: "global",
+      complaint: currentComplaint,
       sectionTitle: currentSectionTitle
     });
   };
@@ -312,6 +312,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("fever_07");
     add("fever_08");}})
     //Module1
+    if (answers.confirm_fever !== "Remove") {
     withSectionTitle("Shortness of Breath", () => {
     add1("prom_sob");
       if (answers.prom_sob === "Yes"){
@@ -503,7 +504,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Cough/Sore throat
   if (complaints.includes("Cough/Sore throat")) {
@@ -532,6 +533,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("resp_cou05");}})
     //Module1
     withSectionTitle("Shortness of breath", () => {
+      if (answers.confirm_cough !== "Remove") {
     add1("prom_sob");
       if (answers.prom_sob === "Yes"){
     add1("resp_sob01");
@@ -542,9 +544,10 @@ export const getQuestionsForComplaint = (answers) => {
     add1("resp_sob06");
     add1("resp_sob07");
     add1("resp_sob08");
-    add1("resp_sob09");}})
+    add1("resp_sob09");}}})
     //Module2
     withSectionTitle("Fever", () => {
+      if (answers.confirm_cough !== "Remove") {
     add2("prom_fever");
       if (answers.prom_fever === "Yes"){
     add2("fever_01");
@@ -556,8 +559,9 @@ export const getQuestionsForComplaint = (answers) => {
     add2("fever_05");
     add2("fever_06");
     add2("fever_07");
-    add2("fever_08");}})
+    add2("fever_08");}}})
     //Medical
+      if (answers.confirm_cough !== "Remove") {
     addmed("med_gen01");
       if (answers.med_gen01 === "Yes"){
     addmed("med_gen011");
@@ -572,8 +576,9 @@ export const getQuestionsForComplaint = (answers) => {
     addmed("med_gen021");
     addmed("med_gen022");
     addmed("med_gen023");}
-    addmed("med_fever03");
+    addmed("med_fever03");}
     //Social
+      if (answers.confirm_cough !== "Remove") {
     addsoc("soc_gen01");
       if (answers.soc_gen01 === "Used to smoke" || answers.soc_gen01 === "Currently smoke"){
     addsoc("soc_gen011");}
@@ -586,7 +591,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Shortness of breath
   if (complaints.includes("Shortness of breath")) {
@@ -602,6 +607,7 @@ export const getQuestionsForComplaint = (answers) => {
     add0("como_10");
     add0("prompt_como02");
     //General
+    if (answers.confirm_sob !== "Remove") {
     withSectionTitle("Shortness of breath", () => {
     add("confirm_sob");
       if (answers.confirm_sob === "Proceed"){
@@ -758,7 +764,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Nausea/Vomiting
   if (complaints.includes("Nausea/Vomiting")) {
@@ -782,6 +788,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("git_vom04");
     add("git_vom05");}})
     //Module1
+    if (answers.confirm_vomiting !== "Remove") {
     withSectionTitle("Diarrhoea", () => {
     add1("prom_diarrhoea");
       if (answers.prom_diarrhoea === "Yes"){
@@ -930,7 +937,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Diarrhoea
   if (complaints.includes("Diarrhoea")) {
@@ -953,8 +960,10 @@ export const getQuestionsForComplaint = (answers) => {
     add("git_dia02");
     add("git_dia03");
         if (answers.git_dia03 === "Yes"){
-    add("git_dia021");}}
+    add("git_dia021");}}})
     //Module1
+    if (answers.confirm_diarrhoea !== "Remove") {
+    withSectionTitle("Diarrhoea", () => {
     add1("git_02");
     add1("git_03");
     add1("git_04");})
@@ -1055,7 +1064,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Headache
   if (complaints.includes("Headache")) {
@@ -1096,6 +1105,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("neuro_head161");
     add("neuro_head162");}}})
     //Module1
+    if (answers.confirm_headache !== "Remove") {
     withSectionTitle("Dizziness", () => {
     add1("prom_dizziness");
       if (answers.prom_dizziness === "Yes"){
@@ -1212,7 +1222,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Dizziness
   if (complaints.includes("Dizziness")) {
@@ -1243,6 +1253,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("neuro_dizz081");}
     add("neuro_dizz09");}})
     //Module1
+    if (answers.confirm_dizziness !== "Remove") {
     withSectionTitle("Weakness", () => {
     add1("prom_weakness");
       if (answers.prom_weakness === "Yes"){
@@ -1354,7 +1365,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Fainting/Blackout
   if (complaints.includes("Fainting/Blackout")) {
@@ -1399,6 +1410,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("neuro_sync20");
     add("neuro_sync21");}})
     //Module1
+    if (answers.confirm_syncope !== "Remove") {
     withSectionTitle("Weakness", () => {
       if (answers.neuro_sync19 === "Yes"){
     add1("neuro_weak01");
@@ -1530,7 +1542,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Stomach/Abdominal pain
   if (complaints.includes("Stomach/Abdominal pain")) {
@@ -1568,6 +1580,7 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.pain_git_03 === "No"){
     add("pain_git_07B");}}})
     //Module1
+    if (answers.confirm_abdopain !== "Remove") {
     withSectionTitle("Abdominal pain", () => {
       if (answers.pain_git_01?.includes("Epi") || answers.pain_git_01?.includes("RUQ")){
     add1("git_pain01");}
@@ -1707,7 +1720,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Chest pain
   if (complaints.includes("Chest pain")) {
@@ -1745,6 +1758,7 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.pain_card_03 === "No"){
     add("pain_card_07B");}}})
     //Module1
+    if (answers.confirm_cardpain !== "Remove") {
     withSectionTitle("Chest pain", () => {
     add1("card_pain01");
       if (answers.pain_card_03 === "Yes"){
@@ -1831,7 +1845,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Muscle, Back, or Joint pain
   if (complaints.includes("Muscle, Back, or Joint pain")) {
@@ -1864,6 +1878,7 @@ export const getQuestionsForComplaint = (answers) => {
         if (answers.msk_02?.includes("RightLowerLeg") && answers.msk_02?.includes("LeftLowerLeg")){
     add("msk_10");}}})
     //Module1
+    if (answers.confirm_msk !== "Remove") {
     withSectionTitle("Injury", () => {
       if (answers.msk_04 === "Yes"){
     add1("inj_04");
@@ -1920,7 +1935,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Eye problem
   if (complaints.includes("Eye problem")) {
@@ -1959,6 +1974,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("eye_17");
     add("eye_18");}})
     //Module1
+    if (answers.confirm_eye !== "Remove") {
     withSectionTitle("Headache", () => {
     add1("prom_headache");
       if (answers.prom_headache === "Yes"){
@@ -2021,7 +2037,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Feeling generally unwell
   if (complaints.includes("Feeling generally unwell")) {
@@ -2051,6 +2067,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("fever_07");
     add("fever_08");}})
     //Module1
+    if (answers.confirm_fever !== "Remove") {
     withSectionTitle("Shortness of breath", () => {
     add1("prom_sob");
       if (answers.prom_sob === "Yes"){
@@ -2237,7 +2254,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Weakness or numbness
   if (complaints.includes("Weakness or numbness")) {
@@ -2273,6 +2290,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("neuro_weak08");
     add("neuro_weak09");}})
     //Module1
+    if (answers.confirm_weakness !== "Remove") {
     withSectionTitle("Injury", () => {
     add1("prom_injury");
       if (answers.prom_injury === "Yes"){
@@ -2329,7 +2347,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Skin problem
   if (complaints.includes("Skin problem")) {
@@ -2352,6 +2370,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("skin_02");
     add("skin_03");}})
     //Module1
+    if (answers.confirm_skin !== "Remove") {
     withSectionTitle("Shortness of breath", () => {
       if (answers.skin_02?.includes("Head")){
     add1("prom_sob");
@@ -2435,7 +2454,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Problem with passing urine
   if (complaints.includes("Problem with passing urine")) {
@@ -2515,6 +2534,7 @@ export const getQuestionsForComplaint = (answers) => {
         if (answers.gu_cbd04 === "Yes"){
     add("gu_cbd041");}}}})
     //Module1
+    if (answers.confirm_gu !== "Remove") {
     withSectionTitle("Testicle problem", () => {
       if (answers.gender === "Male"){
     add1("gu_tes01");
@@ -2593,7 +2613,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Bleeding
   if (complaints.includes("Bleeding")) {
@@ -2617,6 +2637,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("bleed_03");
     add("bleed_04");}})
     //Module1
+    if (answers.confirm_bleeding !== "Remove") {
     withSectionTitle("Vomiting", () => {
       if (answers.bleed_01 === "Vomiting blood"){
     add1("git_vom02");
@@ -2734,7 +2755,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Injury
   if (complaints.includes("Injury")) {
@@ -2753,12 +2774,14 @@ export const getQuestionsForComplaint = (answers) => {
     withSectionTitle("Injury", () => {
     add("confirm_injury");
         if (answers.confirm_injury === "Proceed"){
-    add("inj_01");}
+    add("inj_01");}})
     //Module1
+    if (answers.confirm_injury !== "Remove") {
+    withSectionTitle("Injury", () => {
     add1("inj_region01");
         if (answers.inj_01?.includes("RightUpperLeg") || answers.inj_01?.includes("LeftUpperLeg") || answers.inj_01?.includes("RightLowerLeg") || answers.inj_01?.includes("LeftLowerLeg")){
     add1("inj_region02");}
-        if (answers.inj_01?.includes("RightUpperLeg") || answers.inj_01?.includes("LeftUpperLeg") || answers.inj_01?.includes("RightLowerLeg") || answers.inj_01?.includes("LeftLowerLeg") || answers.inj_01?.includes("RightUpperArm") || answers.inj_01?.includes("LeftUpperArm") || answers.inj_01?.includes("RightForearm") || answers.inj_01?.includes("LeftForearm")){
+        if (answers.inj_01?.includes("RightUpperLeg") || answers.inj_01?.includes("LeftUpperLeg") || answers.inj_01?.includes("RightLowerLeg") || answers.inj_01?.includes("LeftLowerLeg") || answers.inj_01?.includes("RightArm") || answers.inj_01?.includes("LeftArm") || answers.inj_01?.includes("RightForearm") || answers.inj_01?.includes("LeftForearm")){
     add1("inj_region03");}
         if (answers.inj_region01 === "Laceration (cut)" || answers.inj_region01 === "Open wound"){
     add1("inj_region04");}})
@@ -2816,7 +2839,7 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
   // Ear, Nose, or Throat problem
   if (complaints.includes("Ear, Nose, or Throat problem")) {
@@ -2836,6 +2859,7 @@ export const getQuestionsForComplaint = (answers) => {
         if (answers.confirm_ent === "Proceed"){
     add("ent_00");}})
     //Module1
+    if (answers.confirm_ent !== "Remove") {
     withSectionTitle("Ear problem", () => {
       if (answers.ent_00 === "Ear or hearing problem"){
     add1("ent_ear01");
@@ -2941,252 +2965,69 @@ export const getQuestionsForComplaint = (answers) => {
     addsoc("soc_gen021");}
     addsoc("soc_gen03");
     addsoc("soc_gen04");
-  });}
+  }});}
 
 
 
   const uniqueQuestions = [];
   const seen = new Set();
 
+  const confirmRules = {
+    prom_fever: "confirm_fever",
+    prom_cough: "confirm_cough",
+    prom_sob: "confirm_sob",
+    prom_vomiting: "confirm_vomiting",
+    prom_diarrhoea: "confirm_diarrhoea",
+    prom_headache: "confirm_headache",
+    prom_dizziness: "confirm_dizziness",
+    prom_syncope: "confirm_syncope",
+    prom_abdopain: "confirm_abdopain",
+    prom_cardpain: "confirm_cardpain",
+    prom_msk: "confirm_msk",
+    prom_eye: "confirm_eye",
+    prom_weakness: "confirm_weakness",
+    prom_skin: "confirm_skin",
+    prom_gu: "confirm_gu",
+    prom_bleeding: "confirm_bleeding",
+    prom_injury: "confirm_injury",
+    prom_ent: "confirm_ent"
+  };
+
   questions.forEach(q => {
 
-    // ❌ Skip lite if full already exists
+  // comorbid stays manual
   if (q.id === "prompt_como02_lite" && seen.has("prompt_como02")) {
     return;
   }
 
-  // ❌ Skip prom_fever if confirm_fever already exists
-  if (q.id === "prom_fever" && seen.has("confirm_fever")) {
+  // ✅ PROM skip logic
+  const confirmKey = confirmRules[q.id];
+  if (confirmKey && answers[confirmKey] === "Proceed") {
     return;
   }
 
-  // ✅ Remove lite if full appears later
-  if (q.id === "prompt_como02") {
-    const liteIndex = uniqueQuestions.findIndex(x => x.id === "prompt_como02_lite");
-    if (liteIndex !== -1) {
-      uniqueQuestions.splice(liteIndex, 1);
-      seen.delete("prompt_como02_lite");
-    }
-  }
+  // ✅ CONFIRM removes PROM
+  const promEntry = Object.entries(confirmRules).find(
+    ([prom, confirm]) => confirm === q.id
+  );
 
-  // ✅ Remove prom if confirm appears later
-  if (q.id === "confirm_fever") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_fever");
+  if (promEntry) {
+    const [promId] = promEntry;
+
+    const promIndex = uniqueQuestions.findIndex(x => x.id === promId);
+
     if (promIndex !== -1) {
       uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_fever");
+      seen.delete(promId);
     }
   }
 
-  if (q.id === "prom_cough" && seen.has("confirm_cough")) {
-    return;
+  // normal dedupe
+  if (!seen.has(q.id)) {
+    seen.add(q.id);
+    uniqueQuestions.push(q);
   }
-
-  if (q.id === "confirm_cough") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_cough");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_cough");
-    }
-  }
-
-  if (q.id === "prom_sob" && seen.has("confirm_sob")) {
-    return;
-  }
-
-  if (q.id === "confirm_sob") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_sob");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_sob");
-    }
-  }
-
-  if (q.id === "prom_vomiting" && seen.has("confirm_vomiting")) {
-    return;
-  }
-
-  if (q.id === "confirm_vomiting") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_vomiting");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_vomiting");
-    }
-  }
-
-  if (q.id === "prom_diarrhoea" && seen.has("confirm_diarrhoea")) {
-    return;
-  }
-
-  if (q.id === "confirm_diarrhoea") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_diarrhoea");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_diarrhoea");
-    }
-  }
-
-  if (q.id === "prom_headache" && seen.has("confirm_headache")) {
-    return;
-  }
-
-  if (q.id === "confirm_headache") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_headache");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_headache");
-    }
-  }
-
-  if (q.id === "prom_dizziness" && seen.has("confirm_dizziness")) {
-    return;
-  }
-
-  if (q.id === "confirm_dizziness") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_dizziness");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_dizziness");
-    }
-  }
-
-  if (q.id === "prom_syncope" && seen.has("confirm_syncope")) {
-    return;
-  }
-
-  if (q.id === "confirm_syncope") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_syncope");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_syncope");
-    }
-  }
-
-  if (q.id === "prom_abdopain" && seen.has("confirm_abdopain")) {
-    return;
-  }
-
-  if (q.id === "confirm_abdopain") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_abdopain");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_abdopain");
-    }
-  }
-
-  if (q.id === "prom_cardpain" && seen.has("confirm_cardpain")) {
-    return;
-  }
-
-  if (q.id === "confirm_cardpain") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_cardpain");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_cardpain");
-    }
-  }
-
-  if (q.id === "prom_msk" && seen.has("confirm_msk")) {
-    return;
-  }
-
-  if (q.id === "confirm_msk") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_msk");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_msk");
-    }
-  }
-
-  if (q.id === "prom_eye" && seen.has("confirm_eye")) {
-    return;
-  }
-
-  if (q.id === "confirm_eye") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_eye");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_eye");
-    }
-  }
-
-  if (q.id === "prom_weakness" && seen.has("confirm_weakness")) {
-    return;
-  }
-
-  if (q.id === "confirm_weakness") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_weakness");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_weakness");
-    }
-  }
-
-  if (q.id === "prom_skin" && seen.has("confirm_skin")) {
-    return;
-  }
-
-  if (q.id === "confirm_skin") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_skin");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_skin");
-    }
-  }
-
-  if (q.id === "prom_gu" && seen.has("confirm_gu")) {
-    return;
-  }
-
-  if (q.id === "confirm_gu") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_gu");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_gu");
-    }
-  }
-
-  if (q.id === "prom_bleeding" && seen.has("confirm_bleeding")) {
-    return;
-  }
-
-  if (q.id === "confirm_bleeding") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_bleeding");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_bleeding");
-    }
-  }
-
-  if (q.id === "prom_injury" && seen.has("confirm_injury")) {
-    return;
-  }
-
-  if (q.id === "confirm_injury") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_injury");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_injury");
-    }
-  }
-
-  if (q.id === "prom_ent" && seen.has("confirm_ent")) {
-    return;
-  }
-
-  if (q.id === "confirm_ent") {
-    const promIndex = uniqueQuestions.findIndex(x => x.id === "prom_ent");
-    if (promIndex !== -1) {
-      uniqueQuestions.splice(promIndex, 1);
-      seen.delete("prom_ent");
-    }
-  }
-
-    if (!seen.has(q.id)) {
-      seen.add(q.id);
-      uniqueQuestions.push(q);
-    }
-  });
+});
 
   return uniqueQuestions;
 };

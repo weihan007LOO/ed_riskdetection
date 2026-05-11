@@ -16,7 +16,6 @@ import BodyMap from './components/SilhoutteMap';
 import BodyMap3D from './components/BodyMap3D';
 import ChestMap from './components/ChestMap';
 
-
 import WelcomePage from './pages/WelcomePage'; 
 import DetailPage from './pages/DetailPage';
 
@@ -55,6 +54,7 @@ function App() {
   const [direction, setDirection] = useState("forward");
   const [confirmQuestions, setConfirmQuestions] = useState([]);
   const [confirmAnswers, setConfirmAnswers] = useState({});
+  const [doneSections, setDoneSections] = useState({});
 
   // ✅ CLEAN speech logic (unchanged)
   const startSpeechRecognition = () => {
@@ -86,11 +86,22 @@ function App() {
     setLoading(true);
 
     try {
+      const startTime = localStorage.getItem("history_start_time");
+
+      let duration_seconds = null;
+
+      if (startTime) {
+        duration_seconds = Math.floor(
+          (Date.now() - Number(startTime)) / 1000
+        );
+      }
+
       await axios.post(`${import.meta.env.VITE_API_URL}/api/sync/history`, {
         id: allAnswers.id || "RN00000000",
         complaints: selectedComplaints,
         details: allAnswers,
         final_notes_raw: allAnswers.p_final_notes || "",
+        duration_seconds,
       },
         {
         headers: {
@@ -98,6 +109,7 @@ function App() {
           "x-api-key": import.meta.env.VITE_API_KEY
         }
       });
+      localStorage.removeItem("history_start_time");
       alert("Saved!");
       window.location.reload();
     } catch (err){
@@ -112,17 +124,6 @@ function App() {
   // ✅ PAGINATION (UNCHANGED)
   // =========================
   const complaintsList = ChiefComplaints;
-  const [complaintPage, setComplaintPage] = useState(0);
-  const [ITEMS_PER_PAGE, setItemsPerPage] = useState(5);
-
-  useEffect(() => {
-    const updateItemsPerPage = () => {
-      setItemsPerPage(window.innerWidth <= 480 ? 5 : 11);
-    };
-    updateItemsPerPage();
-    window.addEventListener('resize', updateItemsPerPage);
-    return () => window.removeEventListener('resize', updateItemsPerPage);
-  }, []);
 
   useEffect(() => {
   const fetchLabels = async () => {
@@ -133,30 +134,39 @@ function App() {
   fetchLabels();
 }, []);
 
-  const startIndex = complaintPage * ITEMS_PER_PAGE;
-  const remainingItems = complaintsList.length - startIndex;
-  const isFirstPage = complaintPage === 0;
-  const isMobile = window.innerWidth <= 480;
-  let pageSize = ITEMS_PER_PAGE;
+  useEffect(() => {
+  if (step >= 3) {
 
-  // MOBILE LOGIC ONLY
-  if (isMobile) {
-    if (isFirstPage) {
-      pageSize = 5;
-    } else if (remainingItems <= 5) {
-      pageSize = 5; // last page
-    } else {
-      pageSize = 4; // middle pages
+    const currentStep = questionFlow[flowIndex];
+
+    const flow = buildFlow(selectedComplaints);
+
+    const filteredFlow = flow.filter(f => {
+      if (f.type === "comorbid") {
+        return flowIndex === 0;
+      }
+      return true;
+    });
+
+    setQuestionFlow(filteredFlow);
+
+    // ✅ restore same position
+    if (currentStep) {
+
+      const newIndex = filteredFlow.findIndex(f =>
+        f.type === currentStep.type &&
+        f.complaint === currentStep.complaint
+      );
+
+      if (newIndex !== -1) {
+        setFlowIndex(newIndex);
+      }
     }
   }
+}, [allAnswers, selectedComplaints]);
 
-  const currentItems = complaintsList.slice(
-    startIndex,
-    startIndex + pageSize
-  );
+  const isMobile = window.innerWidth <= 480;
 
-  const hasNextPage = startIndex + ITEMS_PER_PAGE < complaintsList.length;
-  const hasPrevPage = complaintPage > 0;
 
   const toggleComplaint = (name) => {
     setSelectedComplaints(prev =>
@@ -329,24 +339,48 @@ function App() {
         )}
 
         {q.type === 'abdomen_map' && (
-          <AbdomenMap1 
-            onSelect={(region) => updateAnswer(q.id, region)} 
-            selectedRegion={allAnswers[q.id]} 
-            isMobile={isMobile} 
+          <AbdomenMap1
+            selectedRegion={allAnswers[q.id] || []}
+            onSelect={(region) => {
+              const prev = allAnswers[q.id] || [];
+
+              const updated = prev.includes(region)
+                ? prev.filter(r => r !== region)
+                : [...prev, region];
+
+              updateAnswer(q.id, updated);
+            }}
+            isMobile={isMobile}
           />
         )}
 
         {q.type === 'head_map' && (
-          <HeadMap 
-            onSelect={(region) => updateAnswer(q.id, region)} 
-            selectedRegion={allAnswers[q.id]} 
+          <HeadMap
+            selectedRegion={allAnswers[q.id] || []}
+            onSelect={(region) => {
+              const prev = allAnswers[q.id] || [];
+
+              const updated = prev.includes(region)
+                ? prev.filter(r => r !== region)
+                : [...prev, region];
+
+              updateAnswer(q.id, updated);
+            }}
           />
         )}
 
         {q.type === 'chest_map' && (
           <ChestMap 
-            onSelect={(region) => updateAnswer(q.id, region)} 
-            selectedRegion={allAnswers[q.id]} 
+            selectedRegion={allAnswers[q.id] || []}
+            onSelect={(region) => {
+              const prev = allAnswers[q.id] || [];
+
+              const updated = prev.includes(region)
+                ? prev.filter(r => r !== region)
+                : [...prev, region];
+
+              updateAnswer(q.id, updated);
+            }}
           />
         )}
 
@@ -406,17 +440,26 @@ function App() {
         flow.push({ type: "comorbid", complaint: "global" });
       }
     
-    if (hasTagQuestions("general", "global")) {
-        flow.push({ type: "general", complaint: "global" });
+    // =========================
+    // 2. PER COMPLAINT FLOW
+    // =========================
+    complaints.forEach((c) => {
+
+      flow.push({
+        type: "confirm",
+        complaint: c
+      });
+
+      // general (per complaint)
+        flow.push({ type: "general", complaint: c });
+
+      // modules (per complaint)
+      for (let i = 1; i <= 10; i++) {
+        const tag = `module${i}`;
+          flow.push({ type: tag, complaint: c });
       }
 
-    // ✅ Modules (GLOBAL — only once)
-    for (let i = 1; i <= 10; i++) {
-      const tag = `module${i}`;
-      if (hasTagQuestions(tag, "global")) {
-        flow.push({ type: tag, complaint: "global" });
-      }
-    }
+    });
 
       // 🔥 Combined sections ONLY ONCE
       if (hasTagQuestions("medical", "global")) {
@@ -450,7 +493,7 @@ function App() {
             alt="AI Logo" 
             className="triage-logo" 
           />
-          <h1 className="greenzonetriage-title">ED History Taking</h1>
+          <h1 className="greenzonetriage-title">Symptom Assistant</h1>
         </div>
       )}
 
@@ -469,62 +512,38 @@ function App() {
         <div className="step2main-style">
           <button onClick={() => setStep(1)} className="btn-secondary">← Back</button>
           <div className="step1main-style">
-            <h3>Select Chief Complaints</h3>
-            <p style={{ marginBottom: '0' }}>Please select all that apply to you</p>
+            <h4>Please tell us what main symptoms or problems brought you to hospital today</h4>
+            <p style={{ marginBottom: '0' }}>Select all that apply to you</p>
             
             <div className="step1complain-container">
               {/* Previous page button */}
-              {hasPrevPage && (
-                <button 
-                  onClick={() => setComplaintPage(prev => prev - 1)}
-                  className="step1complain-button nav-card"
-                >
-                  ⬅️
-                  <span>Back</span>
-                </button>
-              )}
               
               {/* Chief complaint buttons */}
-              {currentItems.map(({ name, icon: Icon }) => (
+              {complaintsList.map(({ name, icon: Icon, type }) => (
                 <button 
                   key={name} 
                   onClick={() => toggleComplaint(name)} 
                   className={`step1complain-button ${selectedComplaints.includes(name) ? 'selectedComplaints' : ''}`}
                 >
-                  <Icon size={28} style={{ marginBottom: '8px', color: selectedComplaints.includes(name) ? '#10b981' : '#64748b' }} />
+                  <Icon 
+                  {...(type === "health"
+                    ? { width: 28, height: 28 }
+                    : { size: 28 })} 
+                  style={{ marginBottom: '8px', color: selectedComplaints.includes(name) ? '#10b981' : '#64748b' }} />
                   <span>{name}</span>
                 </button>
               ))}
               
-              {/* Next page button */}
-              {hasNextPage && (
-                <button 
-                  onClick={() => setComplaintPage(prev => prev + 1)}
-                  className="step1complain-button nav-card"
-                >
-                  ➡️
-                  <span>More</span>
-                </button>
-              )}
             </div>
 
             {/* Start Assessment button */}
             <button 
               onClick={() => {
-                const allQs = visibleQuestions.filter(q =>
-                  q.id.startsWith("confirm")
-                );
-
-                if (allQs.length > 0) {
-                  setConfirmQuestions(allQs);
-                  setConfirmAnswers({});
-                  goToStep(2.5); // 👈 NEW STEP
-                  return;
-                }
-
                 const flow = buildFlow(selectedComplaints);
+
                 setQuestionFlow(flow);
                 setFlowIndex(0);
+
                 goToStep(3);
               }}
               disabled={selectedComplaints.length === 0}
@@ -536,70 +555,51 @@ function App() {
         </div>
       )}
 
-      {/* STEP 2.5 - CONFIRM QUESTIONS */}
-      {step === 2.5 && (
-        <div className="step2main-style">
-          <button onClick={() => setStep(2)} className="btn-secondary">
-            ← Back
-          </button>
-
-          <div className="step2title-style">
-            <h3>Confirm Symptoms</h3>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              {confirmQuestions.map(q => (
-                <div key={q.id} className="step2question-id">
-                  <label className="step2question-que">{q.label}</label>
-
-                  <MedicalRadioGroup
-                    options={["Remove", "Proceed"]}
-                    selectedOption={confirmAnswers[q.id]}
-                    onChange={(val) => {
-                      setConfirmAnswers(prev => ({ ...prev, [q.id]: val }));
-                      updateAnswer(q.id, val);
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-
-            <button
-              className="step2submit-button"
-              onClick={() => {
-                const hasProceed = Object.values(confirmAnswers).some(v => v === "Proceed");
-
-                if (!hasProceed) {
-                  setStep(2); // ❌ back to complaints
-                  return;
-                }
-
-                // ✅ continue normal flow
-                const flow = buildFlow(selectedComplaints);
-                setQuestionFlow(flow);
-                setFlowIndex(0);
-                goToStep(3);
-              }}
-            >
-              Next →
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* STEP 3 */}
       {step === 3 && questionFlow.length > 0 && (() => {
         const current = questionFlow[flowIndex];
 
         if (!current) return null;
+        const hasRemainingQuestions = questionFlow.some((f, idx) =>
+          idx >= flowIndex + 1 &&
+          visibleQuestions.some(q => q.tag === f.type)
+        );
+
+        const hasQuestionsForStep = (step) => {
+  return visibleQuestions.some(q => {
+    if (step.type === "confirm") {
+      return q.id.startsWith("confirm") && q.complaint === step.complaint;
+    }
+
+    if (["medical", "social", "comorbid"].includes(step.type)) {
+      return q.tag === step.type;
+    }
+
+    return q.tag === step.type && q.complaint === step.complaint;
+  });
+};
 
         const goNext = () => {
           setDirection("forward");
-          if (flowIndex + 1 < questionFlow.length) {
-            setFlowIndex(flowIndex + 1);
-          } else {
-            goToStep(8);
+
+          let nextIndex = flowIndex + 1;
+
+          while (nextIndex < questionFlow.length) {
+            const next = questionFlow[nextIndex];
+
+            const isValid = hasQuestionsForStep(next);
+
+            if (isValid) {
+              setFlowIndex(nextIndex);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              return;
+            }
+
+            nextIndex++;
           }
-          window.scrollTo({ top: 0, behavior: "smooth" });
+
+          // ❗ only reached if NOTHING ahead is valid
+          goToStep(8);
         };
 
         const goBack = () => {
@@ -608,23 +608,75 @@ function App() {
           while (newIndex >= 0) {
             const prev = questionFlow[newIndex];
 
-            const hasQuestions = visibleQuestions.some(q =>
-              (prev.type === "medical" || prev.type === "social" || prev.type === "comorbid")
-                ? q.tag === prev.type
-                : q.tag === prev.type && q.complaint === prev.complaint
-            );
+            const hasQuestions = visibleQuestions.some(q => {
+
+              // =========================
+              // CONFIRM STEP
+              // =========================
+              if (prev.type === "confirm") {
+                return (
+                  q.id.startsWith("confirm") &&
+                  q.complaint === prev.complaint
+                );
+              }
+
+              // =========================
+              // GLOBAL SECTIONS
+              // =========================
+              if (
+                prev.type === "medical" ||
+                prev.type === "social" ||
+                prev.type === "comorbid"
+              ) {
+                return q.tag === prev.type;
+              }
+
+              // =========================
+              // NORMAL SECTIONS
+              // =========================
+              return (
+                q.tag === prev.type &&
+                q.complaint === prev.complaint
+              );
+            });
 
             if (hasQuestions) break;
+
             newIndex--;
           }
 
-          if (newIndex < 0) setStep(2);
-          else setFlowIndex(newIndex);
+          if (newIndex < 0) {
+            setStep(2);
+          } else {
+            setFlowIndex(newIndex);
+          }
         };
 
+        const isComorbidStepCompleted =
+          questionFlow[flowIndex]?.type !== "comorbid" &&
+          questionFlow.slice(0, flowIndex).some(f => f.type === "comorbid");
         // STEP FILTER
         const questionsToRender = visibleQuestions.filter(q => {
+
+          // =========================
+          // CONFIRM STEP
+          // =========================
+          if (current.type === "confirm") {
+            return (
+              q.id.startsWith("confirm") &&
+              q.complaint === current.complaint
+            );
+          }
+
+          // skip confirm elsewhere
           if (q.id.startsWith("confirm")) return false;
+
+          // comorbid logic
+          if (q.tag === "comorbid" && isComorbidStepCompleted) {
+            return false;
+          }
+
+          // flat sections
           if (
             current.type === "medical" ||
             current.type === "social" ||
@@ -633,13 +685,18 @@ function App() {
             return q.tag === current.type;
           }
 
+          // normal sections
           return (
             q.tag === current.type &&
             q.complaint === current.complaint
           );
         });
 
-        if (questionsToRender.length === 0 && direction === "forward") {
+        if (
+          current.type !== "confirm" &&
+          questionsToRender.length === 0 &&
+          direction === "forward"
+        ) {
           goNext();
           return null;
         }
@@ -653,7 +710,9 @@ function App() {
 
         const IconComponent = sectionMeta.icon;
         const sectionTitle =
-          current.type.charAt(0).toUpperCase() + current.type.slice(1);
+          current.type === "confirm"
+            ? `Confirm Symptom`
+            : current.type.charAt(0).toUpperCase() + current.type.slice(1);
 
         // ✅ IMPORTANT RULE:
         // only general + moduleX use cards
@@ -675,6 +734,7 @@ function App() {
           : null;
 
         const isFlatSection =
+          current.type === "confirm" ||
           current.type === "comorbid" ||
           current.type === "medical" ||
           current.type === "social";
@@ -683,35 +743,56 @@ function App() {
           <div className="step2main-style">
             <div
               style={{
-                display: "flex",
+                display: "grid",
+                gridTemplateColumns: "1fr auto 1fr",
                 alignItems: "center",
-                gap: isMobile ? "20px" : "190px",
                 marginBottom: isMobile ? "10px" : "16px",
+                width: "100%"
               }}
             >
-              {/* 🔙 Back */}
-              <button
-                onClick={goBack}
-                className="btn-secondary"
-                style={{ width: "auto", marginBottom: 0 }}
-              >
-                ← Back
-              </button>
 
-              {/* 🧠 Icon + Title */}
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              {/* LEFT */}
+              <div style={{ display: "flex", justifyContent: "flex-start" }}>
+                <button
+                  onClick={goBack}
+                  className="btn-secondary"
+                  style={{
+                    width: "auto",
+                    marginBottom: 0
+                  }}
+                >
+                  ← Back
+                </button>
+              </div>
+
+              {/* CENTER */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px"
+                }}
+              >
                 <IconComponent size={24} style={{ color: "#2563eb" }} />
+
                 <h3
                   style={{
                     margin: 0,
                     fontSize: isMobile ? "30px" : "30px",
                     fontWeight: "600",
-                    color: "#1e293b"
+                    color: "#1e293b",
+                    textAlign: "center",
+                    whiteSpace: "nowrap"
                   }}
                 >
                   {sectionTitle}
                 </h3>
               </div>
+
+              {/* RIGHT SPACER */}
+              <div />
+
             </div>
 
             <div className={isFlatSection ?"step2title-xstyle": "step2title-style"}>
