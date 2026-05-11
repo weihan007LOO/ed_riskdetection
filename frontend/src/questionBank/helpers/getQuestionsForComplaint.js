@@ -406,7 +406,7 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.prom_gu === "Yes"){
         if (!answers.prompt_como02?.includes("Urinary catheter (tube to pass urine)")){
     add7("gu_01");
-      if (answers.gu_01 === "Yes"){
+      if (answers.gu_01 !== "No"){
     add7("gu_02");
       if (answers.gu_02 === "Yes"){
     add7("gu_021");}
