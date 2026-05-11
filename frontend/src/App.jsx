@@ -566,18 +566,18 @@ function App() {
         );
 
         const hasQuestionsForStep = (step) => {
-  return visibleQuestions.some(q => {
-    if (step.type === "confirm") {
-      return q.id.startsWith("confirm") && q.complaint === step.complaint;
-    }
+          return visibleQuestions.some(q => {
+            if (step.type === "confirm") {
+              return q.id.startsWith("confirm") && q.complaint === step.complaint;
+            }
 
-    if (["medical", "social", "comorbid"].includes(step.type)) {
-      return q.tag === step.type;
-    }
+            if (["medical", "social", "comorbid"].includes(step.type)) {
+              return q.tag === step.type;
+            }
 
-    return q.tag === step.type && q.complaint === step.complaint;
-  });
-};
+            return q.tag === step.type && q.complaint === step.complaint;
+          });
+        };
 
         const goNext = () => {
           setDirection("forward");
@@ -598,8 +598,21 @@ function App() {
             nextIndex++;
           }
 
-          // ❗ only reached if NOTHING ahead is valid
-          goToStep(8);
+          const startTime = localStorage.getItem("history_start_time");
+
+          const elapsedMs = startTime
+            ? Date.now() - Number(startTime)
+            : 0;
+
+          const ONE_MINUTE = 60 * 1000;
+
+          if (elapsedMs < ONE_MINUTE) {
+            // likely flow rebuild / invalidation
+            goToStep(2);
+          } else {
+            // likely real completion
+            goToStep(8);
+          }
         };
 
         const goBack = () => {
