@@ -1,7 +1,7 @@
 // Cardiac Module
 export const CardiacModule = [
-  { id: "prom_cardpain", type: "yes_no_toggle" },
-  { id: "confirm_cardpain", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_cardpain", type: "yes_no_toggle", required: true },
+  { id: "confirm_cardpain", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "card_pain01", type: "radio_group", options: ["Resting", "Physical activity", "Eating"] },
   { id: "card_pain02A", type: "yes_no_toggle" },
   { id: "card_pain03A", type: "yes_no_toggle" },

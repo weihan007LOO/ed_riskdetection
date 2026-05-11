@@ -1,7 +1,7 @@
 // Neurological Module
 export const NeuroModule = [
-  { id: "prom_headache", type: "yes_no_toggle" },
-  { id: "confirm_headache", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_headache", type: "yes_no_toggle", required: true },
+  { id: "confirm_headache", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "neuro_head01", type: "head_map" },
   { id: "neuro_head02", type: "number" },
   { id: "neuro_head03", type: "radio_group", options: ["Sudden (like a thunderclap)", "Gradual"] },
@@ -22,8 +22,8 @@ export const NeuroModule = [
   { id: "neuro_head161", type: "number" },
   { id: "neuro_head162", type: "radio_group", options: ["Fall", "Hit head on object", "Road traffic accident", "Sports injury", "Assault", "Other"] },
 
-  { id: "prom_dizziness", type: "yes_no_toggle" },
-  { id: "confirm_dizziness", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_dizziness", type: "yes_no_toggle", required: true },
+  { id: "confirm_dizziness", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "neuro_dizz01", type: "radio_group", options: ["Spinning sensation (like seasickness or like the room is moving)", "Feeling like you might faint", "Unsteady when walking", "Just feeling off or not well"] },
   { id: "neuro_dizz02", type: "number" },
   { id: "neuro_dizz03", type: "radio_group", options: ["Sudden", "Gradual"] },
@@ -35,8 +35,8 @@ export const NeuroModule = [
   { id: "neuro_dizz081", type: "yes_no_toggle" },
   { id: "neuro_dizz09", type: "yes_no_toggle" },
 
-  { id: "prom_weakness", type: "yes_no_toggle" },
-  { id: "confirm_weakness", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_weakness", type: "yes_no_toggle", required: true },
+  { id: "confirm_weakness", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "neuro_weak01", type: "radio_group", options: ["Generally weak", "Weak in certain parts of body"] },
   { id: "neuro_weak011", type: "yes_no_toggle" },
   { id: "neuro_weak012", type: "radio_group", options: ["Right side", "Left side", "Both sides"] },
@@ -51,8 +51,8 @@ export const NeuroModule = [
   { id: "neuro_weak08", type: "yes_no_toggle" },
   { id: "neuro_weak09", type: "yes_no_toggle" },
 
-  { id: "prom_syncope", type: "yes_no_toggle" },
-  { id: "confirm_syncope", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_syncope", type: "yes_no_toggle", required: true },
+  { id: "confirm_syncope", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "neuro_sync01", type: "number" },
   { id: "neuro_sync02", type: "radio_group", options: ["Completely lost consciousness", "Nearly fainted"] },
   { id: "neuro_sync021", type: "radio_group", options: ["Seconds", "Minutes", ">5 minutes", "Not sure"] },

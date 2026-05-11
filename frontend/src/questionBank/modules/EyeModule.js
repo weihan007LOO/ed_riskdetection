@@ -1,7 +1,7 @@
 // Eye Module
 export const EyeModule = [
-  { id: "prom_eye", type: "yes_no_toggle" },
-  { id: "confirm_eye", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_eye", type: "yes_no_toggle", required: true },
+  { id: "confirm_eye", type: "radio_group", options: ["Remove", "Proceed"], required: true },
 
   { id: "eye_01", type: "checkbox_group", options: ["Pain", "Redness", "Swelling around the eye or eyelid", "Blurred or loss of vision"] },
   { id: "eye_02", type: "radio_group", options: ["Left", "Right", "Both"] },

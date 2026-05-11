@@ -1,6 +1,6 @@
 export const InjuryModule = [
-  { id: "prom_injury", type: "yes_no_toggle" },
-  { id: "confirm_injury", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_injury", type: "yes_no_toggle", required: true },
+  { id: "confirm_injury", type: "radio_group", options: ["Remove", "Proceed"], required: true },
 
   { id: "inj_01", type: "body_map" },
   { id: "inj_02", type: "yes_no_toggle" },

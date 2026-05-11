@@ -607,7 +607,6 @@ export const getQuestionsForComplaint = (answers) => {
     add0("como_10");
     add0("prompt_como02");
     //General
-    if (answers.confirm_sob !== "Remove") {
     withSectionTitle("Shortness of breath", () => {
     add("confirm_sob");
       if (answers.confirm_sob === "Proceed"){
@@ -621,6 +620,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("resp_sob08");
     add("resp_sob09");}})
     //Module1
+    if (answers.confirm_sob !== "Remove") {
     withSectionTitle("Chest pain", () => {
     add1("prom_cardpain");
       if (answers.prom_cardpain === "Yes"){

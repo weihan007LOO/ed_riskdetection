@@ -3,9 +3,9 @@ export const GIModule = [
   // ======================
   // VOMITING
   // ======================
-  { id: "prom_vomiting", type: "yes_no_toggle" },
+  { id: "prom_vomiting", type: "yes_no_toggle", required: true },
   { id: "git_vom01", type: "yes_no_toggle" }, // nausea
-  { id: "confirm_vomiting", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "confirm_vomiting", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "git_vom02", type: "colour", colourType: "vomit", options: ["Food", "Clear fluid", "Yellow-green", "Dark like coffee grounds", "Fresh blood", "Not sure"] },
   { id: "git_vom03", type: "number" },
   { id: "git_vom04", type: "number" },
@@ -14,8 +14,8 @@ export const GIModule = [
   // ======================
   // DIARRHOEA
   // ======================
-  { id: "prom_diarrhoea", type: "yes_no_toggle" },
-  { id: "confirm_diarrhoea", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_diarrhoea", type: "yes_no_toggle", required: true },
+  { id: "confirm_diarrhoea", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "git_dia01", type: "number" },
   { id: "git_dia02", type: "number" },
   { id: "git_dia03", type: "yes_no_toggle" },
@@ -24,8 +24,8 @@ export const GIModule = [
   // ======================
   // ABDOMINAL PAIN
   // ======================
-  { id: "prom_abdopain", type: "yes_no_toggle" },
-  { id: "confirm_abdopain", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_abdopain", type: "yes_no_toggle", required: true },
+  { id: "confirm_abdopain", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "git_pain01", type: "yes_no_toggle" },
   { id: "git_pain02", type: "yes_no_toggle" },
   { id: "git_pain03", type: "yes_no_toggle" },

@@ -2,8 +2,8 @@ export const GUModule = [
   // ======================
   // GENERAL URINARY
   // ======================
-  { id: "prom_gu", type: "yes_no_toggle" },
-  { id: "confirm_gu", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_gu", type: "yes_no_toggle", required: true },
+  { id: "confirm_gu", type: "radio_group", options: ["Remove", "Proceed"], required: true },
   { id: "gu_01", type: "yes_no_toggle" },
   { id: "gu_02", type: "yes_no_toggle" },
   { id: "gu_021", type: "number" },

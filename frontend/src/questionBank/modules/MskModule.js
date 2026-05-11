@@ -1,6 +1,6 @@
 export const MskModule = [
-  { id: "prom_msk", type: "yes_no_toggle" },
-  { id: "confirm_msk", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_msk", type: "yes_no_toggle", required: true },
+  { id: "confirm_msk", type: "radio_group", options: ["Remove", "Proceed"], required: true },
 
   { id: "msk_01", type: "checkbox_group", options: ["Pain at rest", "Pain on movement", "Swelling", "Stiffness", "Feels warm", "Reduced movement", "Weakness"] },
   { id: "msk_02", type: "body_map" },

@@ -1,7 +1,7 @@
 // EarNoseThroat Module
 export const EntModule = [
-  { id: "prom_ent", type: "yes_no_toggle" },
-  { id: "confirm_ent", type: "radio_group", options: ["Remove", "Proceed"] },
+  { id: "prom_ent", type: "yes_no_toggle", required: true },
+  { id: "confirm_ent", type: "radio_group", options: ["Remove", "Proceed"], required: true },
 
   { id: "ent_00", type: "radio_group", options: ["Ear or hearing problem", "Nose problem", "Throat problem"] },
 

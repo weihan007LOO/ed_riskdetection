@@ -55,6 +55,7 @@ function App() {
   const [confirmQuestions, setConfirmQuestions] = useState([]);
   const [confirmAnswers, setConfirmAnswers] = useState({});
   const [doneSections, setDoneSections] = useState({});
+  const [questionErrors, setQuestionErrors] = useState({});
 
   // ✅ CLEAN speech logic (unchanged)
   const startSpeechRecognition = () => {
@@ -176,6 +177,16 @@ function App() {
 
   const updateAnswer = (id, value) => {
     setAllAnswers(prev => ({ ...prev, [id]: value }));
+
+    // ✅ clear error immediately
+    setQuestionErrors(prev => {
+      if (!prev[id]) return prev;
+
+      const newErrors = { ...prev };
+      delete newErrors[id];
+
+      return newErrors;
+    });
   };
 
   // =========================
@@ -246,8 +257,23 @@ function App() {
   // =========================
   const renderQuestions = (questions) => (
     questions.map(q => (
-      <div key={q.id} className="step2question-id">
-        <label className={`step2question-que ${step === 5 ? "step5-que" : ""}`}>{q.label}</label>
+      <div
+        key={q.id}
+        id={q.id}
+        className="step2question-id"
+        style={{
+          border: questionErrors[q.id] ? "2px solid #ef4444" : "none",
+          borderRadius: "8px",
+          padding: questionErrors[q.id] ? "8px" : "0"
+        }}
+      >
+        <label className={`step2question-que ${step === 5 ? "step5-que" : ""}`}>{q.label}
+          {q.required && (
+            <span style={{ color: "red", marginLeft: "4px" }}>
+              *
+            </span>
+          )}
+        </label>
 
         {q.type === 'text' && (
           <MedicalTextInput
@@ -392,6 +418,18 @@ function App() {
             type={q.colourType}   // <-- pass this prop
             isMobile={isMobile} 
           />
+        )}
+        {questionErrors[q.id] && (
+          <div
+            style={{
+              color: "#ef4444",
+              fontSize: "13px",
+              marginTop: "4px",
+              textAlign: "center"
+            }}
+          >
+            This field is required
+          </div>
         )}
       </div>
     ))
@@ -580,6 +618,57 @@ function App() {
         };
 
         const goNext = () => {
+          // =========================
+          // ✅ VALIDATE REQUIRED QUESTIONS
+          // =========================
+          const currentQuestions = questionsToRender;
+
+          const newErrors = {};
+          let firstErrorId = null;
+
+          currentQuestions.forEach(q => {
+
+            if (!q.required) return;
+
+            const val = allAnswers[q.id];
+
+            let isEmpty = false;
+
+            if (q.type === "checkbox_group") {
+              isEmpty = !val || val.length === 0;
+            } else {
+              isEmpty =
+                val === undefined ||
+                val === null ||
+                val === "";
+            }
+
+            if (isEmpty) {
+
+              newErrors[q.id] = true;
+
+              if (!firstErrorId) {
+                firstErrorId = q.id;
+              }
+            }
+          });
+
+          setQuestionErrors(newErrors);
+
+          // ❌ STOP if validation failed
+          if (firstErrorId) {
+
+            const el = document.getElementById(firstErrorId);
+
+            if (el) {
+              el.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+              });
+            }
+
+            return;
+          }
           setDirection("forward");
 
           let nextIndex = flowIndex + 1;
