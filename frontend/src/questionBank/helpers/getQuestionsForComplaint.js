@@ -1874,9 +1874,9 @@ export const getQuestionsForComplaint = (answers) => {
     add("msk_06");}
     add("msk_07");
     add("msk_08");
-        if (answers.msk_02?.includes("Pelvis") || answers.msk_02?.includes("RightLowerLeg") || answers.msk_02?.includes("LeftLowerLeg")){
+        if (answers.msk_02?.includes("UpperBack") || answers.msk_02?.includes("LowerBack") || answers.msk_02?.includes("RearPelvic") || answers.msk_02?.includes("FrontPelvic") ||answers.msk_02?.includes("RightLowerLeg") || answers.msk_02?.includes("LeftLowerLeg")){
     add("msk_09");}
-        if (answers.msk_02?.includes("RightLowerLeg") && answers.msk_02?.includes("LeftLowerLeg")){
+        if ((answers.msk_02?.includes("RightLowerLeg") && answers.msk_02?.includes("LeftLowerLeg")) || answers.msk_02?.includes("UpperBack") || answers.msk_02?.includes("LowerBack")){
     add("msk_10");}}})
     //Module1
     if (answers.confirm_msk !== "Remove") {
@@ -2424,7 +2424,7 @@ export const getQuestionsForComplaint = (answers) => {
     //Module6
     withSectionTitle("Diarrhoea", () => {
       if (answers.skin_01?.includes("Itching") || answers.skin_01?.includes("Rashes")){
-    add5("prom_diarrhoea");}})
+    add6("prom_diarrhoea");}})
     //Medical
     addmed("med_gen01");
       if (answers.med_gen01 === "Yes"){
@@ -2696,9 +2696,9 @@ export const getQuestionsForComplaint = (answers) => {
     add4("inj_region01");
         if (answers.inj_01?.includes("RightUpperLeg") || answers.inj_01?.includes("LeftUpperLeg") || answers.inj_01?.includes("RightLowerLeg") || answers.inj_01?.includes("LeftLowerLeg")){
     add4("inj_region02");}
-        if (answers.inj_01?.includes("RightUpperLeg") || answers.inj_01?.includes("LeftUpperLeg") || answers.inj_01?.includes("RightLowerLeg") || answers.inj_01?.includes("LeftLowerLeg") || answers.inj_01?.includes("RightUpperArm") || answers.inj_01?.includes("LeftUpperArm") || answers.inj_01?.includes("RightForearm") || answers.inj_01?.includes("LeftForearm")){
+        if (answers.inj_01?.includes("RightUpperLeg") || answers.inj_01?.includes("LeftUpperLeg") || answers.inj_01?.includes("RightLowerLeg") || answers.inj_01?.includes("LeftLowerLeg") || answers.inj_01?.includes("RightArm") || answers.inj_01?.includes("LeftArm") || answers.inj_01?.includes("RightForearm") || answers.inj_01?.includes("LeftForearm")){
     add4("inj_region03");}
-        if (answers.inj_region01 === "Laceration (cut)" || answers.inj_region01 === "Open wound"){
+        if (answers.inj_region01?.includes("Laceration (cut)") || answers.inj_region01?.includes("Open wound")){
     add4("inj_region04");}}}})
     //Module5
     withSectionTitle("Pregnancy", () => {
@@ -2784,7 +2784,7 @@ export const getQuestionsForComplaint = (answers) => {
     add1("inj_region02");}
         if (answers.inj_01?.includes("RightUpperLeg") || answers.inj_01?.includes("LeftUpperLeg") || answers.inj_01?.includes("RightLowerLeg") || answers.inj_01?.includes("LeftLowerLeg") || answers.inj_01?.includes("RightArm") || answers.inj_01?.includes("LeftArm") || answers.inj_01?.includes("RightForearm") || answers.inj_01?.includes("LeftForearm")){
     add1("inj_region03");}
-        if (answers.inj_region01 === "Laceration (cut)" || answers.inj_region01 === "Open wound"){
+        if (answers.inj_region01?.includes("Laceration (cut)") || answers.inj_region01?.includes("Open wound")){
     add1("inj_region04");}})
     //Module2
     withSectionTitle("Eye problem", () => {
