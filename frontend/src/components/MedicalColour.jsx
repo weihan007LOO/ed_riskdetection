@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function MedicalColour({ options, selectedOption, onChange, type }) {
+export default function MedicalColour({ options, selectedOption, onChange, type, isMobile }) {
+  const compact = isMobile;
   // Map type to one image per question
   let displayImage = null;
   if(type === 'vomit') displayImage = "Vomit1.png";
@@ -13,7 +14,7 @@ export default function MedicalColour({ options, selectedOption, onChange, type 
       alignItems: 'center',
       gap: '15px',
       margin: '10px auto',
-      marginBottom: '50px'
+      marginBottom: compact ? '10px' : '50px',
     }}>
       {/* Fixed image per question type */}
 

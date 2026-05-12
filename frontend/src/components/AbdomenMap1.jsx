@@ -1,7 +1,8 @@
 import React from 'react';
 // 1. Import the image file
 
-export default function AbdomenMap1({ onSelect, selectedRegion = []}) {
+export default function AbdomenMap1({ onSelect, selectedRegion = [], isMobile}) {
+  const compact = isMobile;
   // These % values create a 3x3 grid. 
   // If your image has extra space (like chest or legs), 
   // you will need to adjust these percentages.
@@ -27,7 +28,8 @@ export default function AbdomenMap1({ onSelect, selectedRegion = []}) {
         width: '100%', 
         maxWidth: '400px', 
         borderRadius: '8px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginBottom: compact ? '0px' : '0px',
       }}>
         
         {/* 2. Use the imported variable as the src */}

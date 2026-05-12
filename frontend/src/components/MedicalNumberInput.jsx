@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function MedicalNumberInput({ value, onChange, placeholder, min = 0, max = 100 }) {
+export default function MedicalNumberInput({ value, onChange, placeholder, min = 0, max = 100, isMobile }) {
+  const compact = isMobile;
   const style = {
     width: '100%',
     maxWidth: '378px',
@@ -20,7 +21,7 @@ export default function MedicalNumberInput({ value, onChange, placeholder, min =
     margin: '10px auto',
     transition: 'border-color 0.3s ease',
     cursor: 'default',
-    marginBottom:'50px',
+    marginBottom: compact ? '10px' : '30px',
     boxSizing: 'border-box'
   };
 

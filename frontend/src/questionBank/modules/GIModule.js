@@ -1,44 +1,51 @@
 // GastroIntestinal Module
 export const GIModule = [
-  { id: "gi_001", type: "yes_no_toggle" },
-  { id: "gi_002", type: "abdomen_map" },
-  { id: "gi_003", type: "range" },
-  { id: "gi_004", type: "radio_group", options: ["Sharp", "Dull", "Burning", "Cramping", "Not sure"] },
-  { id: "gi_005", type: "radio_group", options: ["Constant", "Comes and goes"] },
-  { id: "gi_006", type: "yes_no_toggle" },
-  { id: "gi_007", type: "number" },
-  { id: "gi_008", type: "yes_no_toggle" },
-  { id: "gi_009", type: "number" },
-  { id: "gi_010", type: "yes_no_toggle" },
-  { id: "gi_011", type: "yes_no_toggle" },
-  { id: "gi_012", type: "yes_no_toggle" },
-  { id: "gi_013", type: "yes_no_toggle" },
-  { id: "gi_014", type: "yes_no_toggle" },
-  { id: "gi_015", type: "colour", colourType: "vomit", options: ["Food", "Clear fluid", "Yellow-green", "Dark like coffee grounds", "Fresh blood", "Not sure"] },
-  { id: "gi_016", type: "number" },
-  { id: "gi_017", type: "yes_no_toggle" },
-  { id: "gi_018", type: "yes_no_toggle" },
-  { id: "gi_019", type: "radio_group", options: ["Hours", "Days"] },
-  { id: "gi_020", type: "radio_group", options: ["Sudden", "Gradual"] },
-  { id: "gi_021", type: "yes_no_toggle" },
-  { id: "gi_022", type: "yes_no_toggle" },
-  { id: "gi_023", type: "body_map" },
-  { id: "gi_024", type: "yes_no_toggle" },
-  { id: "gi_025", type: "yes_no_toggle" },
-  { id: "gi_026", type: "yes_no_toggle" },
-  { id: "gi_027", type: "yes_no_toggle" },
-  { id: "gi_028", type: "radio_group", options: ["Normal", "Loose or watery", "Difficult to pass motion"] },
-  { id: "gi_029", type: "number" },
-  { id: "gi_030", type: "yes_no_toggle" },
-  { id: "gi_031", type: "radio_group", options: ["Yes", "No", "Not sure"] },
-  { id: "gi_032", type: "radio_group", options: ["Today", "Yesterday", "Days ago"] },
-  { id: "gi_033", type: "yes_no_toggle" },
-  { id: "gi_034", type: "yes_no_toggle" },
-  { id: "gi_035", type: "yes_no_toggle" },
-  { id: "gi_036", type: "yes_no_toggle" },
-  { id: "gi_037", type: "yes_no_toggle" },
-  { id: "gi_038", type: "yes_no_toggle" },
-  { id: "gi_039", type: "yes_no_toggle" },
-  { id: "gi_040", type: "yes_no_toggle" },
-  { id: "gi_041", type: "yes_no_toggle" },
+  // ======================
+  // VOMITING
+  // ======================
+  { id: "prom_vomiting", type: "yes_no_toggle", required: true },
+  { id: "git_vom01", type: "yes_no_toggle" }, // nausea
+  { id: "confirm_vomiting", type: "radio_group", options: ["Remove", "Proceed"], required: true },
+  { id: "git_vom02", type: "colour", colourType: "vomit", options: ["Food", "Clear fluid", "Yellow-green", "Dark like coffee grounds", "Fresh blood", "Not sure"] },
+  { id: "git_vom03", type: "number" },
+  { id: "git_vom04", type: "number" },
+  { id: "git_vom05", type: "yes_no_toggle" },
+
+  // ======================
+  // DIARRHOEA
+  // ======================
+  { id: "prom_diarrhoea", type: "yes_no_toggle", required: true },
+  { id: "confirm_diarrhoea", type: "radio_group", options: ["Remove", "Proceed"], required: true },
+  { id: "git_dia01", type: "number" },
+  { id: "git_dia02", type: "number" },
+  { id: "git_dia03", type: "yes_no_toggle" },
+  { id: "git_dia021", type: "radio_group", options: ["Yes", "No", "Not sure"] },
+
+  // ======================
+  // ABDOMINAL PAIN
+  // ======================
+  { id: "prom_abdopain", type: "yes_no_toggle", required: true },
+  { id: "confirm_abdopain", type: "radio_group", options: ["Remove", "Proceed"], required: true },
+  { id: "git_pain01", type: "yes_no_toggle" },
+  { id: "git_pain02", type: "yes_no_toggle" },
+  { id: "git_pain03", type: "yes_no_toggle" },
+  { id: "git_pain04", type: "yes_no_toggle" },
+  { id: "git_pain05", type: "yes_no_toggle" },
+  { id: "git_pain06", type: "yes_no_toggle" },
+  { id: "git_pain07", type: "yes_no_toggle" },
+  { id: "git_pain08", type: "yes_no_toggle" },
+
+  // ======================
+  // GENERAL GI
+  // ======================
+  { id: "git_01", type: "yes_no_toggle" },
+  { id: "git_02", type: "radio_group", options: ["Today", "Yesterday", "Number of days ago"] },
+  { id: "git_03", type: "radio_group", options: ["Normal brown", "Black like tar", "Greenish", "Pale", "Not sure"] },
+  { id: "git_04", type: "yes_no_toggle" },
+  { id: "git_05", type: "yes_no_toggle" },
+  { id: "git_06", type: "yes_no_toggle" },
+  { id: "git_07", type: "yes_no_toggle" },
+  { id: "git_08", type: "yes_no_toggle" },
+  { id: "git_09", type: "yes_no_toggle" },
+  { id: "git_10", type: "yes_no_toggle" },
 ];

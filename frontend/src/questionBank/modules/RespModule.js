@@ -1,21 +1,31 @@
 // Respiratory Module
 export const RespModule = [
-  { id: "resp_001", type: "yes_no_toggle" },
-  { id: "resp_002", type: "yes_no_toggle" },
-  { id: "resp_003", type: "yes_no_toggle" },
-  { id: "resp_004", type: "yes_no_toggle" },
-  { id: "resp_005", type: "colour", colourType: "sputum", options: ["Clear", "Yellow","Green","White","Pinkish"],},
-  { id: "resp_006", type: "yes_no_toggle" },
-  { id: "resp_007", type: "yes_no_toggle" },
-  { id: "resp_008", type: "yes_no_toggle" },
-  { id: "resp_009", type: "radio_group", options: ["Sudden", "Gradual"] },
-  { id: "resp_010", type: "radio_group", options: ["Hours", "Days"] },
-  { id: "resp_011", type: "yes_no_toggle" },
-  { id: "resp_012", type: "yes_no_toggle" },
-  { id: "resp_013", type: "yes_no_toggle" },
-  { id: "resp_014", type: "yes_no_toggle" },
-  { id: "resp_015", type: "yes_no_toggle" },
-  { id: "resp_016", type: "yes_no_toggle" },
-  { id: "resp_017", type: "yes_no_toggle" },
-  { id: "resp_018", type: "yes_no_toggle" },
+  // ======================
+  // SOB (Shortness of Breath)
+  // ======================
+  { id: "prom_sob", type: "yes_no_toggle", required: true },
+  { id: "confirm_sob", type: "radio_group", options: ["Remove", "Proceed"], required: true },
+  { id: "resp_sob01", type: "radio_group", options: ["Sudden", "Gradual"] },
+  { id: "resp_sob02", type: "radio_group", options: ["Hours", "Days"] },
+  { id: "resp_sob03", type: "radio_group", options: ["At rest", "When doing activity (like walking)", "Both"] },
+  { id: "resp_sob04", type: "yes_no_toggle" },
+  { id: "resp_sob05", type: "yes_no_toggle" },
+  { id: "resp_sob06", type: "yes_no_toggle" },
+  { id: "resp_sob07", type: "yes_no_toggle" },
+  { id: "resp_sob08", type: "yes_no_toggle" },
+  { id: "resp_sob09", type: "yes_no_toggle" },
+
+  // ======================
+  // COUGH
+  // ======================
+  { id: "prom_cough", type: "yes_no_toggle", required: true },
+  { id: "confirm_cough", type: "radio_group", options: ["Remove", "Proceed"], required: true },
+  { id: "resp_cou01", type: "number" },
+  { id: "resp_cou02", type: "yes_no_toggle" },
+  { id: "resp_cou021", type: "colour", colourType: "sputum", options: ["Clear", "Yellow","Green","White","Pinkish"],},
+  { id: "resp_cou022", type: "yes_no_toggle" },
+  { id: "resp_cou023", type: "yes_no_toggle" },
+  { id: "resp_cou03", type: "yes_no_toggle" },
+  { id: "resp_cou04", type: "yes_no_toggle" },
+  { id: "resp_cou05", type: "yes_no_toggle" },
 ];
