@@ -2712,7 +2712,7 @@ export const getQuestionsForComplaint = (answers) => {
     add5("og_013");}
           if (answers.og_013 === "Yes"){
     add5("og_0131");}
-        if (answers.og_01 === "Yes"){
+        if (answers.og_01 !== "Yes"){
     add5("og_03");}}})
     //Module6
     withSectionTitle("Nosebleed", () => {
