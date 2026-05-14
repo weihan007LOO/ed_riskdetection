@@ -1280,7 +1280,8 @@ export const getQuestionsForComplaint = (answers) => {
     add2("ent_ear01");
     add2("ent_ear02");
     add2("ent_ear03");
-    add2("ent_ear04");}})
+        if (answers.ent_ear01?.includes("Reduced or muffled hearing") || answers.ent_ear01?.includes("Complete hearing loss")){
+    add2("ent_ear04");}}})
     //Module3
     withSectionTitle("Fainting problem", () => {
     add3("prom_syncope");
