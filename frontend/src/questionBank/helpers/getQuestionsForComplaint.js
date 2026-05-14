@@ -1646,7 +1646,7 @@ export const getQuestionsForComplaint = (answers) => {
     withSectionTitle("Urinary problem", () => {
     add6("prom_gu");
       if (answers.prom_gu === "Yes"){
-        if (!answers.prompt_como02?.includes("Urinary catheter (tube to pass urine)")){
+        if (!answers.prompt_como02_lite?.includes("Urinary catheter (tube to pass urine)")){
     add6("gu_01");
       if (answers.gu_01 === "Yes"){
     add6("gu_02");
@@ -1674,7 +1674,7 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.gu_09 === "Yes"){
     add6("gu_091");}
     add6("gu_10");}
-      if (answers.prompt_como02?.includes("Urinary catheter (tube to pass urine)")){
+      if (answers.prompt_como02_lite?.includes("Urinary catheter (tube to pass urine)")){
     add6("gu_cbd01");
         if (answers.gu_cbd01 === "Yes"){
     add6("gu_cbd011");}
