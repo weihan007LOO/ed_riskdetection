@@ -2866,9 +2866,9 @@ export const getQuestionsForComplaint = (answers) => {
     add1("ent_ear01");
     add1("ent_ear02");
     add1("ent_ear03");
-        if (answers.ent_ear01 === "Reduced or muffled hearing" || answers.ent_ear01 === "Complete hearing loss"){
+        if (answers.ent_ear01?.includes("Reduced or muffled hearing") || answers.ent_ear01?.includes("Complete hearing loss")){
     add1("ent_ear04");}
-        if (answers.ent_ear01 === "Something entered or got stuck in the ear"){
+        if (answers.ent_ear01?.includes("Something entered or got stuck in the ear")){
     add1("ent_ear05");}
     add1("ent_ear06");}})
     //Module2
@@ -2877,10 +2877,10 @@ export const getQuestionsForComplaint = (answers) => {
     add2("ent_nose01");
     add2("ent_nose02");
     add2("ent_nose03");
-        if (answers.ent_nose01 === "Nosebleed"){
+        if (answers.ent_nose01?.includes("Nosebleed")){
     add2("ent_nose04");
     add2("ent_nose05");}
-        if (answers.ent_nose01 === "Something entered or got stuck in the nose"){
+        if (answers.ent_nose01?.includes("Something entered or got stuck in the nose")){
     add2("ent_nose06");}}})
     //Module3
     withSectionTitle("Throat problem", () => {
@@ -2888,10 +2888,10 @@ export const getQuestionsForComplaint = (answers) => {
     add3("ent_throat01");
     add3("ent_throat02");
     add3("ent_throat03");
-        if (answers.ent_throat01 === "Feeling of something stuck in the throat"){
+        if (answers.ent_throat01?.includes("Feeling of something stuck in the throat")){
     add3("ent_throat04");}
     add3("ent_throat05");
-        if (answers.ent_throat01 === "Difficulty swallowing"){
+        if (answers.ent_throat01?.includes("Difficulty swallowing")){
     add3("ent_throat06");}
     add3("ent_throat07");}})
     //Module4
