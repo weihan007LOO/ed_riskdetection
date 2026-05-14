@@ -1921,7 +1921,7 @@ export const getQuestionsForComplaint = (answers) => {
     addmed("med_gen021");
     addmed("med_gen022");
     addmed("med_gen023");}
-      if (answers.msk_01 === "Pain at rest" || answers.msk_01 === "Pain on movement"){
+      if (answers.msk_01?.includes("Pain at rest") || answers.msk_01?.includes("Pain on movement")){
     addmed("med_06");}
     //Social
     addsoc("soc_gen01");
