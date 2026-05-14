@@ -1833,7 +1833,6 @@ export const getQuestionsForComplaint = (answers) => {
     addmed("med_gen021");
     addmed("med_gen022");
     addmed("med_gen023");}
-    addmed("med_03");
     //Social
     addsoc("soc_gen01");
       if (answers.soc_gen01 === "Used to smoke" || answers.soc_gen01 === "Currently smoke"){
