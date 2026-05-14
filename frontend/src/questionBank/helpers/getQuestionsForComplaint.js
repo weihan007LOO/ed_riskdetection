@@ -2293,13 +2293,14 @@ export const getQuestionsForComplaint = (answers) => {
     //Module1
     if (answers.confirm_weakness !== "Remove") {
     withSectionTitle("Injury", () => {
+      if (answers.neuro_weak09 === "Yes"){
     add1("prom_injury");
       if (answers.prom_injury === "Yes"){
     add1("inj_01");
     add1("inj_02");
     add1("inj_03");
     add1("inj_04");
-    add1("inj_05");}})
+    add1("inj_05");}}})
     //Module2
     withSectionTitle("Fever", () => {
     add2("prom_fever");
