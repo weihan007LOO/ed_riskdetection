@@ -1288,7 +1288,7 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.prom_syncope === "Yes"){
     add3("neuro_sync01");
     add3("neuro_sync02");
-        if (answers.neuro_sync02 === "Completely lost conciousness"){
+        if (answers.neuro_sync02 === "Completely lost consciousness"){
     add3("neuro_sync021");}
     add3("neuro_sync03");
         if (answers.neuro_sync03 === "Standing"){
@@ -1388,7 +1388,7 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.confirm_syncope === "Proceed"){
     add("neuro_sync01");
     add("neuro_sync02");
-        if (answers.neuro_sync02 === "Completely lost conciousness"){
+        if (answers.neuro_sync02 === "Completely lost consciousness"){
     add("neuro_sync021");}
     add("neuro_sync03");
         if (answers.neuro_sync03 === "Standing"){
