@@ -2584,8 +2584,8 @@ export const getQuestionsForComplaint = (answers) => {
     add3("neuro_weak06");
     add3("neuro_weak07");
     add3("neuro_weak08");
-    add3("neuro_weak09");
-    add3("msk_10")}}})
+    add3("neuro_weak09");}
+    add3("msk_10")}})
     //Medical
     addmed("med_gen01");
       if (answers.med_gen01 === "Yes"){
