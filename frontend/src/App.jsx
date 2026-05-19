@@ -86,6 +86,8 @@ function App() {
     if (loading) return;
     setLoading(true);
 
+    const submit_timestamp = new Date().toISOString();
+
     try {
       const startTime = localStorage.getItem("history_start_time");
 
@@ -103,15 +105,16 @@ function App() {
         details: allAnswers,
         final_notes_raw: allAnswers.p_final_notes || "",
         duration_seconds,
+        submit_timestamp
       },
         {
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": import.meta.env.VITE_API_KEY
-        }
-      });
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": import.meta.env.VITE_API_KEY
+          }
+        });
       localStorage.removeItem("history_start_time");
-      alert("Saved!");
+      alert(`Saved!\nSubmitted at: ${submit_timestamp}`);
       window.location.reload();
     } catch (err) {
       console.error("ERROR:", err.response?.data);
@@ -127,44 +130,44 @@ function App() {
   const complaintsList = ChiefComplaints;
 
   useEffect(() => {
-  const fetchLabels = async () => {
-    const map = await loadQuestionBank();
-    setLabelMap(map);
-  };
+    const fetchLabels = async () => {
+      const map = await loadQuestionBank();
+      setLabelMap(map);
+    };
 
-  fetchLabels();
-}, []);
+    fetchLabels();
+  }, []);
 
   useEffect(() => {
-  if (step >= 3) {
+    if (step >= 3) {
 
-    const currentStep = questionFlow[flowIndex];
+      const currentStep = questionFlow[flowIndex];
 
-    const flow = buildFlow(selectedComplaints);
+      const flow = buildFlow(selectedComplaints);
 
-    const filteredFlow = flow.filter(f => {
-      if (f.type === "comorbid") {
-        return flowIndex === 0;
-      }
-      return true;
-    });
+      const filteredFlow = flow.filter(f => {
+        if (f.type === "comorbid") {
+          return flowIndex === 0;
+        }
+        return true;
+      });
 
-    setQuestionFlow(filteredFlow);
+      setQuestionFlow(filteredFlow);
 
-    // ✅ restore same position
-    if (currentStep) {
+      // ✅ restore same position
+      if (currentStep) {
 
-      const newIndex = filteredFlow.findIndex(f =>
-        f.type === currentStep.type &&
-        f.complaint === currentStep.complaint
-      );
+        const newIndex = filteredFlow.findIndex(f =>
+          f.type === currentStep.type &&
+          f.complaint === currentStep.complaint
+        );
 
-      if (newIndex !== -1) {
-        setFlowIndex(newIndex);
+        if (newIndex !== -1) {
+          setFlowIndex(newIndex);
+        }
       }
     }
-  }
-}, [allAnswers, selectedComplaints]);
+  }, [allAnswers, selectedComplaints]);
 
   const isMobile = window.innerWidth <= 480;
 
@@ -265,15 +268,15 @@ function App() {
             value={allAnswers[q.id]}
             onChange={(val) => updateAnswer(q.id, val)}
             placeholder={q.placeholder}
-            isMobile={isMobile} 
+            isMobile={isMobile}
           />
         )}
 
         {q.type === 'date' && (
-          <MedicalDateInput 
-            value={allAnswers[q.id]} 
+          <MedicalDateInput
+            value={allAnswers[q.id]}
             onChange={(val) => updateAnswer(q.id, val)}
-            isMobile={isMobile} 
+            isMobile={isMobile}
 
           />
         )}
@@ -385,7 +388,7 @@ function App() {
         )}
 
         {q.type === 'chest_map' && (
-          <ChestMap 
+          <ChestMap
             selectedRegion={allAnswers[q.id] || []}
             onSelect={(region) => {
               const prev = allAnswers[q.id] || [];
@@ -405,7 +408,7 @@ function App() {
             selectedOption={allAnswers[q.id]}
             onChange={(val) => updateAnswer(q.id, val)}
             type={q.colourType}   // <-- pass this prop
-            isMobile={isMobile} 
+            isMobile={isMobile}
           />
         )}
         {questionErrors[q.id] && (
@@ -441,19 +444,19 @@ function App() {
     8: "#f8fafc",
   };
   const groupByTag = (questions) => {
-  const grouped = {};
+    const grouped = {};
 
-  questions.forEach(q => {
-    const key = q.tag || "general";
+    questions.forEach(q => {
+      const key = q.tag || "general";
 
-    if (!grouped[key]) grouped[key] = [];
-    grouped[key].push(q);
-  });
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(q);
+    });
 
-  return grouped;
-};
+    return grouped;
+  };
   // const groupedQuestions = groupByTag(visibleQuestions); // Unused
-  
+
   const hasTagQuestions = (tag, complaint) => {
     return visibleQuestions.some(q =>
       q.tag === tag && q.complaint === complaint
@@ -464,9 +467,9 @@ function App() {
     const flow = [];
 
     if (hasTagQuestions("comorbid", "global")) {
-        flow.push({ type: "comorbid", complaint: "global" });
-      }
-    
+      flow.push({ type: "comorbid", complaint: "global" });
+    }
+
     // =========================
     // 2. PER COMPLAINT FLOW
     // =========================
@@ -478,24 +481,24 @@ function App() {
       });
 
       // general (per complaint)
-        flow.push({ type: "general", complaint: c });
+      flow.push({ type: "general", complaint: c });
 
       // modules (per complaint)
       for (let i = 1; i <= 10; i++) {
         const tag = `module${i}`;
-          flow.push({ type: tag, complaint: c });
+        flow.push({ type: tag, complaint: c });
       }
 
     });
 
-      // 🔥 Combined sections ONLY ONCE
-      if (hasTagQuestions("medical", "global")) {
-        flow.push({ type: "medical", complaint: "global" });
-      }
+    // 🔥 Combined sections ONLY ONCE
+    if (hasTagQuestions("medical", "global")) {
+      flow.push({ type: "medical", complaint: "global" });
+    }
 
-      if (hasTagQuestions("social", "global")) {
-        flow.push({ type: "social", complaint: "global" });
-      }
+    if (hasTagQuestions("social", "global")) {
+      flow.push({ type: "social", complaint: "global" });
+    }
 
     return flow;
   };
@@ -515,10 +518,10 @@ function App() {
       {/* HEADER SECTION */}
       {(step === 0 || step === 2) && (
         <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <img 
-            src="/ailogo.png" 
-            alt="AI Logo" 
-            className="triage-logo" 
+          <img
+            src="/ailogo.png"
+            alt="AI Logo"
+            className="triage-logo"
 
           />
           <h1 className="greenzonetriage-title">Symptom Assistant</h1>
@@ -542,30 +545,30 @@ function App() {
           <div className="step1main-style">
             <h4>Please tell us what main symptoms or problems brought you to hospital today</h4>
             <p style={{ marginBottom: '0' }}>Select all that apply to you</p>
-            
+
             <div className="step1complain-container">
               {/* Previous page button */}
-              
+
               {/* Chief complaint buttons */}
               {complaintsList.map(({ name, icon: Icon, type }) => (
-                <button 
-                  key={name} 
-                  onClick={() => toggleComplaint(name)} 
+                <button
+                  key={name}
+                  onClick={() => toggleComplaint(name)}
                   className={`step1complain-button ${selectedComplaints.includes(name) ? 'selectedComplaints' : ''}`}
                 >
-                  <Icon 
-                  {...(type === "health"
-                    ? { width: 28, height: 28 }
-                    : { size: 28 })} 
-                  style={{ marginBottom: '8px', color: selectedComplaints.includes(name) ? '#10b981' : '#64748b' }} />
+                  <Icon
+                    {...(type === "health"
+                      ? { width: 28, height: 28 }
+                      : { size: 28 })}
+                    style={{ marginBottom: '8px', color: selectedComplaints.includes(name) ? '#10b981' : '#64748b' }} />
                   <span>{name}</span>
                 </button>
               ))}
-              
+
             </div>
 
             {/* Start Assessment button */}
-            <button 
+            <button
               onClick={() => {
                 const flow = buildFlow(selectedComplaints);
 
@@ -815,15 +818,15 @@ function App() {
 
         const groupedByCard = useCards
           ? questionsToRender.reduce((acc, q) => {
-              const key = q.sectionTitle;
+            const key = q.sectionTitle;
 
-              if (!key) return acc; // no fallback, prevents "Other"
+            if (!key) return acc; // no fallback, prevents "Other"
 
-              if (!acc[key]) acc[key] = [];
-              acc[key].push(q);
+            if (!acc[key]) acc[key] = [];
+            acc[key].push(q);
 
-              return acc;
-            }, {})
+            return acc;
+          }, {})
           : null;
 
         const isFlatSection =
@@ -888,7 +891,7 @@ function App() {
 
             </div>
 
-            <div className={isFlatSection ?"step2title-xstyle": "step2title-style"}>
+            <div className={isFlatSection ? "step2title-xstyle" : "step2title-style"}>
               <div
                 style={{
                   display: "flex",
@@ -898,7 +901,7 @@ function App() {
                   justifyContent: "center"
                 }}
               >
-                
+
               </div>
 
               {/* ✅ FLAT (comorbid / medical / social) */}
@@ -957,19 +960,19 @@ function App() {
                   </div>
                 ))}
 
-                      <button onClick={goNext} className="step2submit-button">
-                        Next →
-                      </button>
-                    </div>
-                  </div>
-                );
-              })()}
+              <button onClick={goNext} className="step2submit-button">
+                Next →
+              </button>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* STEP 8 - Additional Information */}
       {step === 8 && (
         <div className="step2main-style">
-          <button onClick={() => {setStep(3); setFlowIndex(questionFlow.length - 1);}} className="btn-secondary" style={{ width: 'auto' }}>← Back</button>
-          
+          <button onClick={() => { setStep(3); setFlowIndex(questionFlow.length - 1); }} className="btn-secondary" style={{ width: 'auto' }}>← Back</button>
+
           <div className="step2title-style">
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', justifyContent: 'center' }}>
               <LayoutGrid size={28} style={{ color: '#2563eb' }} />
@@ -981,9 +984,9 @@ function App() {
               <label className="step2question-que">
                 Is there anything else you would like the doctor to know? (Optional)
               </label>
-      
+
               <div style={{ position: 'relative', width: '100%' }}>
-                <MedicalTextInput 
+                <MedicalTextInput
                   isTextArea={true}
                   placeholder="e.g., I have a history of heart issues, I'm currently taking aspirin, etc."
                   value={allAnswers['p_final_notes'] || ""}
@@ -996,8 +999,8 @@ function App() {
               </div>
             </div>
 
-            <button 
-              onClick={handleFinalSubmit} 
+            <button
+              onClick={handleFinalSubmit}
               disabled={loading}
               className="step2submit-button"
             >
