@@ -1280,14 +1280,15 @@ export const getQuestionsForComplaint = (answers) => {
     add2("ent_ear01");
     add2("ent_ear02");
     add2("ent_ear03");
-    add2("ent_ear04");}})
+        if (answers.ent_ear01?.includes("Reduced or muffled hearing") || answers.ent_ear01?.includes("Complete hearing loss")){
+    add2("ent_ear04");}}})
     //Module3
     withSectionTitle("Fainting problem", () => {
     add3("prom_syncope");
       if (answers.prom_syncope === "Yes"){
     add3("neuro_sync01");
     add3("neuro_sync02");
-        if (answers.neuro_sync02 === "Completely lost conciousness"){
+        if (answers.neuro_sync02 === "Completely lost consciousness"){
     add3("neuro_sync021");}
     add3("neuro_sync03");
         if (answers.neuro_sync03 === "Standing"){
@@ -1387,7 +1388,7 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.confirm_syncope === "Proceed"){
     add("neuro_sync01");
     add("neuro_sync02");
-        if (answers.neuro_sync02 === "Completely lost conciousness"){
+        if (answers.neuro_sync02 === "Completely lost consciousness"){
     add("neuro_sync021");}
     add("neuro_sync03");
         if (answers.neuro_sync03 === "Standing"){
@@ -1645,7 +1646,7 @@ export const getQuestionsForComplaint = (answers) => {
     withSectionTitle("Urinary problem", () => {
     add6("prom_gu");
       if (answers.prom_gu === "Yes"){
-        if (!answers.prompt_como02?.includes("Urinary catheter (tube to pass urine)")){
+        if (!answers.prompt_como02_lite?.includes("Urinary catheter (tube to pass urine)")){
     add6("gu_01");
       if (answers.gu_01 === "Yes"){
     add6("gu_02");
@@ -1673,12 +1674,12 @@ export const getQuestionsForComplaint = (answers) => {
       if (answers.gu_09 === "Yes"){
     add6("gu_091");}
     add6("gu_10");}
-      if (answers.prompt_como02?.includes("Urinary catheter (tube to pass urine)")){
+      if (answers.prompt_como02_lite?.includes("Urinary catheter (tube to pass urine)")){
     add6("gu_cbd01");
         if (answers.gu_cbd01 === "Yes"){
     add6("gu_cbd011");}
     add6("gu_cbd02");
-        if (answers.gu_cbd02 === "Yes"){
+        if (answers.gu_cbd02 === "More" || answers.gu_cbd02 === "Less"){
     add6("gu_cbd021");}
     add6("gu_cbd03");
         if (answers.gu_cbd03 === "Yes"){
@@ -1832,7 +1833,6 @@ export const getQuestionsForComplaint = (answers) => {
     addmed("med_gen021");
     addmed("med_gen022");
     addmed("med_gen023");}
-    addmed("med_03");
     //Social
     addsoc("soc_gen01");
       if (answers.soc_gen01 === "Used to smoke" || answers.soc_gen01 === "Currently smoke"){
@@ -1921,7 +1921,7 @@ export const getQuestionsForComplaint = (answers) => {
     addmed("med_gen021");
     addmed("med_gen022");
     addmed("med_gen023");}
-      if (answers.msk_01 === "Pain at rest" || answers.msk_01 === "Pain on movement"){
+      if (answers.msk_01?.includes("Pain at rest") || answers.msk_01?.includes("Pain on movement")){
     addmed("med_06");}
     //Social
     addsoc("soc_gen01");
@@ -2191,7 +2191,7 @@ export const getQuestionsForComplaint = (answers) => {
         if (answers.gu_cbd01 === "Yes"){
     add7("gu_cbd011");}
     add7("gu_cbd02");
-        if (answers.gu_cbd02 === "Yes"){
+        if (answers.gu_cbd02 === "More" || answers.gu_cbd02 === "Less"){
     add7("gu_cbd021");}
     add7("gu_cbd03");
         if (answers.gu_cbd03 === "Yes"){
@@ -2293,13 +2293,14 @@ export const getQuestionsForComplaint = (answers) => {
     //Module1
     if (answers.confirm_weakness !== "Remove") {
     withSectionTitle("Injury", () => {
+      if (answers.neuro_weak09 === "Yes"){
     add1("prom_injury");
       if (answers.prom_injury === "Yes"){
     add1("inj_01");
     add1("inj_02");
     add1("inj_03");
     add1("inj_04");
-    add1("inj_05");}})
+    add1("inj_05");}}})
     //Module2
     withSectionTitle("Fever", () => {
     add2("prom_fever");
@@ -2474,7 +2475,7 @@ export const getQuestionsForComplaint = (answers) => {
     withSectionTitle("Problem with Passing Urine", () => {
     add("confirm_gu");
       if (answers.confirm_gu === "Proceed"){
-        if (!answers.prompt_como02?.includes("Urinary catheter (tube to pass urine)")){
+        if (!answers.prompt_como02_lite?.includes("Urinary catheter (tube to pass urine)")){
     add("gu_01");
       if (answers.gu_01 === "Yes"){
     add("gu_02");
@@ -2503,7 +2504,7 @@ export const getQuestionsForComplaint = (answers) => {
     add("gu_091");}
     add("gu_10");
     add("gu_11");}
-      if (answers.prompt_como02?.includes("Urinary catheter (tube to pass urine)")){
+      if (answers.prompt_como02_lite?.includes("Urinary catheter (tube to pass urine)")){
     add("gu_04");
       if (answers.gu_04 === "Yes"){
     add("gu_041");}
@@ -2526,7 +2527,7 @@ export const getQuestionsForComplaint = (answers) => {
         if (answers.gu_cbd01 === "Yes"){
     add("gu_cbd011");}
     add("gu_cbd02");
-        if (answers.gu_cbd02 === "Yes"){
+        if (answers.gu_cbd02 === "More" || answers.gu_cbd02 === "Less"){
     add("gu_cbd021");}
     add("gu_cbd03");
         if (answers.gu_cbd03 === "Yes"){
@@ -2584,8 +2585,8 @@ export const getQuestionsForComplaint = (answers) => {
     add3("neuro_weak06");
     add3("neuro_weak07");
     add3("neuro_weak08");
-    add3("neuro_weak09");
-    add3("msk_10")}}})
+    add3("neuro_weak09");}
+    add3("msk_10")}})
     //Medical
     addmed("med_gen01");
       if (answers.med_gen01 === "Yes"){
@@ -2712,7 +2713,7 @@ export const getQuestionsForComplaint = (answers) => {
     add5("og_013");}
           if (answers.og_013 === "Yes"){
     add5("og_0131");}
-        if (answers.og_01 === "Yes"){
+        if (answers.og_01 !== "Yes"){
     add5("og_03");}}})
     //Module6
     withSectionTitle("Nosebleed", () => {
@@ -2866,9 +2867,9 @@ export const getQuestionsForComplaint = (answers) => {
     add1("ent_ear01");
     add1("ent_ear02");
     add1("ent_ear03");
-        if (answers.ent_ear01 === "Reduced or muffled hearing" || answers.ent_ear01 === "Complete hearing loss"){
+        if (answers.ent_ear01?.includes("Reduced or muffled hearing") || answers.ent_ear01?.includes("Complete hearing loss")){
     add1("ent_ear04");}
-        if (answers.ent_ear01 === "Something entered or got stuck in the ear"){
+        if (answers.ent_ear01?.includes("Something entered or got stuck in the ear")){
     add1("ent_ear05");}
     add1("ent_ear06");}})
     //Module2
@@ -2877,10 +2878,10 @@ export const getQuestionsForComplaint = (answers) => {
     add2("ent_nose01");
     add2("ent_nose02");
     add2("ent_nose03");
-        if (answers.ent_nose01 === "Nosebleed"){
+        if (answers.ent_nose01?.includes("Nosebleed")){
     add2("ent_nose04");
     add2("ent_nose05");}
-        if (answers.ent_nose01 === "Something entered or got stuck in the nose"){
+        if (answers.ent_nose01?.includes("Something entered or got stuck in the nose")){
     add2("ent_nose06");}}})
     //Module3
     withSectionTitle("Throat problem", () => {
@@ -2888,10 +2889,10 @@ export const getQuestionsForComplaint = (answers) => {
     add3("ent_throat01");
     add3("ent_throat02");
     add3("ent_throat03");
-        if (answers.ent_throat01 === "Feeling of something stuck in the throat"){
+        if (answers.ent_throat01?.includes("Feeling of something stuck in the throat")){
     add3("ent_throat04");}
     add3("ent_throat05");
-        if (answers.ent_throat01 === "Difficulty swallowing"){
+        if (answers.ent_throat01?.includes("Difficulty swallowing")){
     add3("ent_throat06");}
     add3("ent_throat07");}})
     //Module4
