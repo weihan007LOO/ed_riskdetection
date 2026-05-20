@@ -182,11 +182,11 @@
 
 .step1complain-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 12px;
   margin-top: 16px;
   padding: 10px 0;
-  max-height: calc(2 * 145px);
+  max-height: calc(2 * 100px);
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -430,6 +430,18 @@
   }
 }
 
+@media (min-width: 481px) and (max-width: 768px) {
+  .step1complain-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+  padding: 10px 0;
+  max-height: calc(2 * 145px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+}
 /* ========================================
    RESPONSIVE MOBILE STYLES
    ======================================== */
