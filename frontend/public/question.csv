@@ -281,7 +281,7 @@ pain_git_01,Where do you feel the pain? (👉 Tap on the area)
 pain_git_02,When did the pain start? (days ago)
 pain_git_03,Are you still having pain right now?
 pain_git_031A,How bad is the pain now?
-pain_git_031B,How bad was the pain now?
+pain_git_031B,How bad was the pain?
 pain_git_04,Did the pain start suddenly or gradually?
 pain_git_05,"Have you had one episode of pain, or multiple episodes?"
 pain_git_051,How many episodes have you had?
@@ -294,7 +294,7 @@ pain_card_01,Where do you feel the pain? (👉 Tap on the area)
 pain_card_02,When did the pain start? (days ago)
 pain_card_03,Are you still having pain right now?
 pain_card_031A,How bad is the pain now?
-pain_card_031B,How bad was the pain now?
+pain_card_031B,How bad was the pain?
 pain_card_04,Did the pain start suddenly or gradually?
 pain_card_05,"Have you had one episode of pain, or multiple episodes?"
 pain_card_051,How many episodes have you had?
