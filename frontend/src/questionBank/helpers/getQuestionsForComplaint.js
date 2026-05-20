@@ -3024,6 +3024,23 @@ export const getQuestionsForComplaint = (answers) => {
     }
   }
 
+  const vomitingFollowups = [
+    "git_vom02",
+    "git_vom03",
+    "git_vom04",
+    "git_vom05"
+  ];
+
+  // if confirm_vomiting already Proceed,
+  // skip future vomiting followups
+  if (
+    vomitingFollowups.includes(q.id) &&
+    answers.confirm_vomiting === "Proceed" &&
+    answers.prom_vomiting === "Yes"
+  ) {
+    return;
+  }
+
   // normal dedupe
   if (!seen.has(q.id)) {
     seen.add(q.id);
