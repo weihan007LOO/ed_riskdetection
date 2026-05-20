@@ -113,8 +113,11 @@ function App() {
             "x-api-key": import.meta.env.VITE_API_KEY
           }
         });
+      const saved_timestamp = new Date().toISOString();
       localStorage.removeItem("history_start_time");
-      alert(`Saved!\nSubmitted at: ${submit_timestamp}`);
+      alert(
+        `Saved!\nSubmitted at: ${submit_timestamp}\nSaved at: ${saved_timestamp}`
+      );
       window.location.reload();
     } catch (err) {
       console.error("ERROR:", err.response?.data);
