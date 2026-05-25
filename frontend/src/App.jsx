@@ -110,7 +110,8 @@ function App() {
         {
           headers: {
             "Content-Type": "application/json",
-            "x-api-key": import.meta.env.VITE_API_KEY
+            "x-api-key": import.meta.env.VITE_API_KEY,
+            "ngrok-skip-browser-warning": "69420"
           }
         });
       const saved_timestamp = new Date().toISOString();
