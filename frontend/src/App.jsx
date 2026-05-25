@@ -691,7 +691,7 @@ function App() {
             ? Date.now() - Number(startTime)
             : 0;
 
-          const ONE_MINUTE = 60 * 1000;
+          const ONE_MINUTE = 30 * 1000;
 
           if (elapsedMs < ONE_MINUTE) {
             // likely flow rebuild / invalidation
