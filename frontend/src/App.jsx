@@ -52,9 +52,6 @@ function App() {
   const [questionFlow, setQuestionFlow] = useState([]);
   const [flowIndex, setFlowIndex] = useState(0);
   const [direction, setDirection] = useState("forward");
-  const [confirmQuestions, setConfirmQuestions] = useState([]);
-  const [confirmAnswers, setConfirmAnswers] = useState({});
-  const [doneSections, setDoneSections] = useState({});
   const [questionErrors, setQuestionErrors] = useState({});
 
   // ✅ CLEAN speech logic (unchanged)
@@ -149,19 +146,12 @@ function App() {
 
       const flow = buildFlow(selectedComplaints);
 
-      const filteredFlow = flow.filter(f => {
-        if (f.type === "comorbid") {
-          return flowIndex === 0;
-        }
-        return true;
-      });
-
-      setQuestionFlow(filteredFlow);
+      setQuestionFlow(flow);
 
       // ✅ restore same position
       if (currentStep) {
 
-        const newIndex = filteredFlow.findIndex(f =>
+        const newIndex = flow.findIndex(f =>
           f.type === currentStep.type &&
           f.complaint === currentStep.complaint
         );
@@ -470,19 +460,7 @@ function App() {
   const buildFlow = (complaints) => {
     const flow = [];
 
-    if (hasTagQuestions("comorbid", "global")) {
-      flow.push({ type: "comorbid", complaint: "global" });
-    }
-
-    // =========================
-    // 2. PER COMPLAINT FLOW
-    // =========================
     complaints.forEach((c) => {
-
-      flow.push({
-        type: "confirm",
-        complaint: c
-      });
 
       // general (per complaint)
       flow.push({ type: "general", complaint: c });
@@ -574,12 +552,7 @@ function App() {
             {/* Start Assessment button */}
             <button
               onClick={() => {
-                const flow = buildFlow(selectedComplaints);
-
-                setQuestionFlow(flow);
-                setFlowIndex(0);
-
-                goToStep(3);
+                goToStep(2.5);
               }}
               disabled={selectedComplaints.length === 0}
               className="step1complain-submit"
@@ -590,6 +563,238 @@ function App() {
         </div>
 
       )}
+
+      {step === 2.5 && (() => {
+
+        const comorbidQuestions = visibleQuestions.filter(
+          q => q.tag === "comorbid"
+        );
+
+        const goNext = () => {
+          setStep(2.9);
+        };
+
+        return (
+          <div className="step2main-style">
+
+            <button
+              onClick={() => setStep(2)}
+              className="btn-secondary"
+            >
+              ← Back
+            </button>
+
+            <div className="step2title-style">
+
+              <h3>Comorbids</h3>
+
+              {renderQuestions(comorbidQuestions)}
+
+              <button
+                onClick={goNext}
+                className="step2submit-button"
+              >
+                Next →
+              </button>
+
+            </div>
+          </div>
+        );
+      })()}
+
+      {step === 2.9 && (() => {
+
+        const confirmQuestions = visibleQuestions.filter(
+          q => q.id.startsWith("confirm")
+        );
+
+        const goNext = () => {
+
+          const newErrors = {};
+          let firstErrorId = null;
+
+          confirmQuestions.forEach(q => {
+
+            if (!q.required) return;
+
+            const val = allAnswers[q.id];
+
+            let isEmpty = false;
+
+            if (q.type === "checkbox_group") {
+              isEmpty = !val || val.length === 0;
+            } else {
+              isEmpty =
+                val === undefined ||
+                val === null ||
+                val === "";
+            }
+
+            if (isEmpty) {
+
+              newErrors[q.id] = true;
+
+              if (!firstErrorId) {
+                firstErrorId = q.id;
+              }
+            }
+          });
+
+          setQuestionErrors(newErrors);
+
+          // ❌ STOP if validation failed
+          if (firstErrorId) {
+
+            const el = document.getElementById(firstErrorId);
+
+            if (el) {
+              el.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+              });
+            }
+
+            return;
+          }
+
+        // ✅ remove complaints marked as "Remove"
+        const filteredComplaints = selectedComplaints.filter(c => {
+
+          const confirmQuestion = confirmQuestions.find(
+            q => q.complaint === c
+          );
+
+          if (!confirmQuestion) return true;
+
+          return allAnswers[confirmQuestion.id] !== "Remove";
+        });
+
+        // ✅ if all removed → back to complaint selection
+        if (filteredComplaints.length === 0) {
+          setSelectedComplaints([]);
+          goToStep(2);
+          return;
+        }
+
+        // ✅ update selected complaints
+        setSelectedComplaints(filteredComplaints);
+
+        // ✅ build new flow
+        const flow = buildFlow(filteredComplaints);
+
+        setQuestionFlow(flow);
+        setFlowIndex(0);
+
+        goToStep(3);
+      };
+
+        return (
+          <div className="step2main-style">
+
+            <button
+              onClick={() => setStep(2.5)}
+              className="btn-secondary"
+            >
+              ← Back
+            </button>
+
+            <div className="step2title-style">
+
+              <h3>Confirm Symptoms</h3>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "20px"
+                }}
+              >
+                {selectedComplaints.map((complaintName) => {
+
+                  const complaintData = ChiefComplaints.find(
+                    c => c.name === complaintName
+                  );
+
+                  if (!complaintData) return null;
+
+                  const confirmQuestion = confirmQuestions.find(
+                    q => q.complaint === complaintName
+                  );
+
+                  if (!confirmQuestion) return null;
+
+                  const Icon = complaintData.icon;
+
+                  return (
+                    <div
+                      key={complaintName}
+                      style={{
+                        background: "#f8fafc",
+                        border: "1px solid #cbd5e1",
+                        borderRadius: "16px",
+                        padding: "20px",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
+                      }}
+                    >
+
+                      {/* HEADER */}
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "12px",
+                          marginBottom: "16px"
+                        }}
+                      >
+                        <div
+                          style={{
+                            background: "#dbeafe",
+                            padding: "10px",
+                            borderRadius: "12px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center"
+                          }}
+                        >
+                          <Icon
+                            {...(complaintData.type === "health"
+                              ? { width: 28, height: 28 }
+                              : { size: 28 })}
+                            style={{ color: "#2563eb" }}
+                          />
+                        </div>
+
+                        <h3
+                          style={{
+                            margin: 0,
+                            color: "#1e293b",
+                            fontSize: "24px",
+                            fontWeight: "600"
+                          }}
+                        >
+                          {complaintName}
+                        </h3>
+                      </div>
+
+                      {/* QUESTION */}
+                      {renderQuestions([confirmQuestion])}
+
+                    </div>
+                  );
+                })}
+              </div>
+
+              <button
+                onClick={goNext}
+                className="step2submit-button"
+              >
+                Start Assessment →
+              </button>
+
+            </div>
+          </div>
+        );
+      })()}
 
       {/* STEP 3 (DYNAMIC FLOW) */}
       {step === 3 && questionFlow.length > 0 && (() => {
@@ -603,11 +808,8 @@ function App() {
 
         const hasQuestionsForStep = (step) => {
           return visibleQuestions.some(q => {
-            if (step.type === "confirm") {
-              return q.id.startsWith("confirm") && q.complaint === step.complaint;
-            }
 
-            if (["medical", "social", "comorbid"].includes(step.type)) {
+            if (["medical", "social"].includes(step.type)) {
               return q.tag === step.type;
             }
 
@@ -684,22 +886,7 @@ function App() {
 
             nextIndex++;
           }
-
-          const startTime = localStorage.getItem("history_start_time");
-
-          const elapsedMs = startTime
-            ? Date.now() - Number(startTime)
-            : 0;
-
-          const ONE_MINUTE = 30 * 1000;
-
-          if (elapsedMs < ONE_MINUTE) {
-            // likely flow rebuild / invalidation
-            goToStep(2);
-          } else {
-            // likely real completion
-            goToStep(8);
-          }
+          goToStep(8);
         };
 
         const goBack = () => {
@@ -711,22 +898,11 @@ function App() {
             const hasQuestions = visibleQuestions.some(q => {
 
               // =========================
-              // CONFIRM STEP
-              // =========================
-              if (prev.type === "confirm") {
-                return (
-                  q.id.startsWith("confirm") &&
-                  q.complaint === prev.complaint
-                );
-              }
-
-              // =========================
               // GLOBAL SECTIONS
               // =========================
               if (
                 prev.type === "medical" ||
-                prev.type === "social" ||
-                prev.type === "comorbid"
+                prev.type === "social" 
               ) {
                 return q.tag === prev.type;
               }
@@ -746,41 +922,24 @@ function App() {
           }
 
           if (newIndex < 0) {
-            setStep(2);
+            setStep(2.9);
           } else {
             setFlowIndex(newIndex);
           }
         };
 
-        const isComorbidStepCompleted =
-          questionFlow[flowIndex]?.type !== "comorbid" &&
-          questionFlow.slice(0, flowIndex).some(f => f.type === "comorbid");
         // STEP FILTER
         const questionsToRender = visibleQuestions.filter(q => {
 
-          // =========================
-          // CONFIRM STEP
-          // =========================
-          if (current.type === "confirm") {
-            return (
-              q.id.startsWith("confirm") &&
-              q.complaint === current.complaint
-            );
-          }
-
-          // skip confirm elsewhere
-          if (q.id.startsWith("confirm")) return false;
-
-          // comorbid logic
-          if (q.tag === "comorbid" && isComorbidStepCompleted) {
+          // ✅ hide confirm questions in step3
+          if (q.id.startsWith("confirm")) {
             return false;
           }
 
           // flat sections
           if (
             current.type === "medical" ||
-            current.type === "social" ||
-            current.type === "comorbid"
+            current.type === "social" 
           ) {
             return q.tag === current.type;
           }
@@ -793,7 +952,6 @@ function App() {
         });
 
         if (
-          current.type !== "confirm" &&
           questionsToRender.length === 0 &&
           direction === "forward"
         ) {
@@ -810,9 +968,8 @@ function App() {
 
         const IconComponent = sectionMeta.icon;
         const sectionTitle =
-          current.type === "confirm"
-            ? `Confirm Symptom`
-            : current.type.charAt(0).toUpperCase() + current.type.slice(1);
+          current.type.charAt(0).toUpperCase() +
+          current.type.slice(1);
 
         // ✅ IMPORTANT RULE:
         // only general + moduleX use cards
@@ -834,8 +991,6 @@ function App() {
           : null;
 
         const isFlatSection =
-          current.type === "confirm" ||
-          current.type === "comorbid" ||
           current.type === "medical" ||
           current.type === "social";
 
